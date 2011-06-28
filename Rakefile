@@ -12,15 +12,17 @@ end
 require 'rake'
 
 require 'jeweler'
+require './lib/correios/frete/version'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "correios-frete"
   gem.homepage = "http://github.com/prodis/correios-frete"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Cálculo de frete dos Correios}
+  gem.description = %Q{Cálculo de frete dos Correios}
   gem.email = "prodis@gmail.com"
-  gem.authors = ["Prodis"]
+  gem.authors = ["Prodis a.k.a. Fernando Hamasaki de Amorim"]
+  gem.version = Correios::Frete::Version::STRING
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
