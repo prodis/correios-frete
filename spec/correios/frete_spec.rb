@@ -54,19 +54,19 @@ describe Correios::Frete do
 
   describe "#calculate" do
     before :each do
-      @servicos = mock Array
+      @xml = '<?xml version="1.0" encoding="ISO-8859-1" ?><Servicos><cServico><Codigo>41106</Codigo><Valor>15,70</Valor><PrazoEntrega>3</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico><cServico><Codigo>40010</Codigo><Valor>17,80</Valor><PrazoEntrega>1</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>S</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>'
       @frete_service = Correios::FreteService.new
-      @frete_service.stub(:request).and_return(@servicos)
-      @frete = Correios::Frete.new(:frete_service => @frete_service)
+      @frete_service.stub(:request).and_return(@xml)
+
+      @servicos = mock "Servicos"
+      @frete_parser = Correios::FreteParser.new
+      @frete_parser.stub(:servicos).and_return(@servicos)
+
+      @frete = Correios::Frete.new(:frete_service => @frete_service, :frete_parser => @frete_parser)
     end
 
-    it "calls Correios::FreteService#request" do
-      @frete_service.should_receive(:request).with([:sedex, :pac])
-      @frete.calculate :sedex, :pac
-    end
-
-    it "returns response services" do
-      @frete.calculate(:sedex, :pac).should == @servicos
+    it "returns services" do
+      @frete.calculate(:pac, :sedex).should == @servicos
     end
   end
 end
