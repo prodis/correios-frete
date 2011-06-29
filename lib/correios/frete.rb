@@ -1,11 +1,10 @@
-# encoding: utf-8
-
+# encoding: UTF-8
 module Correios
   class Frete
     attr_accessor :cep_origem, :cep_destino
     attr_accessor :peso, :comprimento, :altura, :largura, :diametro
     attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado
-    attr_writer :frete_service, :frete_parser
+    attr_writer :web_service, :parser
 
     DEFAULT_OPTIONS = {
       :formato => :caixa_pacote, 
@@ -22,17 +21,17 @@ module Correios
       yield self if block_given?
     end
 
-    def frete_service
-      @frete_service ||= FreteService.new
+    def web_service
+      @web_service ||= Correios::Frete::WebService.new
     end
 
-    def frete_parser
-      @frete_parser ||= FreteParser.new
+    def parser
+      @parser ||= Correios::Frete::Parser.new
     end
 
     def calculate(*services)
-      response = @frete_service.request services
-      @frete_parser.servicos response
+      response = @web_service.request services
+      @parser.servicos response
     end
   end
 end

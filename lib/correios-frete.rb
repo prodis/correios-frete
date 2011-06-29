@@ -1,5 +1,4 @@
-# encoding: utf-8
-
+# encoding: UTF-8
 require 'correios/frete'
-require 'correios/frete_service'
-require 'correios/frete_parser'
+require 'correios/frete/parser'
+require 'correios/frete/web_service'

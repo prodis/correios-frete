@@ -1,4 +1,4 @@
-# encoding: utf-8
+# encoding: UTF-8
 require 'spec_helper'
 
 describe Correios::Frete do
@@ -34,7 +34,8 @@ describe Correios::Frete do
       :mao_propria => true, 
       :aviso_recebimento => true, 
       :valor_declarado => 1.99,
-      :frete_service => Correios::FreteService.new
+      :web_service => Correios::Frete::WebService.new,
+      :parser => Correios::Frete::Parser.new
     }.each do |attr, value|
       context "when #{attr} is supplied" do
         it "set #{attr} value" do
@@ -55,14 +56,14 @@ describe Correios::Frete do
   describe "#calculate" do
     before :each do
       @xml = '<?xml version="1.0" encoding="ISO-8859-1" ?><Servicos><cServico><Codigo>41106</Codigo><Valor>15,70</Valor><PrazoEntrega>3</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico><cServico><Codigo>40010</Codigo><Valor>17,80</Valor><PrazoEntrega>1</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>S</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>'
-      @frete_service = Correios::FreteService.new
-      @frete_service.stub(:request).and_return(@xml)
+      @web_service = Correios::Frete::WebService.new
+      @web_service.stub(:request).and_return(@xml)
 
       @servicos = mock "Servicos"
-      @frete_parser = Correios::FreteParser.new
-      @frete_parser.stub(:servicos).and_return(@servicos)
+      @parser = Correios::Frete::Parser.new
+      @parser.stub(:servicos).and_return(@servicos)
 
-      @frete = Correios::Frete.new(:frete_service => @frete_service, :frete_parser => @frete_parser)
+      @frete = Correios::Frete.new(:web_service => @web_service, :parser => @parser)
     end
 
     it "returns services" do
