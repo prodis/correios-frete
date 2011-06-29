@@ -5,6 +5,7 @@ module Correios
     attr_accessor :cep_origem, :cep_destino
     attr_accessor :peso, :comprimento, :altura, :largura, :diametro
     attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado
+    attr_writer :frete_service
 
     DEFAULT_OPTIONS = {
       :formato => :caixa_pacote, 
@@ -19,6 +20,14 @@ module Correios
       end
 
       yield self if block_given?
+    end
+
+    def frete_service
+      @frete_service ||= FreteService.new
+    end
+
+    def calculate(*services)
+      @frete_service.request services
     end
   end
 end
