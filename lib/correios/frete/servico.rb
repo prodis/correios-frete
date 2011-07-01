@@ -38,7 +38,7 @@ class Correios::Frete::Servico
 
   def cast_to_float!(*attributes)
     attributes.each do |attr|
-      instance_variable_set("@#{attr}", send(attr).gsub("," ,".").to_f)
+      instance_variable_set("@#{attr}", send(attr).to_s.gsub("," ,".").to_f)
     end
   end
 

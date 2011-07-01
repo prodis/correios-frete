@@ -74,5 +74,40 @@ describe Correios::Frete::Servico do
         end
       end
     end
+
+    context "when there is an unexpect error" do
+      before :each do
+        @xml = """<cServico>
+                    <Codigo></Codigo>
+                    <Valor></Valor>
+                    <PrazoEntrega></PrazoEntrega>
+                    <ValorMaoPropria></ValorMaoPropria>
+                    <ValorAvisoRecebimento></ValorAvisoRecebimento>
+                    <ValorValorDeclarado></ValorValorDeclarado>
+                    <EntregaDomiciliar></EntregaDomiciliar>
+                    <EntregaSabado></EntregaSabado>
+                    <Erro>99</Erro>
+                    <MsgErro>Input string was not in a correct format.</MsgErro>
+                  </cServico>"""
+      end
+
+      { :type => nil,
+        :codigo => nil,
+        :valor => 0.0,
+        :prazo_entrega => 0,
+        :valor_mao_propria => 0.0,
+        :valor_aviso_recebimento => 0.0,
+        :valor_valor_declarado => 0.0,
+        :entrega_domiciliar => false,
+        :entrega_sabado => false,
+        :erro => 99,
+        :msg_erro => "Input string was not in a correct format."
+      }.each do |attr, value|
+        it "sets #{attr} to #{value}" do
+          @servico.parse @xml
+          @servico.send(attr).should == value
+        end
+      end
+    end
   end
 end
