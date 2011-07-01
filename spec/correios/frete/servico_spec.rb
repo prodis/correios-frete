@@ -21,7 +21,7 @@ describe Correios::Frete::Servico do
                   </cServico>"""
       end
 
-      { :type => :pac,
+      { :tipo => :pac,
         :codigo => "41106",
         :valor => 15.70,
         :prazo_entrega => 3,
@@ -56,7 +56,7 @@ describe Correios::Frete::Servico do
                   </cServico>"""
       end
 
-      { :type => nil,
+      { :tipo => nil,
         :codigo => "99999",
         :valor => 0.0,
         :prazo_entrega => 0,
@@ -91,7 +91,7 @@ describe Correios::Frete::Servico do
                   </cServico>"""
       end
 
-      { :type => nil,
+      { :tipo => nil,
         :codigo => nil,
         :valor => 0.0,
         :prazo_entrega => 0,

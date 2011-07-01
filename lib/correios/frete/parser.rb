@@ -14,7 +14,7 @@ class Correios::Frete::Parser
 
     Nokogiri::XML(xml).root.elements.each do |element|
       servico = Correios::Frete::Servico.new.parse(element.to_xml)
-      servicos[servico.type] = servico
+      servicos[servico.tipo] = servico
     end
 
     servicos

@@ -34,7 +34,7 @@ describe Correios::Frete::Parser do
       @parser = Correios::Frete::Parser.new
     end
 
-    { :pac => { :type => :pac,
+    { :pac => { :tipo => :pac,
                 :codigo => "41106",
                 :valor => 15.70,
                 :prazo_entrega => 3,
@@ -45,7 +45,7 @@ describe Correios::Frete::Parser do
                 :entrega_sabado => false,
                 :erro => "-3",
                 :msg_erro => "Somente para teste" },
-      :sedex => { :type => :sedex,
+      :sedex => { :tipo => :sedex,
                   :codigo => "40010",
                   :valor => 17.8,
                   :prazo_entrega => 1,
