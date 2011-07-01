@@ -30,8 +30,8 @@ module Correios
     end
 
     def calculate(*service_types)
-      response = @web_service.request(self, service_types)
-      @parser.servicos response
+      response = web_service.request(self, service_types)
+      parser.servicos response
     end
   end
 end
