@@ -1,19 +1,139 @@
 = correios-frete
 
-Description goes here.
+Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).
 
-== Contributing to correios-frete
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Instalando
+
+=== Gemfile
+  gem 'correios-frete'
+
+=== Instalação direta
+  $ gem install correios-frete
+
+
+== Usando
+
+  require 'correios-frete'
+
+  frete = Correios::Frete.new :cep_origem => "04094-050",
+                              :cep_destino => "90619-900",
+                              :peso => 0.3,
+                              :comprimento => 30,
+                              :largura => 15,
+                              :altura => 2
+
+  # ------------------------------------
+  # Cálculo de um serviço de frete por vez
+  # ------------------------------------
+  servico = frete.calcular :sedex
+  servico.valor # => 26.2
+  servico.prazo_entrega # => 1
+
+  servico = frete.calcular :pac
+  servico.valor # => 10.0
+  servico.prazo_entrega # => 5
+
+  # ------------------------------------
+  # Cálculo de vários serviços ao mesmo tempo
+  # ------------------------------------
+  servicos = frete.calcular :sedex, :pac
+
+  servicos[:sedex].valor # => 26.2
+  servicos[:sedex].prazo_entrega # => 1
+
+  servicos[:pac].valor # => 10.0
+  servicos[:pac].prazo_entrega # => 5
+
+  # ------------------------------------
+  # Verificação de sucesso e erro
+  # ------------------------------------
+  servico = frete.calcular :sedex
+  servico.success? # => true
+  servico.error? # => false
+
+
+== Informações adicionais
+
+=== Serviços suportados
+  :pac
+  :sedex
+  :sedex_10
+  :sedex_hoje
+
+
+=== Maneiras de configurar parâmetros de frete no construtor
+
+==== Com um hash
+  frete = Correios::Frete.new :cep_origem => "04094-050",
+                              :cep_destino => "90619-900",
+                              :peso => 0.3,
+                              :comprimento => 30,
+                              :largura => 15,
+                              :altura => 2
+
+==== Com um bloco
+  frete = Correios::Frete.new do |f|
+    f.cep_origem = "04094-050"
+    f.cep_destino = "90619-900"
+    f.peso = 0.3
+    f.comprimento = 30
+    f.largura = 15
+    f.altura = 2
+  end
+
+
+=== Atributos de Correios::Frete
+
+==== String
+  cep_origem, cep_destino
+==== Float
+  peso, valor_declarado
+==== Fixnum
+  comprimento, largura, altura, diametro
+==== Boolean
+  mao_propria, aviso_recebimento
+==== Symbol
+  formato (:caixa_pacote, :rolo_prisma)
+
+
+=== Atributos de Correios::Frete::Servico
+
+==== String
+  codigo, erro, msg_erro
+==== Float
+  valor, valor_mao_propria, valor_aviso_recebimento, valor_valor_declarado
+==== Fixnum
+  prazo_entrega
+==== Boolean
+  entrega_domiciliar, entrega_sabado
+==== Symbol
+  tipo (:pac, :sedex, :sedex_10, :sedex_hoje)
 
 == Copyright
 
-Copyright (c) 2011 Prodis. See LICENSE.txt for
-further details.
+(The MIT License)
+
+{Prodis a.k.a. Fernando Hamasaki de Amorim}[http://prodis.blog.br]
+
+Copyright (c) 2011 Prodis
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 

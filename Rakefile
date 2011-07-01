@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "correios-frete"
   gem.homepage = "http://github.com/prodis/correios-frete"
   gem.license = "MIT"
-  gem.summary = %Q{Cálculo de frete dos Correios}
-  gem.description = %Q{Cálculo de frete dos Correios}
+  gem.summary = %Q{Cálculo de frete dos Correios.}
+  gem.description = %Q{Cálculo de frete dos Correios.}
   gem.email = "prodis@gmail.com"
   gem.authors = ["Prodis a.k.a. Fernando Hamasaki de Amorim"]
   gem.version = Correios::Frete::Version::STRING
