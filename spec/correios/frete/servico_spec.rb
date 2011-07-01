@@ -19,7 +19,8 @@ describe Correios::Frete::Servico do
                 </cServico>"""
     end
     
-    { :codigo => "41106",
+    { :type => :pac,
+      :codigo => "41106",
       :valor => 15.70,
       :prazo_entrega => 3,
       :valor_mao_propria => 3.75,
