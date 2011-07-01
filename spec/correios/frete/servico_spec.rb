@@ -30,7 +30,7 @@ describe Correios::Frete::Servico do
         :valor_valor_declarado => 1.50,
         :entrega_domiciliar => true,
         :entrega_sabado => false,
-        :erro => -3,
+        :erro => "-3",
         :msg_erro => "Somente para teste"
       }.each do |attr, value|
         it "sets #{attr} to #{value}" do
@@ -65,7 +65,7 @@ describe Correios::Frete::Servico do
         :valor_valor_declarado => 0.0,
         :entrega_domiciliar => false,
         :entrega_sabado => false,
-        :erro => -1,
+        :erro => "-1",
         :msg_erro => "Codigo de servico invalido"
       }.each do |attr, value|
         it "sets #{attr} to #{value}" do
@@ -100,7 +100,7 @@ describe Correios::Frete::Servico do
         :valor_valor_declarado => 0.0,
         :entrega_domiciliar => false,
         :entrega_sabado => false,
-        :erro => 99,
+        :erro => "99",
         :msg_erro => "Input string was not in a correct format."
       }.each do |attr, value|
         it "sets #{attr} to #{value}" do

@@ -43,7 +43,7 @@ describe Correios::Frete::Parser do
                 :valor_valor_declarado => 1.50,
                 :entrega_domiciliar => true,
                 :entrega_sabado => false,
-                :erro => -3,
+                :erro => "-3",
                 :msg_erro => "Somente para teste" },
       :sedex => { :type => :sedex,
                   :codigo => "40010",
@@ -54,7 +54,7 @@ describe Correios::Frete::Parser do
                   :valor_valor_declarado => 1.5,
                   :entrega_domiciliar => true,
                   :entrega_sabado => true,
-                  :erro => 0,
+                  :erro => "0",
                   :msg_erro => nil }
     }.each do |service, attributes|
       it "returns #{service} data" do
