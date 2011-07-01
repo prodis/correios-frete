@@ -7,6 +7,11 @@ module Correios
     attr_writer :web_service, :parser
 
     DEFAULT_OPTIONS = {
+      :peso => 0.0,
+      :comprimento => 0.0,
+      :altura => 0.0,
+      :largura => 0.0,
+      :diametro => 0.0,
       :formato => :caixa_pacote, 
       :mao_propria => false, 
       :aviso_recebimento => false, 

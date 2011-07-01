@@ -6,46 +6,45 @@ describe Correios::Frete do
     context "create with default value of" do
       before(:each) { @frete = Correios::Frete.new }
 
-      it "formato" do
-        @frete.formato.should == :caixa_pacote
-      end
-
-      it "mao_propria" do
-        @frete.mao_propria.should be_false
-      end
-
-      it "aviso_recebimento" do
-        @frete.aviso_recebimento.should be_false
-      end
-
-      it "valor_declarado" do
-        @frete.valor_declarado.should == 0
+      { :peso => 0.0,
+        :comprimento => 0.0,
+        :altura => 0.0,
+        :largura => 0.0,
+        :diametro => 0.0,
+        :formato => :caixa_pacote,
+        :mao_propria => false,
+        :aviso_recebimento => false,
+        :valor_declarado => 0.0
+      }.each do |attr, value|
+        it attr do
+          @frete.send(attr).should == value
+        end
       end
     end
 
-    { :cep_origem => "01000-000", 
+    { :cep_origem => "01000-000",
       :cep_destino => "021222-222",
-      :peso => 0.321, 
-      :comprimento => 12.5, 
-      :altura => 1.4, 
-      :largura => 4.6, 
+      :peso => 0.321,
+      :comprimento => 12.5,
+      :altura => 1.4,
+      :largura => 4.6,
       :diametro => 5.0,
-      :formato => :rolo_prisma, 
-      :mao_propria => true, 
-      :aviso_recebimento => true, 
+      :formato => :rolo_prisma,
+      :mao_propria => true,
+      :aviso_recebimento => true,
       :valor_declarado => 1.99,
       :web_service => Correios::Frete::WebService.new,
       :parser => Correios::Frete::Parser.new
     }.each do |attr, value|
       context "when #{attr} is supplied" do
-        it "set #{attr} value" do
+        it "sets #{attr}" do
           @frete = Correios::Frete.new(attr => value)
           @frete.send(attr).should == value
         end
       end
 
       context "when #{attr} is supplied in a block" do
-        it "set #{attr} value" do
+        it "sets #{attr}" do
           @frete = Correios::Frete.new { |f| f.send("#{attr}=", value) }
           @frete.send(attr).should == value
         end
