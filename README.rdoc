@@ -62,7 +62,7 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
   :sedex_hoje
 
 
-=== Maneiras de configurar parâmetros de frete no construtor
+=== Maneiras de configurar atributos no construtor de Correios::Frete
 
 ==== Com um hash
   frete = Correios::Frete.new :cep_origem => "04094-050",
