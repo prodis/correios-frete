@@ -34,6 +34,14 @@ class Correios::Frete::Servico
     self
   end
 
+  def success?
+    erro == "0"
+  end
+
+  def error?
+    !success?
+  end
+
   private
 
   def cast_to_float!(*attributes)

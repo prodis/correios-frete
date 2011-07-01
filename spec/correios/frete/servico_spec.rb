@@ -2,9 +2,9 @@
 require 'spec_helper'
 
 describe Correios::Frete::Servico do
-  describe "#parse" do
-    before(:each) { @servico = Correios::Frete::Servico.new }
+  before(:each) { @servico = Correios::Frete::Servico.new }
 
+  describe "#parse" do
     context "when service exists" do
       before :each do
         @xml = """<cServico>
@@ -107,6 +107,38 @@ describe Correios::Frete::Servico do
           @servico.parse @xml
           @servico.send(attr).should == value
         end
+      end
+    end
+  end
+
+  describe "#success?" do
+    context "when does not have error" do
+      it "returns true" do
+        @servico.parse "<cServico><Erro>0</Erro><cServico>"
+        @servico.success?.should be_true
+      end
+    end
+
+    context "when has error" do
+      it "returns false" do
+        @servico.parse "<cServico><Erro>7</Erro><cServico>"
+        @servico.success?.should be_false
+      end
+    end
+  end
+
+  describe "#error?" do
+    context "when has error" do
+      it "returns true" do
+        @servico.parse "<cServico><Erro>7</Erro><cServico>"
+        @servico.error?.should be_true
+      end
+    end
+
+    context "when does not have error" do
+      it "returns false" do
+        @servico.parse "<cServico><Erro>0</Erro><cServico>"
+        @servico.error?.should be_false
       end
     end
   end
