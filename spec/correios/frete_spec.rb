@@ -52,7 +52,7 @@ describe Correios::Frete do
     end
   end
 
-  describe "#calculate" do
+  describe "#calcular" do
     before :each do
       @web_service = Correios::Frete::WebService.new
       @parser = Correios::Frete::Parser.new
@@ -69,7 +69,7 @@ describe Correios::Frete do
       end
 
       it "returns all services" do
-        @frete.calculate(:pac, :sedex).should == @servicos
+        @frete.calcular(:pac, :sedex).should == @servicos
       end
     end
 
@@ -83,7 +83,7 @@ describe Correios::Frete do
       end
 
       it "returns only one service" do
-        @frete.calculate(:sedex).should == @servico
+        @frete.calcular(:sedex).should == @servico
       end
     end
   end
