@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+gem "nokogiri"
 gem "sax-machine"
 
 group :development do

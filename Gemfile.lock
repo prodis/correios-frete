@@ -29,6 +29,7 @@ DEPENDENCIES
   bundler (~> 1.0.0)
   fakeweb
   jeweler
+  nokogiri
   rcov
   rspec
   sax-machine

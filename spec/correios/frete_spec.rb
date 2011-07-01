@@ -59,7 +59,7 @@ describe Correios::Frete do
       @web_service = Correios::Frete::WebService.new
       @web_service.stub(:request).and_return(@xml)
 
-      @servicos = mock "Servicos"
+      @servicos = { :pac => Correios::Frete::Servico.new, :sedex => Correios::Frete::Servico.new }
       @parser = Correios::Frete::Parser.new
       @parser.stub(:servicos).and_return(@servicos)
 
