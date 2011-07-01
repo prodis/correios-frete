@@ -36,7 +36,13 @@ module Correios
 
     def calculate(*service_types)
       response = web_service.request(self, service_types)
-      parser.servicos response
+      services = parser.servicos(response)
+
+      if service_types.size == 1
+        services.values.first
+      else
+        services
+      end
     end
   end
 end
