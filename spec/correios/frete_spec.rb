@@ -57,13 +57,13 @@ describe Correios::Frete do
     before :each do
       @xml = '<?xml version="1.0" encoding="ISO-8859-1" ?><Servicos><cServico><Codigo>41106</Codigo><Valor>15,70</Valor><PrazoEntrega>3</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico><cServico><Codigo>40010</Codigo><Valor>17,80</Valor><PrazoEntrega>1</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>S</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>'
       @web_service = Correios::Frete::WebService.new
-      @web_service.stub(:request).and_return(@xml)
 
       @servicos = { :pac => Correios::Frete::Servico.new, :sedex => Correios::Frete::Servico.new }
       @parser = Correios::Frete::Parser.new
       @parser.stub(:servicos).and_return(@servicos)
 
       @frete = Correios::Frete.new(:web_service => @web_service, :parser => @parser)
+      @web_service.stub(:request).with(@frete, [:pac, :sedex]).and_return(@xml)
     end
 
     it "returns services" do

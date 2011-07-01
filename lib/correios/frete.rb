@@ -29,8 +29,8 @@ module Correios
       @parser ||= Correios::Frete::Parser.new
     end
 
-    def calculate(*services)
-      response = @web_service.request services
+    def calculate(*service_types)
+      response = @web_service.request(self, service_types)
       @parser.servicos response
     end
   end
