@@ -44,5 +44,7 @@ module Correios
         services
       end
     end
+
+    alias calculate calcular
   end
 end
