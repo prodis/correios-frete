@@ -26,8 +26,8 @@ class Correios::Frete::WebService
     "sCdAvisoRecebimento=#{CONDITIONS[frete.aviso_recebimento]}&" +
     "nVlValorDeclarado=#{frete.valor_declarado}&" +
     "nCdServico=#{service_codes_for(service_types)}&" +
-    "nCdEmpresa=&" +
-    "sDsSenha=&" +
+    "nCdEmpresa=#{frete.codigo_empresa}&" +
+    "sDsSenha=#{frete.senha}&" +
     "StrRetorno=xml"
   end
 

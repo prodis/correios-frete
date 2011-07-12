@@ -1,6 +1,6 @@
 = correios-frete
 
-Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).
+Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Pode ser utilizado com contrato (informando o código da empresa e senha) e sem contrato.
 
 
 == Instalando
@@ -22,6 +22,8 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
                               :comprimento => 30,
                               :largura => 15,
                               :altura => 2
+                              :codigo_empresa => "1234321", #opcional
+                              :senha => "abcABC" #opcional
 
   # ------------------------------------
   # Cálculo de um serviço de frete por vez
@@ -60,6 +62,7 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
   :sedex
   :sedex_10
   :sedex_hoje
+  :e_sedex
 
 
 === Maneiras de configurar atributos no construtor de Correios::Frete
@@ -86,7 +89,7 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
 === Atributos de Correios::Frete
 
 ==== String
-  cep_origem, cep_destino
+  cep_origem, cep_destino, codigo_empresa, senha
 ==== Float
   peso, valor_declarado
 ==== Fixnum
