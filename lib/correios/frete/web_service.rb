@@ -25,13 +25,17 @@ class Correios::Frete::WebService
     "sCdMaoPropria=#{CONDITIONS[frete.mao_propria]}&" +
     "sCdAvisoRecebimento=#{CONDITIONS[frete.aviso_recebimento]}&" +
     "nVlValorDeclarado=#{frete.valor_declarado}&" +
-    "nCdServico=#{service_codes_for(service_types)}&" +
+    "nCdServico=#{service_codes_for(service_types, frete.codigo_empresa)}&" +
     "nCdEmpresa=#{frete.codigo_empresa}&" +
     "sDsSenha=#{frete.senha}&" +
     "StrRetorno=xml"
   end
 
   def service_codes_for(service_types)
-    service_types.map { |type| Correios::Frete::Servico::TYPES[type] }.join(",")
+    if codigo_empresa.length > 0
+      service_types.map { |type| Correios::Frete::Servico::CONTRACTTYPES[type] }.join(",")
+    else
+      service_types.map { |type| Correios::Frete::Servico::TYPES[type] }.join(",")
+    end
   end
 end

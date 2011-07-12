@@ -11,6 +11,13 @@ class Correios::Frete::Servico
     :sedex_hoje => "40290",
     :e_sedex => "81019"
   }
+  CONTRACTTYPES = {
+    :pac => "41068",
+    :sedex => "40096",
+    :sedex_10 => "40215",
+    :sedex_hoje => "40290",
+    :e_sedex => "81019"
+  }
 
   element :Codigo, :as => :codigo
   element :Valor, :as => :valor
