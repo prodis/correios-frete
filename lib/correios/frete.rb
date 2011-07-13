@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Correios
   class Frete
-    attr_accessor :cep_origem, :cep_destino
+    attr_accessor :cep_origem, :cep_destino, :codigo_empresa, :senha
     attr_accessor :peso, :comprimento, :altura, :largura, :diametro
     attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado
     attr_writer :web_service, :parser
@@ -15,7 +15,9 @@ module Correios
       :formato => :caixa_pacote, 
       :mao_propria => false, 
       :aviso_recebimento => false, 
-      :valor_declarado => 0.0
+      :valor_declarado => 0.0,
+      :codigo_empresa => "",
+      :senha => ""
     }
 
     def initialize(options = {})
