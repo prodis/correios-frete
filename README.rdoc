@@ -60,6 +60,7 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
   :sedex
   :sedex_10
   :sedex_hoje
+  :e_sedex
 
 
 === Maneiras de configurar atributos no construtor de Correios::Frete
@@ -86,7 +87,7 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
 === Atributos de Correios::Frete
 
 ==== String
-  cep_origem, cep_destino
+  cep_origem, cep_destino, codigo_empresa, senha
 ==== Float
   peso, valor_declarado
 ==== Fixnum
@@ -100,7 +101,7 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
 === Atributos de Correios::Frete::Servico
 
 ==== String
-  codigo, erro, msg_erro
+  codigo, erro, msg_erro, nome
 ==== Float
   valor, valor_mao_propria, valor_aviso_recebimento, valor_valor_declarado
 ==== Fixnum
@@ -108,7 +109,7 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
 ==== Boolean
   entrega_domiciliar, entrega_sabado
 ==== Symbol
-  tipo (:pac, :sedex, :sedex_10, :sedex_hoje)
+  tipo (:pac, :sedex, :sedex_10, :sedex_hoje, :e_sedex)
 
 == Copyright
 
