@@ -22,6 +22,7 @@ describe Correios::Frete::Servico do
       end
 
       { :tipo => :pac,
+        :nome => "PAC",
         :codigo => "41106",
         :valor => 15.70,
         :prazo_entrega => 3,
@@ -57,6 +58,7 @@ describe Correios::Frete::Servico do
       end
 
       { :tipo => nil,
+        :nome => nil,
         :codigo => "99999",
         :valor => 0.0,
         :prazo_entrega => 0,
@@ -92,6 +94,7 @@ describe Correios::Frete::Servico do
       end
 
       { :tipo => nil,
+        :nome => nil,
         :codigo => nil,
         :valor => 0.0,
         :prazo_entrega => 0,
@@ -139,6 +142,22 @@ describe Correios::Frete::Servico do
       it "returns false" do
         @servico.parse "<cServico><Erro>0</Erro><cServico>"
         @servico.error?.should be_false
+      end
+    end
+  end
+
+  describe ".code_from_type" do
+    Correios::Frete::Servico::AVAILABLE_SERVICES.each do |code, value|
+      context "to #{value[:type]} type" do
+        it "returns #{code} code" do
+          Correios::Frete::Servico.code_from_type(value[:type]).should == code
+        end
+      end
+    end
+
+    context "when type does not exist" do
+      it "returns nil" do
+        Correios::Frete::Servico.code_from_type(:nao_existe).should be_nil
       end
     end
   end

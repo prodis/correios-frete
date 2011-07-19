@@ -4,11 +4,11 @@ require 'sax-machine'
 class Correios::Frete::Servico
   include SAXMachine
 
-  TYPES = {
-    :pac => "41106",
-    :sedex => "40010",
-    :sedex_10 => "40215",
-    :sedex_hoje => "40290"
+  AVAILABLE_SERVICES = {
+    "41106" => { :type => :pac       , :name => "PAC"        },
+    "40010" => { :type => :sedex     , :name => "Sedex"      },
+    "40215" => { :type => :sedex_10  , :name => "Sedex 10"   },
+    "40290" => { :type => :sedex_hoje, :name => "Sedex Hoje" }
   }
 
   element :Codigo, :as => :codigo
@@ -21,13 +21,18 @@ class Correios::Frete::Servico
   element :EntregaSabado, :as => :entrega_sabado
   element :Erro, :as => :erro
   element :MsgErro, :as => :msg_erro
-  attr_reader :tipo
+  attr_reader :tipo, :nome
 
   alias_method :original_parse, :parse
 
   def parse(xml_text)
     original_parse xml_text
-    @tipo = TYPES.key(codigo)
+
+    if AVAILABLE_SERVICES[codigo]
+      @tipo = AVAILABLE_SERVICES[codigo][:type]
+      @nome = AVAILABLE_SERVICES[codigo][:name]
+    end
+
     cast_to_float! :valor, :valor_mao_propria, :valor_aviso_recebimento, :valor_valor_declarado
     cast_to_int! :prazo_entrega
     cast_to_boolean! :entrega_domiciliar, :entrega_sabado
@@ -40,6 +45,11 @@ class Correios::Frete::Servico
 
   def error?
     !success?
+  end
+
+  def self.code_from_type(type)
+    # I don't use select method for Ruby 1.8.7 compatibility.
+    AVAILABLE_SERVICES.map { |key, value| key if value[:type] == type }.compact.first
   end
 
   private

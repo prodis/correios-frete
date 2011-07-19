@@ -32,6 +32,6 @@ class Correios::Frete::WebService
   end
 
   def service_codes_for(service_types)
-    service_types.map { |type| Correios::Frete::Servico::TYPES[type] }.join(",")
+    service_types.map { |type| Correios::Frete::Servico.code_from_type(type) }.join(",")
   end
 end
