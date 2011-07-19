@@ -14,7 +14,9 @@ describe Correios::Frete::WebService do
                                    :formato => :rolo_prisma,
                                    :mao_propria => true,
                                    :aviso_recebimento => false,
-                                   :valor_declarado => 1.99
+                                   :valor_declarado => 1.99,
+                                   :codigo_empresa => "1234567890",
+                                   :senha => "senha"
       url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?" +
             "sCepOrigem=01000-000&" +
             "sCepDestino=021222-222&" +
@@ -28,8 +30,8 @@ describe Correios::Frete::WebService do
             "sCdAvisoRecebimento=N&" +
             "nVlValorDeclarado=1.99&" +
             "nCdServico=41106,40010&" +
-            "nCdEmpresa=&" +
-            "sDsSenha=&" +
+            "nCdEmpresa=1234567890&" +
+            "sDsSenha=senha&" +
             "StrRetorno=xml"
       Net::HTTP.stub(:get).with(URI.parse(url)).and_return("<xml><fake></fake>")
       @web_service = Correios::Frete::WebService.new

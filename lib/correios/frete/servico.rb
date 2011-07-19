@@ -8,7 +8,8 @@ class Correios::Frete::Servico
     "41106" => { :type => :pac       , :name => "PAC"        },
     "40010" => { :type => :sedex     , :name => "Sedex"      },
     "40215" => { :type => :sedex_10  , :name => "Sedex 10"   },
-    "40290" => { :type => :sedex_hoje, :name => "Sedex Hoje" }
+    "40290" => { :type => :sedex_hoje, :name => "Sedex Hoje" },
+    "81019" => { :type => :e_sedex   , :name => "e-Sedex"    }
   }
 
   element :Codigo, :as => :codigo

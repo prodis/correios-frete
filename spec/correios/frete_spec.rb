@@ -33,6 +33,8 @@ describe Correios::Frete do
       :mao_propria => true,
       :aviso_recebimento => true,
       :valor_declarado => 1.99,
+      :codigo_empresa => "1234567890",
+      :senha => "senha",
       :web_service => Correios::Frete::WebService.new,
       :parser => Correios::Frete::Parser.new
     }.each do |attr, value|
