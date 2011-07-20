@@ -43,10 +43,12 @@ class Correios::Frete::Servico
   def success?
     erro == "0"
   end
+  alias sucesso? success?
 
   def error?
     !success?
   end
+  alias erro? error?
 
   def self.code_from_type(type)
     # I don't use select method for Ruby 1.8.7 compatibility.
