@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{correios-frete}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Prodis a.k.a. Fernando Hamasaki de Amorim"]
   s.date = %q{2011-07-19}
-  s.description = %q{Cálculo de frete dos Correios.}
+  s.description = %q{Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (necessário informar código de empresa e senha).}
   s.email = %q{prodis@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
