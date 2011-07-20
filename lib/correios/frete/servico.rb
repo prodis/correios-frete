@@ -6,10 +6,10 @@ class Correios::Frete::Servico
 
   AVAILABLE_SERVICES = {
     "41106" => { :type => :pac       , :name => "PAC"        },
-    "40010" => { :type => :sedex     , :name => "Sedex"      },
-    "40215" => { :type => :sedex_10  , :name => "Sedex 10"   },
-    "40290" => { :type => :sedex_hoje, :name => "Sedex Hoje" },
-    "81019" => { :type => :e_sedex   , :name => "e-Sedex"    }
+    "40010" => { :type => :sedex     , :name => "SEDEX"      },
+    "40215" => { :type => :sedex_10  , :name => "SEDEX 10"   },
+    "40290" => { :type => :sedex_hoje, :name => "SEDEX Hoje" },
+    "81019" => { :type => :e_sedex   , :name => "e-SEDEX"    }
   }
 
   element :Codigo, :as => :codigo
