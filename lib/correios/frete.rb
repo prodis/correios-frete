@@ -1,9 +1,9 @@
 # encoding: UTF-8
 module Correios
   class Frete
-    attr_accessor :cep_origem, :cep_destino, :codigo_empresa, :senha
+    attr_accessor :cep_origem, :cep_destino
     attr_accessor :peso, :comprimento, :altura, :largura, :diametro
-    attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado
+    attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado, :codigo_empresa, :senha
     attr_writer :web_service, :parser
 
     DEFAULT_OPTIONS = {

@@ -31,7 +31,7 @@ class Correios::Frete::WebService
     "StrRetorno=xml"
   end
 
-  def service_codes_for(service_types)
+  def service_codes_for(service_types, codigo_empresa)
     if codigo_empresa.length > 0
       service_types.map { |type| Correios::Frete::Servico::CONTRACTTYPES[type] }.join(",")
     else
