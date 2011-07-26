@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Prodis a.k.a. Fernando Hamasaki de Amorim"]
-  s.date = %q{2011-07-19}
+  s.date = %q{2011-07-26}
   s.description = %q{Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (necessário informar código de empresa e senha).}
   s.email = %q{prodis@gmail.com}
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     ".rspec",
+    "CHANGELOG.rdoc",
     "Gemfile",
     "Gemfile.lock",
     "README.rdoc",

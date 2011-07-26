@@ -1,0 +1,15 @@
+== Versão 0.2.1
+- Melhoria: Alias Correios::Frete::Servico#sucesso? para Correios::Frete::Servico#success?
+- Melhoria: Alias Correios::Frete::Servico#erro? para Correios::Frete::Servico#error?
+- Atualizado: Documentação
+
+== Versão 0.2.0
+- Novo: Suporte para cálculo de e-SEDEX
+- Melhoria: Alias Correios::Frete#calculate para Correios::Frete#calcular
+- Melhoria: Atributo "nome" em Correios::Frete::Servico
+- Correção: {Issue #2: undefined method `key' for #&lt;Hash:0xb5e8eea4&gt;}[https://github.com/prodis/correios-frete/issues/2]
+
+== Versão 0.1.0
+- Cálculo de frete para os serviços PAC, SEDEX, SEDEX 10 e SEDEX Hoje
+- Cálculo de um serviço de frete por vez
+- Cálculo de vários serviços de frete ao mesmo tempo
