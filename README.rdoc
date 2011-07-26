@@ -24,9 +24,8 @@ Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (n
                               :largura => 15,
                               :altura => 2
 
-  # ------------------------------------
-  # Cálculo de um serviço de frete por vez
-  # ------------------------------------
+Cálculo de um serviço de frete por vez:
+
   servico = frete.calcular :sedex
   service.nome          # => "SEDEX"
   servico.valor         # => 26.2
@@ -37,9 +36,8 @@ Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (n
   servico.valor         # => 10.0
   servico.prazo_entrega # => 5
 
-  # ------------------------------------
-  # Cálculo de vários serviços ao mesmo tempo
-  # ------------------------------------
+Cálculo de vários serviços ao mesmo tempo:
+
   servicos = frete.calcular :sedex, :pac
 
   servicos[:sedex].nome          # => "SEDEX"
@@ -50,16 +48,14 @@ Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (n
   servicos[:pac].valor         # => 10.0
   servicos[:pac].prazo_entrega # => 5
 
-  # ------------------------------------
-  # Verificação de sucesso e erro
-  # ------------------------------------
+Verificação de sucesso e erro:
+
   servico = frete.calcular :sedex
   servico.sucesso? # => true
   servico.erro?    # => false
 
-  # ------------------------------------
-  # Usando a interface pública em inglês
-  # ------------------------------------
+Usando a interface pública em inglês:
+
   servico = frete.calculate :sedex
   servico.success? # => true
   servico.error?   # => false
