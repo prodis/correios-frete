@@ -2,13 +2,6 @@
 require 'nokogiri'
 
 class Correios::Frete::Parser
-  SERVICES = {
-    :pac => "41106",
-    :sedex => "40010",
-    :sedex_10 => "40215",
-    :sedex_hoje => "40290"
-  }
-
   def servicos(xml)
     servicos = {}
 
