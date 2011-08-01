@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Prodis a.k.a. Fernando Hamasaki de Amorim"]
-  s.date = %q{2011-07-26}
+  s.date = %q{2011-08-01}
   s.description = %q{Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (necessário informar código de empresa e senha).}
   s.email = %q{prodis@gmail.com}
   s.extra_rdoc_files = [
@@ -48,9 +48,9 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
       s.add_runtime_dependency(%q<sax-machine>, [">= 0"])
-      s.add_runtime_dependency(%q<rspec>, [">= 0"])
-      s.add_runtime_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_runtime_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, [">= 0"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
     else
       s.add_dependency(%q<nokogiri>, [">= 0"])
       s.add_dependency(%q<sax-machine>, [">= 0"])
