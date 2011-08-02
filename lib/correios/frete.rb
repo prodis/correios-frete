@@ -47,5 +47,12 @@ module Correios
     end
 
     alias calculate calcular
+
+    private
+
+    def method_missing(method_name, *args)
+      return calcular($2.to_sym) if method_name.to_s =~ /^(calcular|calculate)_(.*)/ && Correios::Frete::Servico.code_from_type($2.to_sym)
+      super
+    end
   end
 end

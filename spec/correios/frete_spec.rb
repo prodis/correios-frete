@@ -89,4 +89,32 @@ describe Correios::Frete do
       end
     end
   end
+
+  ["calcular", "calculate"].each do |method_name|
+    Correios::Frete::Servico::AVAILABLE_SERVICES.each do |key, service|
+      describe "##{method_name}_#{service[:type]}" do
+        before :each do
+          web_service = Correios::Frete::WebService.new
+          parser = Correios::Frete::Parser.new
+          @frete = Correios::Frete.new(:web_service => web_service, :parser => parser)
+          @servico = Correios::Frete::Servico.new
+
+          parser.stub(:servicos).and_return(service[:type] => @servico)
+          web_service.stub(:request).with(@frete, [service[:type]]).and_return("XML")
+        end
+
+        it "calculates #{service[:name]}" do
+          @frete.send("#{method_name}_#{service[:type]}").should == @servico
+        end
+      end
+    end
+
+    describe "##{method_name}_servico_que_nao_existe" do
+      before(:each) { @frete = Correios::Frete.new }
+
+      it "raises NoMethodError" do
+        expect { @frete.send("#{method_name}_servico_que_nao_existe") }.to raise_error(NoMethodError)
+      end
+    end
+  end
 end
