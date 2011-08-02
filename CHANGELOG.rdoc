@@ -1,3 +1,5 @@
+== Versão 0.3.0
+- Novo: Métodos diretos para cálculo de um serviço de frete por vez. Exemplo: Correios::Frete#calcular_sedex.
 == Versão 0.2.1
 - Melhoria: Alias Correios::Frete::Servico#sucesso? para Correios::Frete::Servico#success?
 - Melhoria: Alias Correios::Frete::Servico#erro? para Correios::Frete::Servico#error?
