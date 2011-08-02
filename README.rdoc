@@ -24,18 +24,6 @@ Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (n
                               :largura => 15,
                               :altura => 2
 
-Cálculo de um serviço de frete por vez:
-
-  servico = frete.calcular :sedex
-  service.nome          # => "SEDEX"
-  servico.valor         # => 26.2
-  servico.prazo_entrega # => 1
-
-  servico = frete.calcular :pac
-  service.nome          # => "PAC"
-  servico.valor         # => 10.0
-  servico.prazo_entrega # => 5
-
 Cálculo de vários serviços ao mesmo tempo:
 
   servicos = frete.calcular :sedex, :pac
@@ -48,15 +36,39 @@ Cálculo de vários serviços ao mesmo tempo:
   servicos[:pac].valor         # => 10.0
   servicos[:pac].prazo_entrega # => 5
 
-Verificação de sucesso e erro:
+Cálculo de um serviço de frete passando o serviço para parâmetro:
 
   servico = frete.calcular :sedex
+  service.nome          # => "SEDEX"
+  servico.valor         # => 26.2
+  servico.prazo_entrega # => 1
+
+  servico = frete.calcular :pac
+  service.nome          # => "PAC"
+  servico.valor         # => 10.0
+  servico.prazo_entrega # => 5
+
+Cálculo de um serviço de frete chamando o método direto do serviço:
+
+  servico = frete.calcular_sedex
+  service.nome          # => "SEDEX"
+  servico.valor         # => 26.2
+  servico.prazo_entrega # => 1
+
+  servico = frete.calcular_pac
+  service.nome          # => "PAC"
+  servico.valor         # => 10.0
+  servico.prazo_entrega # => 5
+
+Verificação de sucesso e erro:
+
+  servico = frete.calcular_sedex
   servico.sucesso? # => true
   servico.erro?    # => false
 
 Usando a interface pública em inglês:
 
-  servico = frete.calculate :sedex
+  servico = frete.calculate_sedex
   servico.success? # => true
   servico.error?   # => false
 
