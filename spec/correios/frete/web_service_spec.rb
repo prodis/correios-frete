@@ -4,19 +4,19 @@ require 'spec_helper'
 describe Correios::Frete::WebService do
   describe "#request" do
     before :each do
-      @frete = Correios::Frete.new :cep_origem => "01000-000",
-                                   :cep_destino => "021222-222",
-                                   :peso => 0.321,
-                                   :comprimento => 12.5,
-                                   :altura => 1.4,
-                                   :largura => 4.6,
-                                   :diametro => 5.0,
-                                   :formato => :rolo_prisma,
-                                   :mao_propria => true,
-                                   :aviso_recebimento => false,
-                                   :valor_declarado => 1.99,
-                                   :codigo_empresa => "1234567890",
-                                   :senha => "senha"
+      @frete = Correios::Frete::Calculador.new :cep_origem => "01000-000",
+                                               :cep_destino => "021222-222",
+                                               :peso => 0.321,
+                                               :comprimento => 12.5,
+                                               :altura => 1.4,
+                                               :largura => 4.6,
+                                               :diametro => 5.0,
+                                               :formato => :rolo_prisma,
+                                               :mao_propria => true,
+                                               :aviso_recebimento => false,
+                                               :valor_declarado => 1.99,
+                                               :codigo_empresa => "1234567890",
+                                               :senha => "senha"
       url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?" +
             "sCepOrigem=01000-000&" +
             "sCepDestino=021222-222&" +

@@ -1,10 +1,10 @@
 # encoding: UTF-8
 require 'spec_helper'
 
-describe Correios::Frete do
+describe Correios::Frete::Calculador do
   describe ".new" do
     context "create with default value of" do
-      before(:each) { @frete = Correios::Frete.new }
+      before(:each) { @frete = Correios::Frete::Calculador.new }
 
       { :peso => 0.0,
         :comprimento => 0.0,
@@ -40,14 +40,14 @@ describe Correios::Frete do
     }.each do |attr, value|
       context "when #{attr} is supplied" do
         it "sets #{attr}" do
-          @frete = Correios::Frete.new(attr => value)
+          @frete = Correios::Frete::Calculador.new(attr => value)
           @frete.send(attr).should == value
         end
       end
 
       context "when #{attr} is supplied in a block" do
         it "sets #{attr}" do
-          @frete = Correios::Frete.new { |f| f.send("#{attr}=", value) }
+          @frete = Correios::Frete::Calculador.new { |f| f.send("#{attr}=", value) }
           @frete.send(attr).should == value
         end
       end
@@ -58,7 +58,7 @@ describe Correios::Frete do
     before :each do
       @web_service = Correios::Frete::WebService.new
       @parser = Correios::Frete::Parser.new
-      @frete = Correios::Frete.new(:web_service => @web_service, :parser => @parser)
+      @frete = Correios::Frete::Calculador.new(:web_service => @web_service, :parser => @parser)
     end
 
     context "to many services" do
@@ -96,7 +96,7 @@ describe Correios::Frete do
         before :each do
           web_service = Correios::Frete::WebService.new
           parser = Correios::Frete::Parser.new
-          @frete = Correios::Frete.new(:web_service => web_service, :parser => parser)
+          @frete = Correios::Frete::Calculador.new(:web_service => web_service, :parser => parser)
           @servico = Correios::Frete::Servico.new
 
           parser.stub(:servicos).and_return(service[:type] => @servico)
@@ -110,7 +110,7 @@ describe Correios::Frete do
     end
 
     describe "##{method_name}_servico_que_nao_existe" do
-      before(:each) { @frete = Correios::Frete.new }
+      before(:each) { @frete = Correios::Frete::Calculador.new }
 
       it "raises NoMethodError" do
         expect { @frete.send("#{method_name}_servico_que_nao_existe") }.to raise_error(NoMethodError)
