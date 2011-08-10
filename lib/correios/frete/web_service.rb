@@ -8,7 +8,8 @@ class Correios::Frete::WebService
   CONDITIONS = { true => "S", false => "N" }
 
   def request(frete, service_types)
-    Net::HTTP.get(URI.parse("#{URL}?#{params_for(frete, service_types)}"))
+    @url = "#{URL}?#{params_for(frete, service_types)}"
+    with_log { Net::HTTP.get_response URI.parse(@url) }
   end
 
   private
@@ -33,5 +34,19 @@ class Correios::Frete::WebService
 
   def service_codes_for(service_types)
     service_types.map { |type| Correios::Frete::Servico.code_from_type(type) }.join(",")
+  end
+
+  def with_log
+    Correios::Frete.log "Correios-Frete Request:\n#{@url}"
+    response = yield
+    Correios::Frete.log format_response_message(response)
+    response.body
+  end
+
+  def format_response_message(response)
+    message = "Correios-Frete Response:\n"
+    message << "HTTP/#{response.http_version} #{response.code} #{response.message}\n"
+    response.each_header { |header| message << "#{header}: #{response[header]}\n" }
+    message << response.body
   end
 end

@@ -17,6 +17,7 @@ describe Correios::Frete::WebService do
                                                :valor_declarado => 1.99,
                                                :codigo_empresa => "1234567890",
                                                :senha => "senha"
+
       url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?" +
             "sCepOrigem=01000-000&" +
             "sCepDestino=021222-222&" +
@@ -33,8 +34,18 @@ describe Correios::Frete::WebService do
             "nCdEmpresa=1234567890&" +
             "sDsSenha=senha&" +
             "StrRetorno=xml"
-      Net::HTTP.stub(:get).with(URI.parse(url)).and_return("<xml><fake></fake>")
+
+      response = Net::HTTPOK.new nil, 200, "OK"
+      response.stub(:body).and_return("<xml><fake></fake>")
+      Net::HTTP.stub(:get_response).with(URI.parse(url)).and_return(response)
+
       @web_service = Correios::Frete::WebService.new
+    end
+
+    around do |example|
+      Correios::Frete.configure { |config| config.log_enabled = false }
+      example.run
+      Correios::Frete.configure { |config| config.log_enabled = true }
     end
 
     it "returns XML response" do
