@@ -1,8 +1,8 @@
 = correios-frete
 
 ---
-Esta documentação é da <b>versão 1.0.0</b>.
-Para a versão 0.3.0, por favor veja {README_v0.3.0.rdoc}[https://github.com/prodis/correios-frete/blob/master/README_v0.3.0.rdoc]
+Esta documentação é da <b>versão 0.3.0</b>.
+Para a versão 1.0.0 ou acima, por favor veja {README.rdoc}[https://github.com/prodis/correios-frete/blob/master/README.rdoc]
 ---
 
 Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).
@@ -22,12 +22,12 @@ Os serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX
 
   require 'correios-frete'
 
-  frete = Correios::Frete::Calculador.new :cep_origem => "04094-050",
-                                          :cep_destino => "90619-900",
-                                          :peso => 0.3,
-                                          :comprimento => 30,
-                                          :largura => 15,
-                                          :altura => 2
+  frete = Correios::Frete.new :cep_origem => "04094-050",
+                              :cep_destino => "90619-900",
+                              :peso => 0.3,
+                              :comprimento => 30,
+                              :largura => 15,
+                              :altura => 2
 
 Cálculo de vários serviços ao mesmo tempo:
 
@@ -77,17 +77,6 @@ Usando a interface pública em inglês:
   servico.success? # => true
   servico.error?   # => false
 
-== Log
-
-Por padrão, cada chamada ao Web Service dos Correios é logada usando STDOUT.
-
-Para desabilitar o log ou configurar um outro mecanismo de log, você pode configurar o módulo Correios::Frete.
-
-  Correios::Frete.configure do |config|
-    config.log_enabled = false   # Desabilita o log
-    config.logger = Rails.logger # Usa o logger do Rails
-  end
-
 == Informações adicionais
 
 === Serviços suportados
@@ -98,18 +87,18 @@ Para desabilitar o log ou configurar um outro mecanismo de log, você pode confi
   :e_sedex
 
 
-=== Maneiras de configurar atributos no construtor de Correios::Frete::Calculador
+=== Maneiras de configurar atributos no construtor de Correios::Frete
 
 ==== Com um hash
-  frete = Correios::Frete::Calculador.new :cep_origem => "04094-050",
-                                          :cep_destino => "90619-900",
-                                          :peso => 0.3,
-                                          :comprimento => 30,
-                                          :largura => 15,
-                                          :altura => 2
+  frete = Correios::Frete.new :cep_origem => "04094-050",
+                              :cep_destino => "90619-900",
+                              :peso => 0.3,
+                              :comprimento => 30,
+                              :largura => 15,
+                              :altura => 2
 
 ==== Com um bloco
-  frete = Correios::Frete::Calculador.new do |f|
+  frete = Correios::Frete.new do |f|
     f.cep_origem = "04094-050"
     f.cep_destino = "90619-900"
     f.peso = 0.3
@@ -119,7 +108,7 @@ Para desabilitar o log ou configurar um outro mecanismo de log, você pode confi
   end
 
 
-=== Atributos de Correios::Frete::Calculador
+=== Atributos de Correios::Frete
 
 ==== String
   cep_origem, cep_destino, codigo_empresa, senha
