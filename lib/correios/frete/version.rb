@@ -5,7 +5,7 @@ module Correios
       MAJOR = 0
       MINOR = 3
       PATCH = 0
-      STRING = [MAJOR, MINOR, PATCH].join(".")
+      VERSION = [MAJOR, MINOR, PATCH].join(".")
     end
   end
 end
