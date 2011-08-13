@@ -15,13 +15,14 @@ require './lib/correios/frete/version'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "correios-frete"
-  gem.homepage = "http://github.com/prodis/correios-frete"
+  gem.homepage = "http://prodis.blog.br/2011/07/03/gem-para-calculo-de-frete-dos-correios"
   gem.license = "MIT"
   gem.summary = %Q{Cálculo de frete dos Correios.}
   gem.description = %Q{Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (necessário informar código de empresa e senha).}
   gem.email = "prodis@gmail.com"
   gem.authors = ["Prodis a.k.a. Fernando Hamasaki"]
   gem.version = Correios::Frete::Version::VERSION
+  gem.required_ruby_version = ">= 1.8.7"
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new

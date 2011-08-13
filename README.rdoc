@@ -88,6 +88,23 @@ Para desabilitar o log ou configurar um outro mecanismo de log, você pode confi
     config.logger = Rails.logger # Usa o logger do Rails
   end
 
+Exemplo de log:
+  I, [2011-08-13T00:17:38.843135 #1826]  INFO -- : Correios-Frete Request:
+  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0.0&nCdServico=40010&nCdEmpresa=&sDsSenha=&StrRetorno=xml
+  I, [2011-08-13T00:17:39.099459 #1826]  INFO -- : Correios-Frete Response:
+  HTTP/1.1 200 OK
+  date: Sat, 13 Aug 2011 03:18:23 GMT
+  server: Microsoft-IIS/6.0
+  x-powered-by: ASP.NET
+  x-aspnet-version: 1.1.4322
+  set-cookie: ASP.NET_SessionId=afbiszelqu1uli55clnflk55; path=/
+  cache-control: private
+  expires: Sat, 13 Aug 2011 03:18:23 GMT
+  content-type: text/xml; charset=iso-8859-1
+  content-length: 401
+  <?xml version="1.0" encoding="ISO-8859-1" ?>
+  <Servicos><cServico><Codigo>40010</Codigo><Valor>26,20</Valor><PrazoEntrega>1</PrazoEntrega><ValorMaoPropria>0,00</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>0,00</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>S</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>
+
 == Informações adicionais
 
 === Serviços suportados
