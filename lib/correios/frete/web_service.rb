@@ -48,7 +48,6 @@ module Correios
       def format_response_message(response)
         message = "Correios-Frete Response:\n"
         message << "HTTP/#{response.http_version} #{response.code} #{response.message}\n"
-        response.each_header { |header| message << "#{header}: #{response[header]}\n" }
         message << response.body
       end
     end
