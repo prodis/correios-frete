@@ -7,7 +7,7 @@ describe Correios::Frete do
       Correios::Frete.log_enabled?.should be_true
     end
 
-    context "when disable log" do
+    context "when log is disabled" do
       around do |example|
         Correios::Frete.configure { |config| config.log_enabled = false }
         example.run
