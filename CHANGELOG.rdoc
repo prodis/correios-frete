@@ -1,3 +1,9 @@
+== Versão 1.0.2
+- Melhoria: Remoção dos cabeçalhos HTTP no log da resposta do Web Service dos Correios.
+
+== Versão 1.0.1
+- Atualizado: Documentação
+
 == Versão 1.0.0
 - Aviso: Quebra de compatibilidade com a versão 0.3.0.
 - Novo: Adicionado log de requisição e resposta do Web Service dos Correios.

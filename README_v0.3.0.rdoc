@@ -7,7 +7,7 @@ Para a versão 1.0.0 ou acima, por favor veja {README.rdoc}[https://github.com/p
 
 Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).
 
-Os serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (necessário informar código de empresa e senha).
+Os serviços de frete suportados são <b>PAC</b>, <b>SEDEX</b>, <b>SEDEX 10</b>, <b>SEDEX Hoje</b> e <b>e-SEDEX</b> (necessário informar código de empresa e senha).
 
 == Instalando
 
