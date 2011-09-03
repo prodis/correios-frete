@@ -7,7 +7,7 @@ Para a versão 0.3.0, por favor veja {README_v0.3.0.rdoc}[https://github.com/pro
 
 Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).
 
-Os serviços de frete suportados são <b>PAC</b>, <b>SEDEX</b>, <b>SEDEX 10</b>, <b>SEDEX Hoje</b> e <b>e-SEDEX</b> (necessário informar código de empresa e senha).
+Os serviços de frete suportados são <b>PAC</b>, <b>SEDEX</b>, <b>SEDEX a Cobrar</b>, <b>SEDEX 10</b>, <b>SEDEX Hoje</b> e <b>e-SEDEX</b> (necessário informar código de empresa e senha para e-SEDEX e para serviços com contrato).
 
 == Instalando
 
@@ -33,35 +33,35 @@ Cálculo de vários serviços ao mesmo tempo:
 
   servicos = frete.calcular :sedex, :pac
 
-  servicos[:sedex].nome          # => "SEDEX"
+  servicos[:sedex].nome          # => "SEDEX sem contrato"
   servicos[:sedex].valor         # => 26.2
   servicos[:sedex].prazo_entrega # => 1
 
-  servicos[:pac].nome          # => "PAC"
+  servicos[:pac].nome          # => "PAC sem contrato"
   servicos[:pac].valor         # => 10.0
   servicos[:pac].prazo_entrega # => 5
 
 Cálculo de um serviço de frete passando o serviço para parâmetro:
 
   servico = frete.calcular :sedex
-  service.nome          # => "SEDEX"
+  service.nome          # => "SEDEX sem contrato"
   servico.valor         # => 26.2
   servico.prazo_entrega # => 1
 
   servico = frete.calcular :pac
-  service.nome          # => "PAC"
+  service.nome          # => "PAC sem contrato"
   servico.valor         # => 10.0
   servico.prazo_entrega # => 5
 
 Cálculo de um serviço de frete chamando o método direto do serviço:
 
   servico = frete.calcular_sedex
-  service.nome          # => "SEDEX"
+  service.nome          # => "SEDEX sem contrato"
   servico.valor         # => 26.2
   servico.prazo_entrega # => 1
 
   servico = frete.calcular_pac
-  service.nome          # => "PAC"
+  service.nome          # => "PAC sem contrato"
   servico.valor         # => 10.0
   servico.prazo_entrega # => 5
 
@@ -99,11 +99,23 @@ Exemplo de log:
 == Informações adicionais
 
 === Serviços suportados
-  :pac
-  :sedex
-  :sedex_10
-  :sedex_hoje
-  :e_sedex
+
+  :pac				#	41106
+  :sedex				#	40010
+  :sedex_a_cobrar			#	40045
+  :sedex_a_cobrar_com_contrato	#	40126
+  :sedex_10			#	40215
+  :sedex_hoje			#	40290
+  :sedex_com_contrato_1		#	40096
+  :sedex_com_contrato_2		#	40436
+  :sedex_com_contrato_3		#	40444
+  :sedex_com_contrato_4		#	40568
+  :sedex_com_contrato_5		#	40606
+  :e_sedex_com_contrato		#	81019
+  :pac_com_contrato		#	41068
+  :e_sedex_com_contrato_grupo_1	#	81868
+  :e_sedex_com_contrato_grupo_2	#	81833
+  :e_sedex_com_contrato_grupo_3	#	81850
 
 
 === Maneiras de configurar atributos no construtor de Correios::Frete::Calculador
@@ -152,7 +164,8 @@ Exemplo de log:
 ==== Boolean
   entrega_domiciliar, entrega_sabado
 ==== Symbol
-  tipo (:pac, :sedex, :sedex_10, :sedex_hoje, :e_sedex)
+  tipo (:pac, :sedex, :sedex_a_cobrar, :sedex_a_cobrar_com_contrato, :sedex_10, :sedex_hoje, :sedex_com_contrato_1, :sedex_com_contrato_2, :sedex_com_contrato_3, :sedex_com_contrato_4, :sedex_com_contrato_5, :e_sedex_com_contrato, :pac_com_contrato, :e_sedex_com_contrato_grupo_1, :e_sedex_com_contrato_grupo_2, :e_sedex_com_contrato_grupo_3)
+
 
 == Copyright
 

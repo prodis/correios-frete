@@ -5,18 +5,32 @@ module Correios
   module Frete
     class Servico
       include SAXMachine
-
+      
+      # Services according to:
+      # http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf
+      
       AVAILABLE_SERVICES = {
-        "41106" => { :type => :pac       , :name => "PAC"        },
-        "40010" => { :type => :sedex     , :name => "SEDEX"      },
-        "40215" => { :type => :sedex_10  , :name => "SEDEX 10"   },
-        "40290" => { :type => :sedex_hoje, :name => "SEDEX Hoje" },
-        "81019" => { :type => :e_sedex   , :name => "e-SEDEX"    }
+        "41106" => { :type => :pac                          , :name => "PAC sem contrato"                 },
+        "40010" => { :type => :sedex                        , :name => "SEDEX sem contrato"               },
+        "40045" => { :type => :sedex_a_cobrar               , :name => "SEDEX a Cobrar, sem contrato"     },
+        "40126" => { :type => :sedex_a_cobrar_com_contrato  , :name => "SEDEX a Cobrar, com contrato"     },
+        "40215" => { :type => :sedex_10                     , :name => "SEDEX 10, sem contrato"           },
+        "40290" => { :type => :sedex_hoje                   , :name => "SEDEX Hoje, sem contrato"         },
+        "40096" => { :type => :sedex_com_contrato_1         , :name => "SEDEX com contrato"               },
+        "40436" => { :type => :sedex_com_contrato_2         , :name => "SEDEX com contrato"               },
+        "40444" => { :type => :sedex_com_contrato_3         , :name => "SEDEX com contrato"               },
+        "40568" => { :type => :sedex_com_contrato_4         , :name => "SEDEX com contrato"               },
+        "40606" => { :type => :sedex_com_contrato_5         , :name => "SEDEX com contrato"               },
+        "81019" => { :type => :e_sedex_com_contrato         , :name => "e-SEDEX, com contrato"            },
+        "41068" => { :type => :pac_com_contrato             , :name => "PAC com contrato"                 },
+        "81868" => { :type => :e_sedex_com_contrato_grupo_1 , :name => "(Grupo 1) e-SEDEX, com contrato"  },
+        "81833" => { :type => :e_sedex_com_contrato_grupo_2 , :name => "(Grupo 2) e-SEDEX, com contrato"  },
+        "81850" => { :type => :e_sedex_com_contrato_grupo_3 , :name => "(Grupo 3) e-SEDEX, com contrato"  }
       }
 
       element :Codigo, :as => :codigo
       element :Valor, :as => :valor
-        element :PrazoEntrega, :as => :prazo_entrega
+      element :PrazoEntrega, :as => :prazo_entrega
       element :ValorMaoPropria, :as => :valor_mao_propria
       element :ValorAvisoRecebimento, :as => :valor_aviso_recebimento
       element :ValorValorDeclarado, :as => :valor_valor_declarado
