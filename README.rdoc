@@ -77,6 +77,24 @@ Usando a interface pública em inglês:
   servico.success? # => true
   servico.error?   # => false
 
+
+=== Múltiplos itens
+
+  frete = Correios::Frete::CalculadorMultiplo.new :cep_origem => "04094-050", :cep_destino => "90619-900"
+
+  frete.add_item(:peso => 1, :comprimento => 20, :largura => 12, :altura => 2)
+  frete.add_item(:peso => 2, :comprimento => 18, :largura => 16, :altura => 11)
+  servicos = frete.calcular :sedex, :pac
+
+  servicos[:sedex].nome          # => "SEDEX sem contrato"
+  servicos[:sedex].valor         # => 39.3
+  servicos[:sedex].prazo_entrega # => 1
+
+  servicos[:pac].nome          # => "PAC sem contrato"
+  servicos[:pac].valor         # => 17.7
+  servicos[:pac].prazo_entrega # => 5
+
+
 == Log
 
 Por padrão, cada chamada ao Web Service dos Correios é logada usando STDOUT.
