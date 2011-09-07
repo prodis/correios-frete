@@ -14,7 +14,7 @@ describe Correios::Frete::WebService do
                                                :formato => :rolo_prisma,
                                                :mao_propria => true,
                                                :aviso_recebimento => false,
-                                               :valor_declarado => 1.99,
+                                               :valor_declarado => 10.0,
                                                :codigo_empresa => "1234567890",
                                                :senha => "senha"
 
@@ -29,7 +29,7 @@ describe Correios::Frete::WebService do
             "nCdFormato=2&" +
             "sCdMaoPropria=S&" +
             "sCdAvisoRecebimento=N&" +
-            "nVlValorDeclarado=1.99&" +
+            "nVlValorDeclarado=10.00&" +
             "nCdServico=41106,40010&" +
             "nCdEmpresa=1234567890&" +
             "sDsSenha=senha&" +
