@@ -22,7 +22,8 @@ describe Correios::Frete::Servico do
       end
 
       { :tipo => :pac,
-        :nome => "PAC sem contrato",
+        :nome => "PAC",
+        :descricao => "PAC sem contrato",
         :codigo => "41106",
         :valor => 15.70,
         :prazo_entrega => 3,

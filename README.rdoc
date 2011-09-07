@@ -7,7 +7,7 @@ Para a versão 0.3.0, por favor veja {README_v0.3.0.rdoc}[https://github.com/pro
 
 Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).
 
-Os serviços de frete suportados são <b>PAC</b>, <b>SEDEX</b>, <b>SEDEX a Cobrar</b>, <b>SEDEX 10</b>, <b>SEDEX Hoje</b> e <b>e-SEDEX</b> (necessário informar código de empresa e senha para e-SEDEX e para serviços com contrato).
+Os serviços de frete suportados são <b>PAC</b>, <b>SEDEX</b>, <b>SEDEX a Cobrar</b> (necessário informar o valor declarado), <b>SEDEX 10</b>, <b>SEDEX Hoje</b> e <b>e-SEDEX</b>. Para os serviços com contrato é necessário informar código de empresa e senha.
 
 == Instalando
 
@@ -33,35 +33,39 @@ Cálculo de vários serviços ao mesmo tempo:
 
   servicos = frete.calcular :sedex, :pac
 
-  servicos[:sedex].nome          # => "SEDEX sem contrato"
+  servicos[:sedex].nome          # => "SEDEX"
+  servicos[:sedex].descricao     # => "SEDEX sem contrato"
   servicos[:sedex].valor         # => 26.2
   servicos[:sedex].prazo_entrega # => 1
 
-  servicos[:pac].nome          # => "PAC sem contrato"
+  servicos[:pac].nome          # => "PAC"
+  servicos[:pac].descricao     # => "PAC sem contrato"
   servicos[:pac].valor         # => 10.0
   servicos[:pac].prazo_entrega # => 5
 
 Cálculo de um serviço de frete passando o serviço para parâmetro:
 
   servico = frete.calcular :sedex
-  service.nome          # => "SEDEX sem contrato"
+  service.nome          # => "SEDEX"
+  service.descricao     # => "SEDEX sem contrato"
   servico.valor         # => 26.2
   servico.prazo_entrega # => 1
 
   servico = frete.calcular :pac
-  service.nome          # => "PAC sem contrato"
+  service.nome          # => "PAC"
+  service.descricao     # => "PAC sem contrato"
   servico.valor         # => 10.0
   servico.prazo_entrega # => 5
 
 Cálculo de um serviço de frete chamando o método direto do serviço:
 
   servico = frete.calcular_sedex
-  service.nome          # => "SEDEX sem contrato"
+  service.nome          # => "SEDEX"
   servico.valor         # => 26.2
   servico.prazo_entrega # => 1
 
   servico = frete.calcular_pac
-  service.nome          # => "PAC sem contrato"
+  service.nome          # => "PAC"
   servico.valor         # => 10.0
   servico.prazo_entrega # => 5
 
@@ -100,23 +104,22 @@ Exemplo de log:
 
 === Serviços suportados
 
-  :pac				#	41106
-  :sedex				#	40010
-  :sedex_a_cobrar			#	40045
-  :sedex_a_cobrar_com_contrato	#	40126
-  :sedex_10			#	40215
-  :sedex_hoje			#	40290
-  :sedex_com_contrato_1		#	40096
-  :sedex_com_contrato_2		#	40436
-  :sedex_com_contrato_3		#	40444
-  :sedex_com_contrato_4		#	40568
-  :sedex_com_contrato_5		#	40606
-  :e_sedex_com_contrato		#	81019
-  :pac_com_contrato		#	41068
-  :e_sedex_com_contrato_grupo_1	#	81868
-  :e_sedex_com_contrato_grupo_2	#	81833
-  :e_sedex_com_contrato_grupo_3	#	81850
-
+  :pac                         # 41106 - PAC sem contrato
+  :pac_com_contrato            # 41068 - PAC com contrato
+  :sedex                       # 40010 - SEDEX sem contrato
+  :sedex_a_cobrar              # 40045 - SEDEX a Cobrar, sem contrato
+  :sedex_a_cobrar_com_contrato # 40126 - SEDEX a Cobrar, com contrato
+  :sedex_10                    # 40215 - SEDEX 10, sem contrato
+  :sedex_hoje                  # 40290 - SEDEX Hoje, sem contrato
+  :sedex_com_contrato_1        # 40096 - SEDEX com contrato
+  :sedex_com_contrato_2        # 40436 - SEDEX com contrato
+  :sedex_com_contrato_3        # 40444 - SEDEX com contrato
+  :sedex_com_contrato_4        # 40568 - SEDEX com contrato
+  :sedex_com_contrato_5        # 40606 - SEDEX com contrato
+  :e_sedex                     # 81019 - e-SEDEX, com contrato
+  :e_sedex_grupo_1             # 81868 - (Grupo 1) e-SEDEX, com contrato
+  :e_sedex_grupo_2             # 81833 - (Grupo 2) e-SEDEX, com contrato
+  :e_sedex_grupo_3             # 81850 - (Grupo 3) e-SEDEX, com contrato
 
 === Maneiras de configurar atributos no construtor de Correios::Frete::Calculador
 
@@ -156,7 +159,7 @@ Exemplo de log:
 === Atributos de Correios::Frete::Servico
 
 ==== String
-  codigo, erro, msg_erro, nome
+  codigo, erro, msg_erro, nome, descricao
 ==== Float
   valor, valor_mao_propria, valor_aviso_recebimento, valor_valor_declarado
 ==== Fixnum
@@ -164,7 +167,7 @@ Exemplo de log:
 ==== Boolean
   entrega_domiciliar, entrega_sabado
 ==== Symbol
-  tipo (:pac, :sedex, :sedex_a_cobrar, :sedex_a_cobrar_com_contrato, :sedex_10, :sedex_hoje, :sedex_com_contrato_1, :sedex_com_contrato_2, :sedex_com_contrato_3, :sedex_com_contrato_4, :sedex_com_contrato_5, :e_sedex_com_contrato, :pac_com_contrato, :e_sedex_com_contrato_grupo_1, :e_sedex_com_contrato_grupo_2, :e_sedex_com_contrato_grupo_3)
+  tipo (:pac, :pac_com_contrato, :sedex, :sedex_a_cobrar, :sedex_a_cobrar_com_contrato, :sedex_10, :sedex_hoje, :sedex_com_contrato_1, :sedex_com_contrato_2, :sedex_com_contrato_3, :sedex_com_contrato_4, :sedex_com_contrato_5, :e_sedex, :e_sedex_grupo_1, :e_sedex_grupo_2, :e_sedex_grupo_3)
 
 
 == Copyright
