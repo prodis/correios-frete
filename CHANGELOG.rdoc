@@ -1,3 +1,7 @@
+== Versão 1.2.0
+- Novo: Uso da gem LogMe.
+- Melhoria: Opção de logar os cabeçalhos HTTP da resposta do Web Service dos Correios.
+
 == Versão 1.1.0
 - Novo: Suporte para todos os serviços de frete disponibilizados pelos Correios.
 - Correção: Formatação com duas casas decimais do valor declarado.
@@ -6,7 +10,7 @@
 - Melhoria: Remoção dos cabeçalhos HTTP no log da resposta do Web Service dos Correios.
 
 == Versão 1.0.1
-- Atualizado: Documentação
+- Atualização: Documentação
 
 == Versão 1.0.0
 - Aviso: Quebra de compatibilidade com a versão 0.3.0.
@@ -18,7 +22,7 @@
 == Versão 0.2.1
 - Melhoria: Alias Correios::Frete::Servico#sucesso? para Correios::Frete::Servico#success?
 - Melhoria: Alias Correios::Frete::Servico#erro? para Correios::Frete::Servico#error?
-- Atualizado: Documentação
+- Atualização: Documentação
 
 == Versão 0.2.0
 - Novo: Suporte para cálculo de e-SEDEX
