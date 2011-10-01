@@ -87,7 +87,7 @@ Usando a interface pública em inglês:
 
 == Log
 
-Por padrão, cada chamada ao Web Service do PayPal Frete Fácil é logada em STDOUT, com nível de log :info, usando a gem {LogMe}[http://github.com/prodis/log-me].
+Por padrão, cada chamada ao Web Service dos Correios é logada em STDOUT, com nível de log :info, usando a gem {LogMe}[http://github.com/prodis/log-me].
 
 Exemplo de log:
   I, [2011-10-01T00:26:16.864990 #5631]  INFO -- : Correios-Frete Request:
