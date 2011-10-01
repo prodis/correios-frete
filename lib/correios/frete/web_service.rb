@@ -11,7 +11,7 @@ module Correios
 
       def request(frete, service_types)
         @url = "#{URL}?#{params_for(frete, service_types)}"
-          with_log { Net::HTTP.get_response URI.parse(@url) }
+        with_log { Net::HTTP.get_response URI.parse(@url) }
       end
 
       private
@@ -39,16 +39,31 @@ module Correios
       end
 
       def with_log
-        Correios::Frete.log "Correios-Frete Request:\n#{@url}"
+        Correios::Frete.log format_request_message
         response = yield
         Correios::Frete.log format_response_message(response)
         response.body
       end
 
+      def format_request_message
+        message =  with_line_break { "Correios-Frete Request:" }
+        message << with_line_break { @url }
+      end
+
       def format_response_message(response)
-        message = "Correios-Frete Response:\n"
-        message << "HTTP/#{response.http_version} #{response.code} #{response.message}\n"
-        message << response.body
+        message =  with_line_break { "Correios-Frete Response:" }
+        message << with_line_break { "HTTP/#{response.http_version} #{response.code} #{response.message}" }
+        message << with_line_break { format_headers_for(response) } if Correios::Frete.log_level == :debug
+        message << with_line_break { response.body }
+      end
+
+      def format_headers_for(http)
+        # I'm using an empty block in each_header method for Ruby 1.8.7 compatibility.
+        http.each_header{}.map { |name, values| "#{name}: #{values.first}" }.join("\n")
+      end
+
+      def with_line_break
+        "#{yield}\n"
       end
     end
   end

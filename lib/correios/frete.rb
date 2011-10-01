@@ -1,12 +1,8 @@
 # encoding: UTF-8
-require 'correios/frete/logger'
+require 'log-me'
 
 module Correios
   module Frete
-    extend Logger
-
-    def self.configure
-      yield self if block_given?
-    end
+    extend LogMe
   end
 end
