@@ -1,3 +1,7 @@
+== Versão 1.1.0
+- Novo: Suporte para todos os serviços de frete disponibilizados pelos Correios.
+- Correção: Formatação com duas casas decimais do valor declarado.
+
 == Versão 1.0.2
 - Melhoria: Remoção dos cabeçalhos HTTP no log da resposta do Web Service dos Correios.
 

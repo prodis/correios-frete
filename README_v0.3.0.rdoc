@@ -67,12 +67,16 @@ Cálculo de um serviço de frete chamando o método direto do serviço:
 
 Verificação de sucesso e erro:
 
+  frete.altura = 100
+
   servico = frete.calcular_sedex
-  servico.sucesso? # => true
-  servico.erro?    # => false
+  servico.sucesso? # => false
+  servico.erro?    # => true
+  servico.msg_erro # => "A altura nao pode ser maior que 90 cm."
 
 Usando a interface pública em inglês:
 
+  servicos = frete.calculate :sedex, :pac
   servico = frete.calculate_sedex
   servico.success? # => true
   servico.error?   # => false
