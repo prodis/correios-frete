@@ -46,26 +46,28 @@ Cálculo de vários serviços ao mesmo tempo:
 Cálculo de um serviço de frete passando o serviço para parâmetro:
 
   servico = frete.calcular :sedex
-  service.nome          # => "SEDEX"
-  service.descricao     # => "SEDEX sem contrato"
+  servico.nome          # => "SEDEX"
+  servico.descricao     # => "SEDEX sem contrato"
   servico.valor         # => 26.2
   servico.prazo_entrega # => 1
 
   servico = frete.calcular :pac
-  service.nome          # => "PAC"
-  service.descricao     # => "PAC sem contrato"
+  servico.nome          # => "PAC"
+  servico.descricao     # => "PAC sem contrato"
   servico.valor         # => 10.0
   servico.prazo_entrega # => 5
 
 Cálculo de um serviço de frete chamando o método direto do serviço:
 
   servico = frete.calcular_sedex
-  service.nome          # => "SEDEX"
+  servico.nome          # => "SEDEX"
+  servico.descricao     # => "SEDEX sem contrato"
   servico.valor         # => 26.2
   servico.prazo_entrega # => 1
 
   servico = frete.calcular_pac
-  service.nome          # => "PAC"
+  servico.nome          # => "PAC"
+  servico.descricao     # => "PAC sem contrato"
   servico.valor         # => 10.0
   servico.prazo_entrega # => 5
 
@@ -81,13 +83,14 @@ Verificação de sucesso e erro:
 Usando a interface pública em inglês:
 
   servicos = frete.calculate :sedex, :pac
+
   servico = frete.calculate_sedex
   servico.success? # => true
   servico.error?   # => false
 
 == Log
 
-Por padrão, cada chamada ao Web Service dos Correios é logada em STDOUT, com nível de log :info, usando a gem {LogMe}[http://github.com/prodis/log-me].
+Por padrão, cada chamada ao Web Service dos Correios é logada em STDOUT, com nível de log <b>:info</b>, usando a gem {LogMe}[http://github.com/prodis/log-me].
 
 Exemplo de log:
   I, [2011-10-01T00:26:16.864990 #5631]  INFO -- : Correios-Frete Request:
@@ -98,7 +101,7 @@ Exemplo de log:
   <?xml version="1.0" encoding="ISO-8859-1" ?>
   <Servicos><cServico><Codigo>41106</Codigo><Valor>10,00</Valor><PrazoEntrega>5</PrazoEntrega><ValorMaoPropria>0,00</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>0,00</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>
 
-Se você configurar o nível de log como :debug, serão logados também todos os cabeçalhos HTTP da resposta:
+Se você configurar o nível de log como <b>:debug</b>, serão logados também todos os cabeçalhos HTTP da resposta:
   D, [2011-10-01T00:27:50.597961 #5631] DEBUG -- : Correios-Frete Request:
   http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0.00&nCdServico=41106&nCdEmpresa=&sDsSenha=&StrRetorno=xml
 
@@ -116,7 +119,7 @@ Se você configurar o nível de log como :debug, serão logados também todos os
   <?xml version="1.0" encoding="ISO-8859-1" ?>
   <Servicos><cServico><Codigo>41106</Codigo><Valor>10,00</Valor><PrazoEntrega>5</PrazoEntrega><ValorMaoPropria>0,00</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>0,00</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>
 
-Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo de log, use o módulo Correios::Frete.
+Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo de log, use o módulo <b>Correios::Frete</b>.
 
   Correios::Frete.configure do |config|
     config.log_enabled = false   # Desabilita o log
