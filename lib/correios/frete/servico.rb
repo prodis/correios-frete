@@ -7,22 +7,22 @@ module Correios
       include SAXMachine
 
       AVAILABLE_SERVICES = {
-        "41106" => { :type => :pac                         , :name => "PAC",            :description => "PAC sem contrato"                },
-        "41068" => { :type => :pac_com_contrato            , :name => "PAC",            :description => "PAC com contrato"                },
-        "40010" => { :type => :sedex                       , :name => "SEDEX",          :description => "SEDEX sem contrato"              },
-        "40045" => { :type => :sedex_a_cobrar              , :name => "SEDEX a Cobrar", :description => "SEDEX a Cobrar, sem contrato"    },
-        "40126" => { :type => :sedex_a_cobrar_com_contrato , :name => "SEDEX a Cobrar", :description => "SEDEX a Cobrar, com contrato"    },
-        "40215" => { :type => :sedex_10                    , :name => "SEDEX 10",       :description => "SEDEX 10, sem contrato"          },
-        "40290" => { :type => :sedex_hoje                  , :name => "SEDEX Hoje",     :description => "SEDEX Hoje, sem contrato"        },
-        "40096" => { :type => :sedex_com_contrato_1        , :name => "SEDEX",          :description => "SEDEX com contrato"              },
-        "40436" => { :type => :sedex_com_contrato_2        , :name => "SEDEX",          :description => "SEDEX com contrato"              },
-        "40444" => { :type => :sedex_com_contrato_3        , :name => "SEDEX",          :description => "SEDEX com contrato"              },
-        "40568" => { :type => :sedex_com_contrato_4        , :name => "SEDEX",          :description => "SEDEX com contrato"              },
-        "40606" => { :type => :sedex_com_contrato_5        , :name => "SEDEX",          :description => "SEDEX com contrato"              },
-        "81019" => { :type => :e_sedex                     , :name => "e-SEDEX",        :description => "e-SEDEX, com contrato"           },
-        "81868" => { :type => :e_sedex_grupo_1             , :name => "e-SEDEX",        :description => "(Grupo 1) e-SEDEX, com contrato" },
-        "81833" => { :type => :e_sedex_grupo_2             , :name => "e-SEDEX",        :description => "(Grupo 2) e-SEDEX, com contrato" },
-        "81850" => { :type => :e_sedex_grupo_3             , :name => "e-SEDEX",        :description => "(Grupo 3) e-SEDEX, com contrato" }
+        "41106" => { :type => :pac,                         :name => "PAC",            :description => "PAC sem contrato"                },
+        "41068" => { :type => :pac_com_contrato,            :name => "PAC",            :description => "PAC com contrato"                },
+        "40010" => { :type => :sedex,                       :name => "SEDEX",          :description => "SEDEX sem contrato"              },
+        "40045" => { :type => :sedex_a_cobrar,              :name => "SEDEX a Cobrar", :description => "SEDEX a Cobrar, sem contrato"    },
+        "40126" => { :type => :sedex_a_cobrar_com_contrato, :name => "SEDEX a Cobrar", :description => "SEDEX a Cobrar, com contrato"    },
+        "40215" => { :type => :sedex_10,                    :name => "SEDEX 10",       :description => "SEDEX 10, sem contrato"          },
+        "40290" => { :type => :sedex_hoje,                  :name => "SEDEX Hoje",     :description => "SEDEX Hoje, sem contrato"        },
+        "40096" => { :type => :sedex_com_contrato_1,        :name => "SEDEX",          :description => "SEDEX com contrato"              },
+        "40436" => { :type => :sedex_com_contrato_2,        :name => "SEDEX",          :description => "SEDEX com contrato"              },
+        "40444" => { :type => :sedex_com_contrato_3,        :name => "SEDEX",          :description => "SEDEX com contrato"              },
+        "40568" => { :type => :sedex_com_contrato_4,        :name => "SEDEX",          :description => "SEDEX com contrato"              },
+        "40606" => { :type => :sedex_com_contrato_5,        :name => "SEDEX",          :description => "SEDEX com contrato"              },
+        "81019" => { :type => :e_sedex,                     :name => "e-SEDEX",        :description => "e-SEDEX, com contrato"           },
+        "81868" => { :type => :e_sedex_grupo_1,             :name => "e-SEDEX",        :description => "(Grupo 1) e-SEDEX, com contrato" },
+        "81833" => { :type => :e_sedex_grupo_2,             :name => "e-SEDEX",        :description => "(Grupo 2) e-SEDEX, com contrato" },
+        "81850" => { :type => :e_sedex_grupo_3,             :name => "e-SEDEX",        :description => "(Grupo 3) e-SEDEX, com contrato" }
       }
 
       element :Codigo, :as => :codigo
