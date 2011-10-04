@@ -3,53 +3,17 @@ require 'spec_helper'
 
 describe Correios::Frete::WebService do
   describe "#request" do
-    before :each do
-      @frete = Correios::Frete::Calculador.new :cep_origem => "01000-000",
-                                               :cep_destino => "021222-222",
-                                               :peso => 0.321,
-                                               :comprimento => 12.5,
-                                               :altura => 1.4,
-                                               :largura => 4.6,
-                                               :diametro => 5.0,
-                                               :formato => :rolo_prisma,
-                                               :mao_propria => true,
-                                               :aviso_recebimento => false,
-                                               :valor_declarado => 10.0,
-                                               :codigo_empresa => "1234567890",
-                                               :senha => "senha"
-
-      url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?" +
-            "sCepOrigem=01000-000&" +
-            "sCepDestino=021222-222&" +
-            "nVlPeso=0.321&" +
-            "nVlComprimento=12.5&" +
-            "nVlAltura=1.4&" +
-            "nVlLargura=4.6&" +
-            "nVlDiametro=5.0&" +
-            "nCdFormato=2&" +
-            "sCdMaoPropria=S&" +
-            "sCdAvisoRecebimento=N&" +
-            "nVlValorDeclarado=10.00&" +
-            "nCdServico=41106,40010&" +
-            "nCdEmpresa=1234567890&" +
-            "sDsSenha=senha&" +
-            "StrRetorno=xml"
-
-      response = Net::HTTPOK.new nil, 200, "OK"
-      response.stub(:body).and_return("<xml><fake></fake>")
-      Net::HTTP.stub(:get_response).with(URI.parse(url)).and_return(response)
-
-      @web_service = Correios::Frete::WebService.new
-    end
-
     around do |example|
       Correios::Frete.configure { |config| config.log_enabled = false }
       example.run
       Correios::Frete.configure { |config| config.log_enabled = true }
     end
 
+    let(:frete) { Correios::Frete::Calculador.new }
+
     it "returns XML response" do
-      @web_service.request(@frete, [:pac, :sedex]).should == "<xml><fake></fake>"
+      FakeWeb.register_uri(:get, Regexp.new("http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx"), :status => 200, :body => "<xml><fake></fake>")
+      subject.request(frete, [:pac, :sedex]).should == "<xml><fake></fake>"
     end
   end
 end
