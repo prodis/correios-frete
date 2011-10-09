@@ -106,6 +106,10 @@ describe Correios::Frete::Calculador do
         it "calculates #{service[:name]}" do
           @frete.send("#{method_name}_#{service[:type]}").should == @servico
         end
+
+        it "returns true when method exists" do
+          subject.respond_to?("#{method_name}_#{service[:type]}").should be_true
+        end
       end
     end
 
