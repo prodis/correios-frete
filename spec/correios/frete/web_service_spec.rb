@@ -12,7 +12,7 @@ describe Correios::Frete::WebService do
     let(:frete) { Correios::Frete::Calculador.new }
 
     it "returns XML response" do
-      FakeWeb.register_uri(:get, Regexp.new("http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx"), :status => 200, :body => "<xml><fake></fake>")
+      fake_request_for("<xml><fake></fake>")
       subject.request(frete, [:pac, :sedex]).should == "<xml><fake></fake>"
     end
   end

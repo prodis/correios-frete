@@ -6,7 +6,6 @@ module Correios
       attr_accessor :peso, :comprimento, :altura, :largura, :diametro
       attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado
       attr_accessor :codigo_empresa, :senha
-      attr_writer :web_service, :parser
 
       DEFAULT_OPTIONS = {
         :peso => 0.0,
@@ -14,9 +13,9 @@ module Correios
         :altura => 0.0,
         :largura => 0.0,
         :diametro => 0.0,
-        :formato => :caixa_pacote, 
-        :mao_propria => false, 
-        :aviso_recebimento => false, 
+        :formato => :caixa_pacote,
+        :mao_propria => false,
+        :aviso_recebimento => false,
         :valor_declarado => 0.0
       }
 
@@ -46,7 +45,6 @@ module Correios
           services
         end
       end
-
       alias calculate calcular
 
       def method_missing(method_name, *args)
