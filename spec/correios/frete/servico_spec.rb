@@ -78,7 +78,7 @@ describe Correios::Frete::Servico do
       end
     end
 
-    context "when there is an unexpect error" do
+    context "when there is an unexpected error" do
       before :each do
         @xml = """<cServico>
                     <Codigo></Codigo>

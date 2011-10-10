@@ -35,8 +35,6 @@ describe Correios::Frete::Calculador do
       :valor_declarado => 1.99,
       :codigo_empresa => "1234567890",
       :senha => "senha",
-      :web_service => Correios::Frete::WebService.new,
-      :parser => Correios::Frete::Parser.new
     }.each do |attr, value|
       context "when #{attr} is supplied" do
         it "sets #{attr}" do
@@ -55,37 +53,33 @@ describe Correios::Frete::Calculador do
   end
 
   describe "#calcular" do
+    around do |example|
+      Correios::Frete.configure { |config| config.log_enabled = false }
+      example.run
+      Correios::Frete.configure { |config| config.log_enabled = true }
+    end
+
     before :each do
-      @web_service = Correios::Frete::WebService.new
-      @parser = Correios::Frete::Parser.new
-      @frete = Correios::Frete::Calculador.new(:web_service => @web_service, :parser => @parser)
+      @frete = Correios::Frete::Calculador.new
     end
 
     context "to many services" do
       before :each do
-        @xml = '<?xml version="1.0" encoding="ISO-8859-1" ?><Servicos><cServico><Codigo>41106</Codigo><Valor>15,70</Valor><PrazoEntrega>3</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico><cServico><Codigo>40010</Codigo><Valor>17,80</Valor><PrazoEntrega>1</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>S</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>'
-        @servicos = { :pac => Correios::Frete::Servico.new, :sedex => Correios::Frete::Servico.new }
-
-        @parser.stub(:servicos).and_return(@servicos)
-        @web_service.stub(:request).with(@frete, [:pac, :sedex]).and_return(@xml)
+        fake_request_for(:success_response_many_services)
       end
 
       it "returns all services" do
-        @frete.calcular(:pac, :sedex).should == @servicos
+        @frete.calcular(:pac, :sedex).keys.should == [:pac, :sedex]
       end
     end
 
     context "to one service" do
       before :each do
-        @xml = '<?xml version="1.0" encoding="ISO-8859-1" ?><cServico><Codigo>40010</Codigo><Valor>17,80</Valor><PrazoEntrega>1</PrazoEntrega><ValorMaoPropria>3,70</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>1,50</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>S</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>'
-        @servico = Correios::Frete::Servico.new
-
-        @parser.stub(:servicos).and_return(:sedex => @servico)
-        @web_service.stub(:request).with(@frete, [:sedex]).and_return(@xml)
+        fake_request_for(:success_response_one_service)
       end
 
       it "returns only one service" do
-        @frete.calcular(:sedex).should == @servico
+        @frete.calcular(:sedex).tipo.should == :sedex
       end
     end
   end
@@ -94,17 +88,22 @@ describe Correios::Frete::Calculador do
     Correios::Frete::Servico::AVAILABLE_SERVICES.each do |key, service|
       describe "##{method_name}_#{service[:type]}" do
         before :each do
-          web_service = Correios::Frete::WebService.new
-          parser = Correios::Frete::Parser.new
-          @frete = Correios::Frete::Calculador.new(:web_service => web_service, :parser => parser)
+          @frete = Correios::Frete::Calculador.new
           @servico = Correios::Frete::Servico.new
 
-          parser.stub(:servicos).and_return(service[:type] => @servico)
-          web_service.stub(:request).with(@frete, [service[:type]]).and_return("XML")
+          web_service = mock(Correios::Frete::WebService, :request! => "XML")
+          Correios::Frete::WebService.stub(:new).and_return(web_service)
+
+          parser = mock(Correios::Frete::Parser, :servicos => { service[:type] => @servico })
+          Correios::Frete::Parser.stub(:new).and_return(parser)
         end
 
         it "calculates #{service[:name]}" do
           @frete.send("#{method_name}_#{service[:type]}").should == @servico
+        end
+
+        it "returns true when method exists" do
+          subject.respond_to?("#{method_name}_#{service[:type]}").should be_true
         end
       end
     end

@@ -6,7 +6,6 @@ module Correios
       attr_accessor :peso, :comprimento, :altura, :largura, :diametro
       attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado
       attr_accessor :codigo_empresa, :senha
-      attr_writer :web_service, :parser
 
       DEFAULT_OPTIONS = {
         :peso => 0.0,
@@ -14,9 +13,9 @@ module Correios
         :altura => 0.0,
         :largura => 0.0,
         :diametro => 0.0,
-        :formato => :caixa_pacote, 
-        :mao_propria => false, 
-        :aviso_recebimento => false, 
+        :formato => :caixa_pacote,
+        :mao_propria => false,
+        :aviso_recebimento => false,
         :valor_declarado => 0.0
       }
 
@@ -28,16 +27,8 @@ module Correios
         yield self if block_given?
       end
 
-      def web_service
-        @web_service ||= Correios::Frete::WebService.new
-      end
-
-      def parser
-        @parser ||= Correios::Frete::Parser.new
-      end
-
       def calcular(*service_types)
-        response = web_service.request(self, service_types)
+        response = web_service(service_types).request!
         services = parser.servicos(response)
 
         if service_types.size == 1
@@ -46,14 +37,26 @@ module Correios
           services
         end
       end
-
       alias calculate calcular
-
-      private
 
       def method_missing(method_name, *args)
         return calcular($2.to_sym) if method_name.to_s =~ /^(calcular|calculate)_(.*)/ && Correios::Frete::Servico.code_from_type($2.to_sym)
         super
+      end
+
+      def respond_to?(method_name)
+        return true if method_name.to_s =~ /^(calcular|calculate)_(.*)/ && Correios::Frete::Servico.code_from_type($2.to_sym)
+        super
+      end
+
+      private
+
+      def web_service(*service_types)
+        Correios::Frete::WebService.new(self, service_types)
+      end
+
+      def parser
+        @parser ||= Correios::Frete::Parser.new
       end
     end
   end
