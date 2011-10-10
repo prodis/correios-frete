@@ -10,10 +10,11 @@ describe Correios::Frete::WebService do
     end
 
     let(:frete) { Correios::Frete::Calculador.new }
+    let(:webservice) { Correios::Frete::WebService.new(frete, [:pac, :sedex]) }
 
     it "returns XML response" do
       fake_request_for("<xml><fake></fake>")
-      subject.request(frete, [:pac, :sedex]).should == "<xml><fake></fake>"
+      webservice.request!.should == "<xml><fake></fake>"
     end
   end
 end

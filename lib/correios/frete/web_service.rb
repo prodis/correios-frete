@@ -9,9 +9,16 @@ module Correios
       FORMATS = { :caixa_pacote => 1, :rolo_prisma => 2 }
       CONDITIONS = { true => "S", false => "N" }
 
-      def request(frete, service_types)
+      def initialize(frete, service_types)
         @url = "#{URL}?#{params_for(frete, service_types)}"
-        with_log { Net::HTTP.get_response URI.parse(@url) }
+      end
+
+      attr_reader :url
+
+      def request!
+        response = with_log { Net::HTTP.get_response URI.parse(url) }
+
+        response.body
       end
 
       private
@@ -42,12 +49,13 @@ module Correios
         Correios::Frete.log format_request_message
         response = yield
         Correios::Frete.log format_response_message(response)
-        response.body
+
+        response
       end
 
       def format_request_message
         message =  with_line_break { "Correios-Frete Request:" }
-        message << with_line_break { @url }
+        message << with_line_break { url }
       end
 
       def format_response_message(response)

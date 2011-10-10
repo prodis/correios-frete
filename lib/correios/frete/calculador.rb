@@ -27,16 +27,8 @@ module Correios
         yield self if block_given?
       end
 
-      def web_service
-        @web_service ||= Correios::Frete::WebService.new
-      end
-
-      def parser
-        @parser ||= Correios::Frete::Parser.new
-      end
-
       def calcular(*service_types)
-        response = web_service.request(self, service_types)
+        response = web_service(service_types).request!
         services = parser.servicos(response)
 
         if service_types.size == 1
@@ -55,6 +47,16 @@ module Correios
       def respond_to?(method_name)
         return true if method_name.to_s =~ /^(calcular|calculate)_(.*)/ && Correios::Frete::Servico.code_from_type($2.to_sym)
         super
+      end
+
+      private
+
+      def web_service(*service_types)
+        Correios::Frete::WebService.new(self, service_types)
+      end
+
+      def parser
+        @parser ||= Correios::Frete::Parser.new
       end
     end
   end

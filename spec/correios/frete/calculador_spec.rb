@@ -91,7 +91,7 @@ describe Correios::Frete::Calculador do
           @frete = Correios::Frete::Calculador.new
           @servico = Correios::Frete::Servico.new
 
-          web_service = mock(Correios::Frete::WebService, :request => "XML")
+          web_service = mock(Correios::Frete::WebService, :request! => "XML")
           Correios::Frete::WebService.stub(:new).and_return(web_service)
 
           parser = mock(Correios::Frete::Parser, :servicos => { service[:type] => @servico })
