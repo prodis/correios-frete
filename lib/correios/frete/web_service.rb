@@ -13,11 +13,8 @@ module Correios
         @url = "#{URL}?#{params_for(frete, service_types)}"
       end
 
-      attr_reader :url
-
       def request!
-        response = with_log { Net::HTTP.get_response URI.parse(url) }
-
+        response = with_log { Net::HTTP.get_response URI.parse(@url) }
         response.body
       end
 
@@ -49,13 +46,12 @@ module Correios
         Correios::Frete.log format_request_message
         response = yield
         Correios::Frete.log format_response_message(response)
-
         response
       end
 
       def format_request_message
         message =  with_line_break { "Correios-Frete Request:" }
-        message << with_line_break { url }
+        message << with_line_break { @url }
       end
 
       def format_response_message(response)

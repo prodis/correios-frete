@@ -59,14 +59,10 @@ describe Correios::Frete::Calculador do
       Correios::Frete.configure { |config| config.log_enabled = true }
     end
 
-    before :each do
-      @frete = Correios::Frete::Calculador.new
-    end
+    before(:each) { @frete = Correios::Frete::Calculador.new }
 
     context "to many services" do
-      before :each do
-        fake_request_for(:success_response_many_services)
-      end
+      before(:each) { fake_request_for(:success_response_many_services) }
 
       it "returns all services" do
         @frete.calcular(:pac, :sedex).keys.should == [:pac, :sedex]
@@ -74,9 +70,7 @@ describe Correios::Frete::Calculador do
     end
 
     context "to one service" do
-      before :each do
-        fake_request_for(:success_response_one_service)
-      end
+      before(:each) { fake_request_for(:success_response_one_service) }
 
       it "returns only one service" do
         @frete.calcular(:sedex).tipo.should == :sedex
@@ -102,7 +96,7 @@ describe Correios::Frete::Calculador do
           @frete.send("#{method_name}_#{service[:type]}").should == @servico
         end
 
-        it "returns true when method exists" do
+        it "returns true in respond_to?" do
           subject.respond_to?("#{method_name}_#{service[:type]}").should be_true
         end
       end
@@ -113,6 +107,10 @@ describe Correios::Frete::Calculador do
 
       it "raises NoMethodError" do
         expect { @frete.send("#{method_name}_servico_que_nao_existe") }.to raise_error(NoMethodError)
+      end
+
+      it "returns false in respond_to?" do
+        subject.respond_to?("#{method_name}_servico_que_nao_existe").should be_false
       end
     end
   end
