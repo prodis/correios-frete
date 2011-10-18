@@ -1,12 +1,12 @@
 source "http://rubygems.org"
 
 gem "log-me", "~> 0.0.2"
-gem "nokogiri", "~> 1.4.6"
-gem "sax-machine", "~> 0.0.16"
+gem "nokogiri", "~> 1.4.7"
+gem "sax-machine", "~> 0.0.20"
 
 group :development do
-  gem "fakeweb", "~> 1.3.0"
-  gem "rspec", "~> 2.6.0"
   gem "bundler", "~> 1.0.0"
-  gem "jeweler", "~> 1.6.2"
+  gem "fakeweb", "~> 1.3.0"
+  gem "jeweler", "~> 1.6.4"
+  gem "rspec", "~> 2.6.0"
 end
