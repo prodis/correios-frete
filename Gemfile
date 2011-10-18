@@ -9,4 +9,6 @@ group :development do
   gem "fakeweb", "~> 1.3.0"
   gem "jeweler", "~> 1.6.4"
   gem "rspec", "~> 2.6.0"
+  gem "ruby-debug", :platforms => :ruby_18
+  gem "ruby-debug19", :require => "ruby-debug", :platforms => :ruby_19
 end
