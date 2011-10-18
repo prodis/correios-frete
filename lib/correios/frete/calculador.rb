@@ -51,7 +51,7 @@ module Correios
 
       private
 
-      def web_service(*service_types)
+      def web_service(service_types)
         Correios::Frete::WebService.new(self, service_types)
       end
 

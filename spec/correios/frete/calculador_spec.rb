@@ -64,6 +64,12 @@ describe Correios::Frete::Calculador do
     context "to many services" do
       before(:each) { fake_request_for(:success_response_many_services) }
 
+      it "creates a WebService with correct params" do
+        web_service = Correios::Frete::WebService.new @frete, [:pac, :sedex]
+        Correios::Frete::WebService.should_receive(:new).with(@frete, [:pac, :sedex]).and_return(web_service)
+        @frete.calcular(:pac, :sedex)
+      end
+
       it "returns all services" do
         @frete.calcular(:pac, :sedex).keys.should == [:pac, :sedex]
       end
@@ -71,6 +77,12 @@ describe Correios::Frete::Calculador do
 
     context "to one service" do
       before(:each) { fake_request_for(:success_response_one_service) }
+
+      it "creates a WebService with correct params" do
+        web_service = Correios::Frete::WebService.new @frete, [:sedex]
+        Correios::Frete::WebService.should_receive(:new).with(@frete, [:sedex]).and_return(web_service)
+        @frete.calcular(:sedex)
+      end
 
       it "returns only one service" do
         @frete.calcular(:sedex).tipo.should == :sedex
