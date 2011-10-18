@@ -1,3 +1,6 @@
+== Versão 1.3.0
+- Atualização: Refatoração das classes Correios::Frete::Calculador e Correios::Frete::WebService.
+
 == Versão 1.2.1
 - Atualização: Documentação
 
@@ -13,7 +16,7 @@
 - Melhoria: Remoção dos cabeçalhos HTTP no log da resposta do Web Service dos Correios.
 
 == Versão 1.0.1
-- Atualização: Documentação
+- Atualização: Documentação.
 
 == Versão 1.0.0
 - Aviso: Quebra de compatibilidade com a versão 0.3.0.
@@ -23,17 +26,17 @@
 - Novo: Métodos diretos para cálculo de um serviço de frete por vez. Exemplo: Correios::Frete#calcular_sedex.
 
 == Versão 0.2.1
-- Melhoria: Alias Correios::Frete::Servico#sucesso? para Correios::Frete::Servico#success?
-- Melhoria: Alias Correios::Frete::Servico#erro? para Correios::Frete::Servico#error?
-- Atualização: Documentação
+- Melhoria: Alias Correios::Frete::Servico#sucesso? para Correios::Frete::Servico#success?.
+- Melhoria: Alias Correios::Frete::Servico#erro? para Correios::Frete::Servico#error?.
+- Atualização: Documentação.
 
 == Versão 0.2.0
-- Novo: Suporte para cálculo de e-SEDEX
-- Melhoria: Alias Correios::Frete#calculate para Correios::Frete#calcular
-- Melhoria: Atributo "nome" em Correios::Frete::Servico
-- Correção: {Issue #2: undefined method `key' for #&lt;Hash:0xb5e8eea4&gt;}[https://github.com/prodis/correios-frete/issues/2]
+- Novo: Suporte para cálculo de e-SEDEX.
+- Melhoria: Alias Correios::Frete#calculate para Correios::Frete#calcular.
+- Melhoria: Atributo "nome" em Correios::Frete::Servico.
+- Correção: {Issue #2: undefined method `key' for #&lt;Hash:0xb5e8eea4&gt;}[https://github.com/prodis/correios-frete/issues/2].
 
 == Versão 0.1.0
-- Cálculo de frete para os serviços PAC, SEDEX, SEDEX 10 e SEDEX Hoje
-- Cálculo de um serviço de frete por vez
-- Cálculo de vários serviços de frete ao mesmo tempo
+- Cálculo de frete para os serviços PAC, SEDEX, SEDEX 10 e SEDEX Hoje.
+- Cálculo de um serviço de frete por vez.
+- Cálculo de vários serviços de frete ao mesmo tempo.
