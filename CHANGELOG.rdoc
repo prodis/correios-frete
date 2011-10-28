@@ -1,3 +1,6 @@
+== Versão 1.3.2
+- Correção: Data do gemspec estava sendo gerado com horário zerado e dava na instalação da gem.
+
 == Versão 1.3.1
 - Correção: Passagem correta de parâmetros na criação da classe Correios::Frete::WebService no cálculo de frete.
 
