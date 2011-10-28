@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{correios-frete}
-  s.version = "1.3.1"
+  s.name = "correios-frete"
+  s.version = "1.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Prodis a.k.a. Fernando Hamasaki"]
-  s.date = %q{2011-10-18}
-  s.description = %q{Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Os serviços de frete suportados são PAC, SEDEX, SEDEX a Cobrar, SEDEX 10, SEDEX Hoje e e-SEDEX.}
-  s.email = %q{prodis@gmail.com}
+  s.date = "2011-10-28"
+  s.description = "C\u{e1}lculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Os servi\u{e7}os de frete suportados s\u{e3}o PAC, SEDEX, SEDEX a Cobrar, SEDEX 10, SEDEX Hoje e e-SEDEX."
+  s.email = "prodis@gmail.com"
   s.extra_rdoc_files = [
     "README.rdoc",
     "README_v0.3.0.rdoc"
@@ -43,12 +43,12 @@ Gem::Specification.new do |s|
     "spec/support/responses/success-response-many-services.xml",
     "spec/support/responses/success-response-one-service.xml"
   ]
-  s.homepage = %q{http://prodis.blog.br/2011/07/03/gem-para-calculo-de-frete-dos-correios}
+  s.homepage = "http://prodis.blog.br/2011/07/03/gem-para-calculo-de-frete-dos-correios"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
-  s.rubygems_version = %q{1.6.1}
-  s.summary = %q{Cálculo de frete dos Correios.}
+  s.rubygems_version = "1.8.11"
+  s.summary = "C\u{e1}lculo de frete dos Correios."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
