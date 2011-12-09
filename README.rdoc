@@ -201,6 +201,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 - {Fernando Hamasaki (prodis)}[http://prodis.blog.br]
 
 == Colaboradores
+- {Daniel Konishi (dkonishi)}[https://github.com/dkonishi]
 - {Denis Tierno (detierno)}[https://github.com/detierno]
 - {Rafael Barbolo (barbolo)}[https://github.com/barbolo]
 - {Ricardo Bernardelli (bernardelli)}[https://github.com/bernardelli]
