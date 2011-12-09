@@ -1,3 +1,6 @@
+== Versão 1.3.3
+- Atualização: Versão 1.5.0 da gem nokogiri.
+
 == Versão 1.3.2
 - Correção: Data do gemspec estava sendo gerado com horário zerado e dava na instalação da gem.
 
