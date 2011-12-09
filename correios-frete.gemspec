@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<log-me>, ["~> 0.0.2"])
-      s.add_runtime_dependency(%q<nokogiri>, ["~> 1.4.7"])
+      s.add_runtime_dependency(%q<nokogiri>, ["~> 1.5.0"])
       s.add_runtime_dependency(%q<sax-machine>, ["~> 0.0.20"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<fakeweb>, ["~> 1.3.0"])
@@ -65,7 +65,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<ruby-debug19>, [">= 0"])
     else
       s.add_dependency(%q<log-me>, ["~> 0.0.2"])
-      s.add_dependency(%q<nokogiri>, ["~> 1.4.7"])
+      s.add_dependency(%q<nokogiri>, ["~> 1.5.0"])
       s.add_dependency(%q<sax-machine>, ["~> 0.0.20"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<fakeweb>, ["~> 1.3.0"])
@@ -76,7 +76,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<log-me>, ["~> 0.0.2"])
-    s.add_dependency(%q<nokogiri>, ["~> 1.4.7"])
+    s.add_dependency(%q<nokogiri>, ["~> 1.5.0"])
     s.add_dependency(%q<sax-machine>, ["~> 0.0.20"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<fakeweb>, ["~> 1.3.0"])

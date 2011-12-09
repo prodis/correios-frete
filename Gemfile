@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem "log-me", "~> 0.0.2"
-gem "nokogiri", "~> 1.4.7"
+gem "nokogiri", "~> 1.5.0"
 gem "sax-machine", "~> 0.0.20"
 
 group :development do
