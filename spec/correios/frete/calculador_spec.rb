@@ -71,7 +71,10 @@ describe Correios::Frete::Calculador do
       end
 
       it "returns all services" do
-        @frete.calcular(:pac, :sedex).keys.should == [:pac, :sedex]
+        services = @frete.calcular(:pac, :sedex)
+        services.keys.size.should == 2
+        services[:pac].tipo.should == :pac
+        services[:sedex].tipo.should == :sedex
       end
     end
 
