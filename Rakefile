@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://prodis.blog.br/2011/07/03/gem-para-calculo-de-frete-dos-correios"
   gem.license = "MIT"
   gem.summary = %Q{Cálculo de frete dos Correios.}
-  gem.description = %Q{Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Serviços de frete suportados são PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (necessário informar código de empresa e senha).}
+  gem.description = %Q{Calculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices). Servicos de frete suportados sao PAC, SEDEX, SEDEX 10, SEDEX Hoje e e-SEDEX (necessario informar codigo de empresa e senha).}
   gem.email = "prodis@gmail.com"
   gem.authors = ["Prodis a.k.a. Fernando Hamasaki"]
   gem.version = Correios::Frete::Version::VERSION
