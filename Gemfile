@@ -2,13 +2,13 @@ source "http://rubygems.org"
 
 gem "log-me", "~> 0.0.2"
 gem "nokogiri", "~> 1.5.0"
-gem "sax-machine", "~> 0.0.20"
+gem "sax-machine", "~> 0.1.0"
 
 group :development do
-  gem "bundler", "~> 1.0.0"
+  gem "bundler", "~> 1.0.21"
   gem "fakeweb", "~> 1.3.0"
   gem "jeweler", "~> 1.6.4"
-  gem "rspec", "~> 2.6.0"
+  gem "rspec", "~> 2.8.0"
   gem "ruby-debug", :platforms => :ruby_18
   gem "ruby-debug19", :require => "ruby-debug", :platforms => :ruby_19
 end
