@@ -144,6 +144,8 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
   :sedex_com_contrato_4        # 40568 - SEDEX com contrato
   :sedex_com_contrato_5        # 40606 - SEDEX com contrato
   :e_sedex                     # 81019 - e-SEDEX, com contrato
+  :e_sedex_prioritario         # 81027 - e-SEDEX Prioritário, com contrato
+  :e_sedex_express             # 81035 - e-SEDEX Express, com contrato
   :e_sedex_grupo_1             # 81868 - (Grupo 1) e-SEDEX, com contrato
   :e_sedex_grupo_2             # 81833 - (Grupo 2) e-SEDEX, com contrato
   :e_sedex_grupo_3             # 81850 - (Grupo 3) e-SEDEX, com contrato
@@ -194,7 +196,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 ==== Boolean
   entrega_domiciliar, entrega_sabado
 ==== Symbol
-  tipo (:pac, :pac_com_contrato, :sedex, :sedex_a_cobrar, :sedex_a_cobrar_com_contrato, :sedex_10, :sedex_hoje, :sedex_com_contrato_1, :sedex_com_contrato_2, :sedex_com_contrato_3, :sedex_com_contrato_4, :sedex_com_contrato_5, :e_sedex, :e_sedex_grupo_1, :e_sedex_grupo_2, :e_sedex_grupo_3)
+  tipo (:pac, :pac_com_contrato, :sedex, :sedex_a_cobrar, :sedex_a_cobrar_com_contrato, :sedex_10, :sedex_hoje, :sedex_com_contrato_1, :sedex_com_contrato_2, :sedex_com_contrato_3, :sedex_com_contrato_4, :sedex_com_contrato_5, :e_sedex, :e_sedex_prioritario, :e_sedex_express, :e_sedex_grupo_1, :e_sedex_grupo_2, :e_sedex_grupo_3)
 
 
 == Autor
