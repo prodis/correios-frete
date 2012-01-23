@@ -1,10 +1,5 @@
 = correios-frete
 
----
-Esta documentação é das <b>versões >= 1.0.0</b>.
-Para a versão 0.3.0, por favor veja {README_v0.3.0.rdoc}[https://github.com/prodis/correios-frete/blob/master/README_v0.3.0.rdoc]
----
-
 Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).
 
 Os serviços de frete suportados são <b>PAC</b>, <b>SEDEX</b>, <b>SEDEX a Cobrar</b> (necessário informar o valor declarado), <b>SEDEX 10</b>, <b>SEDEX Hoje</b> e <b>e-SEDEX</b>. Para os serviços com contrato é necessário informar código de empresa e senha.
@@ -214,7 +209,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 
 {Prodis a.k.a. Fernando Hamasaki}[http://prodis.blog.br]
 
-Copyright (c) 2011 Prodis
+Copyright (c) 2011-2012 Prodis
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
