@@ -8,8 +8,8 @@ describe Correios::Frete::PacoteItem do
 
       { :peso => 0.0,
         :comprimento => 0.0,
-        :altura => 0.0,
-        :largura => 0.0
+        :largura => 0.0,
+        :altura => 0.0
       }.each do |attr, value|
         it attr do
           @item.send(attr).should == value
@@ -17,10 +17,10 @@ describe Correios::Frete::PacoteItem do
       end
     end
 
-    { :peso => 0.321,
-      :comprimento => 12.5,
-      :altura => 1.4,
-      :largura => 4.6
+    { :peso => 0.3,
+      :comprimento => 30,
+      :largura => 15,
+      :altura => 2,
     }.each do |attr, value|
       context "when #{attr} is supplied" do
         it "sets #{attr}" do
@@ -40,8 +40,8 @@ describe Correios::Frete::PacoteItem do
 
   describe "#volume" do
     it "calculates item volume" do
-      item = Correios::Frete::PacoteItem.new(:comprimento => 16, :altura => 2, :largura => 11)
-      item.volume.should == 352
+      item = Correios::Frete::PacoteItem.new(:comprimento => 16, :largura => 11, :altura => 2)
+      item.volume.should == 16 * 11 * 2
     end
   end
 end
