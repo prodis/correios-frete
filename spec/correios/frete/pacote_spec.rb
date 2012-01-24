@@ -58,71 +58,102 @@ describe Correios::Frete::Pacote do
   end
 
   describe "calculations" do
-    before :each do
-      @item1 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2)
-      @item2 = Correios::Frete::PacoteItem.new(:peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3)
-    end
-
     context "when adds one package item" do
+      before :each do
+        @item = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2)
+        @pacote.adicionar_item(@item)
+      end
+
       it "calculates package weight" do
-        @pacote.adicionar_item(@item1)
-        @pacote.peso.should == @item1.peso
+        @pacote.peso.should == @item.peso
       end
 
       it "calculates package volume" do
-        @pacote.adicionar_item(@item1)
-        @pacote.volume.should == @item1.volume
+        @pacote.volume.should == @item.volume
       end
 
       it "calculates package length" do
-        @pacote.adicionar_item(@item1)
-        @pacote.comprimento.should == @item1.comprimento
+        @pacote.comprimento.should == @item.comprimento
       end
 
       it "calculates package width" do
-        @pacote.adicionar_item(@item1)
-        @pacote.largura.should == @item1.largura
+        @pacote.largura.should == @item.largura
       end
 
       it "calculates package height" do
-        @pacote.adicionar_item(@item1)
-        @pacote.altura.should == @item1.altura
+        @pacote.altura.should == @item.altura
+      end
+
+      context "with dimensions less than each minimum" do
+        before :each do
+          item = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 15, :largura => 10, :altura => 1)
+          @pacote = Correios::Frete::Pacote.new
+          @pacote.adicionar_item(item)
+        end
+
+        it "sets minimum length value" do
+          @pacote.comprimento.should == 16
+        end
+
+        it "sets minimum width value" do
+          @pacote.largura.should == 11
+        end
+
+        it "sets minimum height value" do
+          @pacote.altura.should == 2
+        end
       end
     end
 
     context "when adds more than one package item" do
       before :each do
+        @item1 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2)
+        @item2 = Correios::Frete::PacoteItem.new(:peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3)
         @expected_dimension = (@item1.volume + @item2.volume).to_f**(1.0/3)
+
+        @pacote.adicionar_item(@item1)
+        @pacote.adicionar_item(@item2)
       end
 
       it "calculates package weight" do
-        @pacote.adicionar_item(@item1)
-        @pacote.adicionar_item(@item2)
         @pacote.peso.should == @item1.peso + @item2.peso
       end
 
       it "calculates package volume" do
-        @pacote.adicionar_item(@item1)
-        @pacote.adicionar_item(@item2)
         @pacote.volume.should == @item1.volume + @item2.volume
       end
 
       it "calculates package length" do
-        @pacote.adicionar_item(@item1)
-        @pacote.adicionar_item(@item2)
         @pacote.comprimento.should == @expected_dimension
       end
 
       it "calculates package width" do
-        @pacote.adicionar_item(@item1)
-        @pacote.adicionar_item(@item2)
         @pacote.largura.should == @expected_dimension
       end
 
       it "calculates package height" do
-        @pacote.adicionar_item(@item1)
-        @pacote.adicionar_item(@item2)
         @pacote.altura.should == @expected_dimension
+      end
+
+      context "with dimensions less than each minimum" do
+        before :each do
+          item = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :largura => 1, :altura => 1)
+          @pacote = Correios::Frete::Pacote.new
+          @pacote.adicionar_item(item)
+          @pacote.adicionar_item(item)
+        end
+
+        it "sets minimum length value" do
+          @pacote.comprimento.should == 16
+        end
+
+        it "sets minimum width value" do
+          @pacote.largura.should == 11
+        end
+
+        it "sets minimum height value" do
+          @pacote.altura.should == 2
+        end
       end
     end
   end

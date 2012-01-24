@@ -4,6 +4,12 @@ module Correios
     class Pacote
       attr_reader :peso, :comprimento, :altura, :largura, :volume
 
+      MIN_DIMENSIONS = {
+        :comprimento => 16.0,
+        :largura => 11.0,
+        :altura => 2.0
+      }
+
       def initialize()
         @peso = @comprimento = @largura = @altura = @volume = 0.0
         @itens = []
@@ -25,6 +31,7 @@ module Correios
         @itens << item
 
         calcular_medidas(item)
+        item
       end
       alias add_item adicionar_item
 
@@ -40,10 +47,20 @@ module Correios
           @altura = item.altura
         else
           dimensao = @volume.to_f**(1.0/3)
-          @comprimento = dimensao
-          @largura = dimensao
-          @altura = dimensao
+          @comprimento = @largura = @altura = dimensao
         end
+
+        min_dimension_values
+      end
+
+      def min_dimension_values()
+        @comprimento = min(@comprimento, MIN_DIMENSIONS[:comprimento])
+        @largura = min(@largura, MIN_DIMENSIONS[:largura])
+        @altura = min(@altura, MIN_DIMENSIONS[:altura])
+      end
+
+      def min(value, minimum)
+        (value < minimum) ? minimum : value
       end
     end
   end
