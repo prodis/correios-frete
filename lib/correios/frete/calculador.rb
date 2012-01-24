@@ -3,15 +3,15 @@ module Correios
   module Frete
     class Calculador
       attr_accessor :cep_origem, :cep_destino
-      attr_accessor :peso, :comprimento, :altura, :largura, :diametro
+      attr_accessor :peso, :comprimento, :largura, :altura, :diametro
       attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado
       attr_accessor :codigo_empresa, :senha
 
       DEFAULT_OPTIONS = {
         :peso => 0.0,
         :comprimento => 0.0,
-        :altura => 0.0,
         :largura => 0.0,
+        :altura => 0.0,
         :diametro => 0.0,
         :formato => :caixa_pacote,
         :mao_propria => false,

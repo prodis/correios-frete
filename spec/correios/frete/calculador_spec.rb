@@ -8,8 +8,8 @@ describe Correios::Frete::Calculador do
 
       { :peso => 0.0,
         :comprimento => 0.0,
-        :altura => 0.0,
         :largura => 0.0,
+        :altura => 0.0,
         :diametro => 0.0,
         :formato => :caixa_pacote,
         :mao_propria => false,
@@ -25,28 +25,28 @@ describe Correios::Frete::Calculador do
     { :cep_origem => "01000-000",
       :cep_destino => "021222-222",
       :peso => 0.321,
-      :comprimento => 12.5,
-      :altura => 1.4,
-      :largura => 4.6,
-      :diametro => 5.0,
+      :comprimento => 30,
+      :largura => 15,
+      :altura => 2,
+      :diametro => 5,
       :formato => :rolo_prisma,
       :mao_propria => true,
       :aviso_recebimento => true,
       :valor_declarado => 1.99,
       :codigo_empresa => "1234567890",
-      :senha => "senha",
+      :senha => "senha"
     }.each do |attr, value|
       context "when #{attr} is supplied" do
         it "sets #{attr}" do
-          @frete = Correios::Frete::Calculador.new(attr => value)
-          @frete.send(attr).should == value
+          frete = Correios::Frete::Calculador.new(attr => value)
+          frete.send(attr).should == value
         end
       end
 
       context "when #{attr} is supplied in a block" do
         it "sets #{attr}" do
-          @frete = Correios::Frete::Calculador.new { |f| f.send("#{attr}=", value) }
-          @frete.send(attr).should == value
+          frete = Correios::Frete::Calculador.new { |f| f.send("#{attr}=", value) }
+          frete.send(attr).should == value
         end
       end
     end
@@ -112,7 +112,7 @@ describe Correios::Frete::Calculador do
         end
 
         it "returns true in respond_to?" do
-          subject.respond_to?("#{method_name}_#{service[:type]}").should be_true
+          @frete.respond_to?("#{method_name}_#{service[:type]}").should be_true
         end
       end
     end
@@ -125,7 +125,7 @@ describe Correios::Frete::Calculador do
       end
 
       it "returns false in respond_to?" do
-        subject.respond_to?("#{method_name}_servico_que_nao_existe").should be_false
+        @frete.respond_to?("#{method_name}_servico_que_nao_existe").should be_false
       end
     end
   end
