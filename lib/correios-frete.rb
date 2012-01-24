@@ -2,8 +2,6 @@
 require 'rubygems'
 require 'correios/frete'
 require 'correios/frete/calculador'
-require 'correios/frete/calculador_multiplo'
-require 'correios/frete/item'
 require 'correios/frete/pacote'
 require 'correios/frete/pacote_item'
 require 'correios/frete/parser'
