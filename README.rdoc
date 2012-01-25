@@ -73,7 +73,7 @@ Verificação de sucesso e erro:
   servico = frete.calcular_sedex
   servico.sucesso? # => false
   servico.erro?    # => true
-  servico.msg_erro # => "A altura nao pode ser maior que 90 cm."
+  servico.msg_erro # => "A altura nao pode ser maior que o comprimento."
 
 Usando a interface pública em inglês:
 
@@ -84,21 +84,63 @@ Usando a interface pública em inglês:
   servico.error?   # => false
 
 
-=== Múltiplos itens
+=== Usando pacotes
 
-  frete = Correios::Frete::CalculadorMultiplo.new :cep_origem => "04094-050", :cep_destino => "90619-900"
+Você pode "montar" um pacote com vários itens. Com o cálculo do volume dos itens adicionados, o pacote único será gerado em formato de cubo.
 
-  frete.add_item(:peso => 1, :comprimento => 20, :largura => 12, :altura => 2)
-  frete.add_item(:peso => 2, :comprimento => 18, :largura => 16, :altura => 11)
+  item1 = Correios::Frete::PacoteItem.new :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2
+  item2 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3
+
+  pacote = Correios::Frete::Pacote.new
+  pacote.adicionar_item(item1)
+  pacote.adicionar_item(item2)
+
+  pacote.peso        # => 1.0
+  pacote.comprimento # => 18.32138799447962
+  pacote.largura     # => 18.32138799447962
+  pacote.altura      # => 18.32138799447962
+  pacote.volume      # => 6150.0
+  pacote.formato     # => :caixa_pacote
+  pacote.itens.size  # => 2
+
+Caso alguma dimensão do pacote montado seja menor que o tamanho mínimo exigido pelos Correios, o valor mínimo será atribuído à dimensão.
+
+  item1 = Correios::Frete::PacoteItem.new :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2
+  item2 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 40, :largura => 10, :altura => 3
+
+  pacote = Correios::Frete::Pacote.new
+  pacote.adicionar_item(item1)
+  pacote.adicionar_item(item2)
+
+  pacote.comprimento # => 16.0
+  pacote.largura     # => 12.80579164987494
+  pacote.altura      # => 12.80579164987494
+
+Montado o pacote, basta passá-lo pelo parâmetro <b>encomenda</b> no construtor de Correios::Frete::Calculador.
+
+  frete = Correios::Frete::Calculador.new :cep_origem => "04094-050",
+                                          :cep_destino => "90619-900",
+                                          :encomenda => pacote
+
   servicos = frete.calcular :sedex, :pac
 
-  servicos[:sedex].nome          # => "SEDEX sem contrato"
-  servicos[:sedex].valor         # => 39.3
+  servicos[:sedex].valor         # => 29.2
   servicos[:sedex].prazo_entrega # => 1
 
-  servicos[:pac].nome          # => "PAC sem contrato"
-  servicos[:pac].valor         # => 17.7
+  servicos[:pac].valor         # => 13.3
   servicos[:pac].prazo_entrega # => 5
+
+<b>Observação:</b> Quando uma encomenda é fornecida ao calculador de frete, os parâmetros <b>peso</b>, <b>comprimento</b>, <b>largura</b>, <b>altura</b> e <b>formato</b> serão ignorados, sendo utilizados os valores da encomenda.
+
+Usando a interface pública em inglês:
+
+  item1 = Correios::Frete::PacoteItem.new :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2
+  item2 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3
+
+  pacote = Correios::Frete::Pacote.new
+  pacote.add_item(item1)
+  pacote.add_item(item2)
+  pacote.items.size # => 2
 
 
 == Log
@@ -107,7 +149,7 @@ Por padrão, cada chamada ao Web Service dos Correios é logada em STDOUT, com n
 
 Exemplo de log:
   I, [2011-10-01T00:26:16.864990 #5631]  INFO -- : Correios-Frete Request:
-  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0.00&nCdServico=41106&nCdEmpresa=&sDsSenha=&StrRetorno=xml
+  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0,00&nCdServico=41106&nCdEmpresa=&sDsSenha=&StrRetorno=xml
 
   I, [2011-10-01T00:26:17.121822 #5631]  INFO -- : Correios-Frete Response:
   HTTP/1.1 200 OK
@@ -116,7 +158,7 @@ Exemplo de log:
 
 Se você configurar o nível de log como <b>:debug</b>, serão logados também todos os cabeçalhos HTTP da resposta:
   D, [2011-10-01T00:27:50.597961 #5631] DEBUG -- : Correios-Frete Request:
-  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0.00&nCdServico=41106&nCdEmpresa=&sDsSenha=&StrRetorno=xml
+  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0,00&nCdServico=41106&nCdEmpresa=&sDsSenha=&StrRetorno=xml
 
   D, [2011-10-01T00:27:50.812046 #5631] DEBUG -- : Correios-Frete Response:
   HTTP/1.1 200 OK
@@ -183,19 +225,48 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
     f.altura = 2
   end
 
+=== Maneiras de adicionar itens em Correios::Frete::Pacote
+
+==== Com instâncias de Correios::Frete::PacoteItem
+
+  item1 = Correios::Frete::PacoteItem.new :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2
+  item2 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3
+
+  pacote = Correios::Frete::Pacote.new
+  pacote.adicionar_item(item1)
+  pacote.adicionar_item(item2)
+
+==== Com parâmetros dos itens
+  pacote = Correios::Frete::Pacote.new
+  pacote.adicionar_item(:peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2)
+  pacote.adicionar_item(:peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3)
+
 
 === Atributos de Correios::Frete::Calculador
 
 ==== String
   cep_origem, cep_destino, codigo_empresa, senha
 ==== Float
-  peso, valor_declarado
-==== Fixnum
-  comprimento, largura, altura, diametro
+  peso, comprimento, largura, altura, diametro, valor_declarado
 ==== Boolean
   mao_propria, aviso_recebimento
 ==== Symbol
   formato (:caixa_pacote, :rolo_prisma)
+
+
+=== Atributos de Correios::Frete::Pacote
+
+==== Float
+  peso, comprimento, largura, altura, volume
+==== Array de Correios::Frete::PacoteItem
+  itens
+==== Symbol
+  formato (:caixa_pacote)
+
+=== Atributos de Correios::Frete::PacoteItem
+
+==== Float
+  peso, comprimento, largura, altura, volume
 
 
 === Atributos de Correios::Frete::Servico

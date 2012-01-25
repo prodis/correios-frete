@@ -1,3 +1,7 @@
+== Versão 1.5.0
+- Novo: {Issue #3: Cálculo de frete para múltiplos itens}[https://github.com/prodis/correios-frete/issues/3] utilizando pacotes.
+- Correção: Formatação de separador de casas decimais com vírgula na requisição do Web Service dos Correios.
+
 == Versão 1.4.0
 - Novo: Suporte para cálculo de e-SEDEX Prioritário e e-SEDEX Express.
 
