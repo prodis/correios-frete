@@ -3,9 +3,9 @@ module Correios
   module Frete
     class Calculador
       attr_accessor :cep_origem, :cep_destino
-      attr_accessor :peso, :comprimento, :largura, :altura, :diametro
-      attr_accessor :formato, :mao_propria, :aviso_recebimento, :valor_declarado
-      attr_accessor :codigo_empresa, :senha
+      attr_accessor :diametro, :mao_propria, :aviso_recebimento, :valor_declarado
+      attr_accessor :codigo_empresa, :senha, :encomenda
+      attr_writer :peso, :comprimento, :largura, :altura, :formato
 
       DEFAULT_OPTIONS = {
         :peso => 0.0,
@@ -25,6 +25,12 @@ module Correios
         end
 
         yield self if block_given?
+      end
+
+      [:peso, :comprimento, :largura, :altura, :formato].each do |method|
+        define_method method do
+          @encomenda ? @encomenda.send(method) : instance_variable_get("@#{method}")
+        end
       end
 
       def calcular(*service_types)

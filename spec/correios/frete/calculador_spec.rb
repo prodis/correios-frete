@@ -34,7 +34,8 @@ describe Correios::Frete::Calculador do
       :aviso_recebimento => true,
       :valor_declarado => 1.99,
       :codigo_empresa => "1234567890",
-      :senha => "senha"
+      :senha => "senha",
+      :encomenda => Correios::Frete::Pacote.new
     }.each do |attr, value|
       context "when #{attr} is supplied" do
         it "sets #{attr}" do
@@ -47,6 +48,49 @@ describe Correios::Frete::Calculador do
         it "sets #{attr}" do
           frete = Correios::Frete::Calculador.new { |f| f.send("#{attr}=", value) }
           frete.send(attr).should == value
+        end
+      end
+    end
+  end
+
+  describe "#encomenda" do
+    context "when encomenda is supplied" do
+      before :each do
+        @encomenda = Correios::Frete::Pacote.new
+        @encomenda.adicionar_item(:peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2)
+        @encomenda.adicionar_item(:peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3)
+        @frete = Correios::Frete::Calculador.new :peso => 10.5,
+                                                 :comprimento => 105,
+                                                 :largura => 50,
+                                                 :altura => 10,
+                                                 :formato => :rolo_prisma,
+                                                 :encomenda => @encomenda
+      end
+
+      [:peso, :comprimento, :largura, :altura, :formato].each do |attr|
+        it "#{attr} returns encomenda #{attr}" do
+          @frete.send(attr).should == @encomenda.send(attr)
+        end
+      end
+    end
+
+    context "when encomenda is not supplied" do
+      before :each do
+        @frete = Correios::Frete::Calculador.new :peso => 10.5,
+                                                 :comprimento => 105,
+                                                 :largura => 50,
+                                                 :altura => 10,
+                                                 :formato => :rolo_prisma
+      end
+
+      { :peso => 10.5,
+        :comprimento => 105,
+        :largura => 50,
+        :altura => 10,
+        :formato => :rolo_prisma
+      }.each do |attr, value|
+        it "#{attr} returns supplied #{attr}" do
+          @frete.send(attr).should == value
         end
       end
     end
