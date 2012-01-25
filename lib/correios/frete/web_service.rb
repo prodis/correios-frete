@@ -24,18 +24,22 @@ module Correios
         "sCepOrigem=#{frete.cep_origem}&" +
         "sCepDestino=#{frete.cep_destino}&" +
         "nVlPeso=#{frete.peso}&" +
-        "nVlComprimento=#{frete.comprimento}&" +
-        "nVlAltura=#{frete.altura}&" +
-        "nVlLargura=#{frete.largura}&" +
-        "nVlDiametro=#{frete.diametro}&" +
+        "nVlComprimento=#{format_decimal(frete.comprimento)}&" +
+        "nVlLargura=#{format_decimal(frete.largura)}&" +
+        "nVlAltura=#{format_decimal(frete.altura)}&" +
+        "nVlDiametro=#{format_decimal(frete.diametro)}&" +
         "nCdFormato=#{FORMATS[frete.formato]}&" +
         "sCdMaoPropria=#{CONDITIONS[frete.mao_propria]}&" +
         "sCdAvisoRecebimento=#{CONDITIONS[frete.aviso_recebimento]}&" +
-        "nVlValorDeclarado=#{format("%.2f" % frete.valor_declarado)}&" +
+        "nVlValorDeclarado=#{format_decimal(format("%.2f" % frete.valor_declarado))}&" +
         "nCdServico=#{service_codes_for(service_types)}&" +
         "nCdEmpresa=#{frete.codigo_empresa}&" +
         "sDsSenha=#{frete.senha}&" +
         "StrRetorno=xml"
+      end
+
+      def format_decimal(value)
+        value.to_s.gsub(".", ",")
       end
 
       def service_codes_for(service_types)
