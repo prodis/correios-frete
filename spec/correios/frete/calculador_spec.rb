@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Correios::Frete::Calculador do
   describe ".new" do
-    context "create with default value of" do
+    context "creates with default value of" do
       before(:each) { @frete = Correios::Frete::Calculador.new }
 
       { :peso => 0.0,

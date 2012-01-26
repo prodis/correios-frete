@@ -10,9 +10,11 @@ module Correios
         :altura => 2.0
       }
 
-      def initialize()
+      def initialize(itens = nil)
         @peso = @comprimento = @largura = @altura = @volume = 0.0
         @itens = []
+
+        itens.each { |item| adicionar_item(item) } if itens
       end
 
       def formato

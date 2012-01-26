@@ -227,7 +227,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 
 === Maneiras de adicionar itens em Correios::Frete::Pacote
 
-==== Com instâncias de Correios::Frete::PacoteItem
+==== Pelo método adicionar_item passando instâncias de Correios::Frete::PacoteItem
 
   item1 = Correios::Frete::PacoteItem.new :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2
   item2 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3
@@ -236,10 +236,25 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
   pacote.adicionar_item(item1)
   pacote.adicionar_item(item2)
 
-==== Com parâmetros dos itens
+==== Pelo construtor passando instâncias de Correios::Frete::PacoteItem
+
+  pacote = Correios::Frete::Pacote.new [
+    Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2),
+    Correios::Frete::PacoteItem.new(:peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3)
+  ]
+
+==== Pelo método adicionar_item passando parâmetros dos itens
+
   pacote = Correios::Frete::Pacote.new
   pacote.adicionar_item(:peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2)
   pacote.adicionar_item(:peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3)
+
+==== Pelo construtor passando parâmetros dos itens
+
+  pacote = Correios::Frete::Pacote.new [
+    { :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2 },
+    { :peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3 }
+  ]
 
 
 === Atributos de Correios::Frete::Calculador
