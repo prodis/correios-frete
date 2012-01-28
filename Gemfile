@@ -7,7 +7,7 @@ gem "sax-machine", "~> 0.1.0"
 group :development do
   gem "bundler", "~> 1.0.21"
   gem "fakeweb", "~> 1.3.0"
-  gem "jeweler", "~> 1.6.4"
+  gem "jeweler", "~> 1.8.3"
   gem "rspec", "~> 2.8"
   gem "ruby-debug", :platforms => :ruby_18
   gem "ruby-debug19", :require => "ruby-debug", :platforms => :ruby_19

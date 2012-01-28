@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Prodis a.k.a. Fernando Hamasaki"]
-  s.date = "2012-01-26"
+  s.date = "2012-01-28"
   s.description = "Calculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).\nOs servicos de frete suportados sao PAC, SEDEX, SEDEX a Cobrar, SEDEX 10, SEDEX Hoje e e-SEDEX."
   s.email = "prodis@gmail.com"
   s.extra_rdoc_files = [
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
     "spec/support/responses/success-response-many-services.xml",
     "spec/support/responses/success-response-one-service.xml"
   ]
-  s.homepage = "http://prodis.blog.br/2011/07/03/gem-para-calculo-de-frete-dos-correios"
+  s.homepage = "http://prodis.blog.br/correios-frete-gem-para-calculo-de-frete-dos-correios"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
@@ -61,8 +61,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sax-machine>, ["~> 0.1.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.21"])
       s.add_development_dependency(%q<fakeweb>, ["~> 1.3.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.8"])
       s.add_development_dependency(%q<ruby-debug>, [">= 0"])
       s.add_development_dependency(%q<ruby-debug19>, [">= 0"])
     else
@@ -71,8 +71,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sax-machine>, ["~> 0.1.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.21"])
       s.add_dependency(%q<fakeweb>, ["~> 1.3.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_dependency(%q<rspec>, ["~> 2.8"])
       s.add_dependency(%q<ruby-debug>, [">= 0"])
       s.add_dependency(%q<ruby-debug19>, [">= 0"])
     end
@@ -82,8 +82,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sax-machine>, ["~> 0.1.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.21"])
     s.add_dependency(%q<fakeweb>, ["~> 1.3.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+    s.add_dependency(%q<rspec>, ["~> 2.8"])
     s.add_dependency(%q<ruby-debug>, [">= 0"])
     s.add_dependency(%q<ruby-debug19>, [">= 0"])
   end
