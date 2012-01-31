@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 def fake_request_for(response)
   FakeWeb.register_uri(:get,
                        Regexp.new("http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx"),

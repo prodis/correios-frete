@@ -4,33 +4,7 @@ require 'spec_helper'
 describe Correios::Frete::Parser do
   describe "#servicos" do
     before :each do
-      @xml = """<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?>
-                <Servicos>
-                  <cServico>
-                    <Codigo>41106</Codigo>
-                    <Valor>15,70</Valor>
-                    <PrazoEntrega>3</PrazoEntrega>
-                    <ValorMaoPropria>3,75</ValorMaoPropria>
-                    <ValorAvisoRecebimento>1,99</ValorAvisoRecebimento>
-                    <ValorValorDeclarado>1,50</ValorValorDeclarado>
-                    <EntregaDomiciliar>S</EntregaDomiciliar>
-                    <EntregaSabado>N</EntregaSabado>
-                    <Erro>-3</Erro>
-                    <MsgErro>Somente para teste</MsgErro>
-                  </cServico>
-                  <cServico>
-                    <Codigo>40010</Codigo>
-                    <Valor>17,80</Valor>
-                    <PrazoEntrega>1</PrazoEntrega>
-                    <ValorMaoPropria>3,70</ValorMaoPropria>
-                    <ValorAvisoRecebimento>0,00</ValorAvisoRecebimento>
-                    <ValorValorDeclarado>1,50</ValorValorDeclarado>
-                    <EntregaDomiciliar>S</EntregaDomiciliar>
-                    <EntregaSabado>S</EntregaSabado>
-                    <Erro>0</Erro>
-                    <MsgErro></MsgErro>
-                  </cServico>
-                </Servicos>"""
+      @xml = body_for :success_response_many_services
       @parser = Correios::Frete::Parser.new
     end
 
