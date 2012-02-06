@@ -5,7 +5,6 @@ gem "nokogiri", "~> 1.5.0"
 gem "sax-machine", "~> 0.1.0"
 
 group :development do
-  gem "bundler", "~> 1.0.21"
   gem "fakeweb", "~> 1.3.0"
   gem "jeweler", "~> 1.8.3"
   gem "rspec", "~> 2.8"
