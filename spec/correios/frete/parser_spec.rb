@@ -3,10 +3,8 @@ require 'spec_helper'
 
 describe Correios::Frete::Parser do
   describe "#servicos" do
-    before :each do
-      @xml = body_for :success_response_many_services
-      @parser = Correios::Frete::Parser.new
-    end
+    let(:xml) { body_for :success_response_many_services }
+    let(:parser) { Correios::Frete::Parser.new }
 
     { :pac => { :tipo => :pac,
                 :codigo => "41106",
@@ -32,7 +30,7 @@ describe Correios::Frete::Parser do
                   :msg_erro => nil }
     }.each do |service, attributes|
       it "returns #{service} data" do
-        servicos = @parser.servicos @xml
+        servicos = parser.servicos(xml)
 
         attributes.each do |attr, value|
           servicos[service].send(attr).should == value
