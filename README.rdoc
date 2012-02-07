@@ -305,6 +305,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 - {Daniel Konishi (dkonishi)}[https://github.com/dkonishi]
 - {Denis Tierno (detierno)}[https://github.com/detierno]
 - {Rafael Barbolo (barbolo)}[https://github.com/barbolo]
+- {Rafael Souza (rafaelss)}[https://github.com/rafaelss]
 - {Ricardo Bernardelli (bernardelli)}[https://github.com/bernardelli]
 
 == Copyright
