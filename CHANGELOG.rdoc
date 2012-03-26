@@ -1,3 +1,6 @@
+== Versão 1.6.0
+- Correção: Encoding de ISO-8859-1 para UTF-8 na mensagem de erro dos serviços, pois o parser não estava rolando para mensagens com acentos e/ou cedilhas.
+
 == Versão 1.5.2
 - Correção: {Issue #9: Bundler as dependency}[https://github.com/prodis/correios-frete/pull/9] - Remoção da gem bundler das dependências de ambiente de desenvolvimento.
 - Atualização: Refatorações de testes.
