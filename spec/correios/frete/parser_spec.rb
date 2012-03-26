@@ -6,6 +6,11 @@ describe Correios::Frete::Parser do
     let(:xml) { body_for :success_response_many_services }
     let(:parser) { Correios::Frete::Parser.new }
 
+    it "converts error message to UTF-8" do
+      Correios::Frete::EncodingConverter.should_receive(:from_iso_to_utf8).with("Somente para teste").and_return("Somente para teste")
+      parser.servicos(xml)
+    end
+
     { :pac => { :tipo => :pac,
                 :codigo => "41106",
                 :valor => 15.70,
