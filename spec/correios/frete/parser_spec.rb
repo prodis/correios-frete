@@ -6,8 +6,8 @@ describe Correios::Frete::Parser do
     let(:xml) { body_for :success_response_many_services }
     let(:parser) { Correios::Frete::Parser.new }
 
-    it "converts error message to UTF-8" do
-      Correios::Frete::EncodingConverter.should_receive(:from_iso_to_utf8).with("Somente para teste").and_return("Somente para teste")
+    it "encodes from ISO-8859-1 to UTF-8" do
+      xml.should_receive(:backward_encode).with("UTF-8", "ISO-8859-1").and_return(xml)
       parser.servicos(xml)
     end
 
