@@ -1,3 +1,6 @@
+== Versão 1.6.1
+- Melhoria: Encoding de ISO-8859-1 para UTF-8 em toda resposta do Web Service.
+
 == Versão 1.6.0
 - Correção: Encoding de ISO-8859-1 para UTF-8 na mensagem de erro dos serviços, pois o parser não estava rolando para mensagens com acentos e/ou cedilhas.
 

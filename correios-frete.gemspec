@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "correios-frete"
-  s.version = "1.6.0"
+  s.version = "1.6.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Prodis a.k.a. Fernando Hamasaki"]
-  s.date = "2012-03-26"
+  s.date = "2012-04-21"
   s.description = "Calculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).\nOs servicos de frete suportados sao PAC, SEDEX, SEDEX a Cobrar, SEDEX 10, SEDEX Hoje e e-SEDEX."
   s.email = "prodis@gmail.com"
   s.extra_rdoc_files = [
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/correios/frete/pacote_item.rb",
     "lib/correios/frete/parser.rb",
     "lib/correios/frete/servico.rb",
+    "lib/correios/frete/string.rb",
     "lib/correios/frete/version.rb",
     "lib/correios/frete/web_service.rb",
     "spec/correios/frete/calculador_spec.rb",
@@ -50,7 +51,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
-  s.rubygems_version = "1.8.17"
+  s.rubygems_version = "1.8.16"
   s.summary = "Calculo de frete dos Correios."
 
   if s.respond_to? :specification_version then
