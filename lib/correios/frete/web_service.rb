@@ -55,7 +55,7 @@ module Correios
 
       def format_request_message
         message =  with_line_break { "Correios-Frete Request:" }
-        message << with_line_break { @url }
+        message << with_line_break { "GET #{@url}" }
       end
 
       def format_response_message(response)
