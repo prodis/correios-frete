@@ -1,3 +1,7 @@
+== Versão 1.6.2
+- Melhoria: Método HTTP no log de requisição.
+- Atualização: Versão 0.0.3 da gem log-me.
+
 == Versão 1.6.1
 - Melhoria: Encoding de ISO-8859-1 para UTF-8 em toda resposta do Web Service.
 

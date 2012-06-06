@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "correios-frete"
-  s.version = "1.6.1"
+  s.version = "1.6.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Prodis a.k.a. Fernando Hamasaki"]
-  s.date = "2012-04-21"
+  s.date = "2012-06-06"
   s.description = "Calculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).\nOs servicos de frete suportados sao PAC, SEDEX, SEDEX a Cobrar, SEDEX 10, SEDEX Hoje e e-SEDEX."
   s.email = "prodis@gmail.com"
   s.extra_rdoc_files = [
@@ -58,31 +58,31 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<log-me>, ["~> 0.0.2"])
+      s.add_runtime_dependency(%q<log-me>, ["~> 0.0.3"])
       s.add_runtime_dependency(%q<nokogiri>, ["~> 1.5"])
       s.add_runtime_dependency(%q<sax-machine>, ["~> 0.1"])
       s.add_development_dependency(%q<fakeweb>, ["~> 1.3"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.9"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.10"])
       s.add_development_dependency(%q<ruby-debug>, [">= 0"])
       s.add_development_dependency(%q<ruby-debug19>, [">= 0"])
     else
-      s.add_dependency(%q<log-me>, ["~> 0.0.2"])
+      s.add_dependency(%q<log-me>, ["~> 0.0.3"])
       s.add_dependency(%q<nokogiri>, ["~> 1.5"])
       s.add_dependency(%q<sax-machine>, ["~> 0.1"])
       s.add_dependency(%q<fakeweb>, ["~> 1.3"])
       s.add_dependency(%q<jeweler>, ["~> 1.8"])
-      s.add_dependency(%q<rspec>, ["~> 2.9"])
+      s.add_dependency(%q<rspec>, ["~> 2.10"])
       s.add_dependency(%q<ruby-debug>, [">= 0"])
       s.add_dependency(%q<ruby-debug19>, [">= 0"])
     end
   else
-    s.add_dependency(%q<log-me>, ["~> 0.0.2"])
+    s.add_dependency(%q<log-me>, ["~> 0.0.3"])
     s.add_dependency(%q<nokogiri>, ["~> 1.5"])
     s.add_dependency(%q<sax-machine>, ["~> 0.1"])
     s.add_dependency(%q<fakeweb>, ["~> 1.3"])
     s.add_dependency(%q<jeweler>, ["~> 1.8"])
-    s.add_dependency(%q<rspec>, ["~> 2.9"])
+    s.add_dependency(%q<rspec>, ["~> 2.10"])
     s.add_dependency(%q<ruby-debug>, [">= 0"])
     s.add_dependency(%q<ruby-debug19>, [">= 0"])
   end
