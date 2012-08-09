@@ -1,3 +1,7 @@
+== Versão 1.7.0
+- Novo: Configuração de tempo de espera de resposta (timeout) para requisições ao Web Service dos Correios.
+- Atualização: Gem WebMock no lugar da gem FakeWeb e remoção da gem Jeweler.
+
 == Versão 1.6.2
 - Melhoria: Método HTTP no log de requisição.
 - Atualização: Versão 0.0.3 da gem log-me.
