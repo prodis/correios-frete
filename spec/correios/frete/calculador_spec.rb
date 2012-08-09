@@ -106,7 +106,7 @@ describe Correios::Frete::Calculador do
     before(:each) { @frete = Correios::Frete::Calculador.new }
 
     context "to many services" do
-      before(:each) { fake_request_for(:success_response_many_services) }
+      before(:each) { mock_request_for(:success_response_many_services) }
 
       it "creates a WebService with correct params" do
         web_service = Correios::Frete::WebService.new @frete, [:pac, :sedex]
@@ -123,7 +123,7 @@ describe Correios::Frete::Calculador do
     end
 
     context "to one service" do
-      before(:each) { fake_request_for(:success_response_one_service) }
+      before(:each) { mock_request_for(:success_response_one_service) }
 
       it "creates a WebService with correct params" do
         web_service = Correios::Frete::WebService.new @frete, [:sedex]

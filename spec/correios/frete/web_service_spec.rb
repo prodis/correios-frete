@@ -13,7 +13,7 @@ describe Correios::Frete::WebService do
     let(:web_service) { Correios::Frete::WebService.new(frete, [:pac, :sedex]) }
 
     it "returns XML response" do
-      fake_request_for("<xml><fake></fake>")
+      mock_request_for("<xml><fake></fake>")
       web_service.request!.should == "<xml><fake></fake>"
     end
   end

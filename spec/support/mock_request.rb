@@ -1,10 +1,8 @@
 # encoding: UTF-8
 
-def fake_request_for(response)
-  FakeWeb.register_uri(:get,
-                       Regexp.new("http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx"),
-                       :status => 200,
-                       :body => body_for(response))
+def mock_request_for(response)
+  url = Regexp.new("http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx")
+  WebMock::API.stub_request(:get, url).to_return(:status => 200, :body => body_for(response))
 end
 
 def body_for(response)
