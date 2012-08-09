@@ -60,4 +60,22 @@ describe Correios::Frete do
       end
     end
   end
+
+  describe "#request_timeout" do
+    it "default is 10" do
+      Correios::Frete.request_timeout.should eql 10
+    end
+
+    context "when set timeout" do
+      it "returns timeout" do
+        Correios::Frete.configure { |config| config.request_timeout = 3 }
+        Correios::Frete.request_timeout.should eql 3
+      end
+
+      it "returns timeout in seconds (integer)" do
+        Correios::Frete.configure { |config| config.request_timeout = 5.123 }
+        Correios::Frete.request_timeout.should eql 5
+      end
+    end
+  end
 end

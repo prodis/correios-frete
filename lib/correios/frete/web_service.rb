@@ -14,11 +14,20 @@ module Correios
       end
 
       def request!
-        response = with_log { Net::HTTP.get_response URI.parse(@url) }
+        response = with_log { http_request(@url) }
         response.body
       end
 
       private
+
+      def http_request(url)
+        uri = URI.parse(url)
+        request = Net::HTTP::Get.new(uri.request_uri)
+
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.open_timeout = Correios::Frete.request_timeout
+        http.request(request)
+      end
 
       def params_for(frete, service_types)
         "sCepOrigem=#{frete.cep_origem}&" +

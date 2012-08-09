@@ -143,7 +143,19 @@ Usando a interface pública em inglês:
   pacote.items.size # => 2
 
 
-== Log
+== Configurações
+
+=== Timeout
+
+Por padrão, o tempo de espera de resposta (timeout) para uma requisição ao Web Service dos Correios é de <b>10 segundos</b>. Após isso, se o Web Service dos Correios não responder, uma exceção do tipo <b>Timeout::Error</b> será lançada.
+Você pode configurar esse tempo de espera usando o módulo <b>Correios::Frete</b>.
+
+  Correios::Frete.configure do |config|
+    config.request_timeout = 3  # Configura o tempo de espera para 3 segundos
+  end
+
+
+=== Log
 
 Por padrão, cada chamada ao Web Service dos Correios é logada em STDOUT, com nível de log <b>:info</b>, usando a gem {LogMe}[http://github.com/prodis/log-me].
 
@@ -180,6 +192,14 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
     config.log_enabled = false   # Desabilita o log
     config.log_level = :debug    # Altera o nível do log
     config.logger = Rails.logger # Usa o logger do Rails
+  end
+
+=== Exemplo de configuração
+
+  Correios::Frete.configure do |config|
+    config.log_level = :debug
+    config.logger = Rails.logger
+    config.request_timeout = 3
   end
 
 == Informações adicionais
