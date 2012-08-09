@@ -286,7 +286,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 ==== Boolean
   mao_propria, aviso_recebimento
 ==== Symbol
-  formato (:caixa_pacote, :rolo_prisma)
+  formato (:caixa_pacote, :rolo_prisma, :envelope)
 
 
 === Atributos de Correios::Frete::Pacote

@@ -6,7 +6,7 @@ module Correios
   module Frete
     class WebService
       URL = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx"
-      FORMATS = { :caixa_pacote => 1, :rolo_prisma => 2 }
+      FORMATS = { :caixa_pacote => 1, :rolo_prisma => 2, :envelope => 3 }
       CONDITIONS = { true => "S", false => "N" }
 
       def initialize(frete, service_types)
