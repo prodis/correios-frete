@@ -9,6 +9,7 @@ module Correios
       AVAILABLE_SERVICES = {
         "41106" => { :type => :pac,                         :name => "PAC",            :description => "PAC sem contrato"                  },
         "41068" => { :type => :pac_com_contrato,            :name => "PAC",            :description => "PAC com contrato"                  },
+        "41300" => { :type => :pac_gf,                      :name => "PAC GF",         :description => "PAC para grandes formatos"         },
         "40010" => { :type => :sedex,                       :name => "SEDEX",          :description => "SEDEX sem contrato"                },
         "40045" => { :type => :sedex_a_cobrar,              :name => "SEDEX a Cobrar", :description => "SEDEX a Cobrar, sem contrato"      },
         "40126" => { :type => :sedex_a_cobrar_com_contrato, :name => "SEDEX a Cobrar", :description => "SEDEX a Cobrar, com contrato"      },
