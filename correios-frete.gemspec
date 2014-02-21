@@ -5,7 +5,7 @@ require 'correios/frete/version'
 Gem::Specification.new do |gem|
   gem.name        = "correios-frete"
   gem.version     = Correios::Frete::VERSION
-  gem.authors     = ["Prodis a.k.a. Fernando Hamasaki"]
+  gem.authors     = ["Prodis a.k.a. Fernando Hamasaki de Amorim"]
   gem.email       = ["prodis@gmail.com"]
   gem.summary     = "Calculo de frete dos Correios."
   gem.description = "Calculo de frete utilizando o Web Service dos Correios (http://www.correios.com.br/webservices).\nOs servicos de frete suportados sao PAC, SEDEX, SEDEX a Cobrar, SEDEX 10, SEDEX Hoje e e-SEDEX."
@@ -20,11 +20,11 @@ Gem::Specification.new do |gem|
   gem.platform              = Gem::Platform::RUBY
   gem.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
 
-  gem.add_dependency "log-me",      "~> 0.0.4"
-  gem.add_dependency "nokogiri",    "~> 1.5"
-  gem.add_dependency "sax-machine", "~> 0.1"
+  gem.add_dependency "log-me",      "~> 0.0.6"
+  gem.add_dependency "nokogiri",    "~> 1.6.1"
+  gem.add_dependency "sax-machine", "~> 0.2.1"
 
   gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec",   "~> 2.11"
-  gem.add_development_dependency "webmock", "~> 1.8"
+  gem.add_development_dependency "rspec",   "~> 2.14.1"
+  gem.add_development_dependency "webmock", "~> 1.17.3"
 end
