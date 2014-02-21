@@ -208,6 +208,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 
   :pac                         # 41106 - PAC sem contrato
   :pac_com_contrato            # 41068 - PAC com contrato
+  :pac_gf                      # 41300 - PAC para grandes formatos
   :sedex                       # 40010 - SEDEX sem contrato
   :sedex_a_cobrar              # 40045 - SEDEX a Cobrar, sem contrato
   :sedex_a_cobrar_com_contrato # 40126 - SEDEX a Cobrar, com contrato
@@ -327,6 +328,8 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 - {Rafael Barbolo (barbolo)}[https://github.com/barbolo]
 - {Rafael Souza (rafaelss)}[https://github.com/rafaelss]
 - {Ricardo Bernardelli (bernardelli)}[https://github.com/bernardelli]
+- {Rodolfo Ferreira (rodolfo42)}[https://github.com/rodolfo42]
+
 
 == Copyright
 
@@ -334,7 +337,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 
 {Prodis a.k.a. Fernando Hamasaki}[http://prodis.blog.br]
 
-Copyright (c) 2011-2012 Prodis
+Copyright (c) 2011-2014 Prodis
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
