@@ -4,6 +4,9 @@ Cálculo de frete utilizando o Web Service dos Correios (http://www.correios.com
 
 Os serviços de frete suportados são <b>PAC</b>, <b>SEDEX</b>, <b>SEDEX a Cobrar</b> (necessário informar o valor declarado), <b>SEDEX 10</b>, <b>SEDEX Hoje</b> e <b>e-SEDEX</b>. Para os serviços com contrato é necessário informar código de empresa e senha.
 
+http://prodis.net.br/images/ruby/2011/correios_logo.png
+
+
 == Instalando
 
 === Gemfile
@@ -316,11 +319,11 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 ==== Boolean
   entrega_domiciliar, entrega_sabado
 ==== Symbol
-  tipo (:pac, :pac_com_contrato, :sedex, :sedex_a_cobrar, :sedex_a_cobrar_com_contrato, :sedex_10, :sedex_hoje, :sedex_com_contrato_1, :sedex_com_contrato_2, :sedex_com_contrato_3, :sedex_com_contrato_4, :sedex_com_contrato_5, :e_sedex, :e_sedex_prioritario, :e_sedex_express, :e_sedex_grupo_1, :e_sedex_grupo_2, :e_sedex_grupo_3)
+  tipo (:pac, :pac_com_contrato, :pac_gf, :sedex, :sedex_a_cobrar, :sedex_a_cobrar_com_contrato, :sedex_10, :sedex_hoje, :sedex_com_contrato_1, :sedex_com_contrato_2, :sedex_com_contrato_3, :sedex_com_contrato_4, :sedex_com_contrato_5, :e_sedex, :e_sedex_prioritario, :e_sedex_express, :e_sedex_grupo_1, :e_sedex_grupo_2, :e_sedex_grupo_3)
 
 
 == Autor
-- {Fernando Hamasaki (prodis)}[http://prodis.blog.br]
+- {Fernando Hamasaki de Amorim (prodis)}[http://prodis.blog.br]
 
 == Colaboradores
 - {Daniel Konishi (dkonishi)}[https://github.com/dkonishi]
@@ -335,7 +338,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 
 (The MIT License)
 
-{Prodis a.k.a. Fernando Hamasaki}[http://prodis.blog.br]
+{Prodis a.k.a. Fernando Hamasaki de Amorim}[http://prodis.blog.br]
 
 Copyright (c) 2011-2014 Prodis
 
