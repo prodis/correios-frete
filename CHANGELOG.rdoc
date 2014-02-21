@@ -1,3 +1,6 @@
+== Versão 1.9.0
+- Novo: {Issue #11: Suporte ao formato envelope}[https://github.com/prodis/correios-frete/pull/11].
+
 == Versão 1.8.0
 - Novo: {Issue #10: Suporte ao formato envelope}[https://github.com/prodis/correios-frete/issues/10].
 
