@@ -22,7 +22,7 @@ describe Correios::Frete do
 
   describe "#logger" do
     it "default is Logger" do
-      expect(Correios::Frete.logger).to be_a(Logger)
+      expect(Correios::Frete.logger).to be_a(::Logger)
     end
 
     context "when set logger" do
@@ -37,7 +37,7 @@ describe Correios::Frete do
   describe "#log" do
     before :each do
       @log_stream = StringIO.new
-      Correios::Frete.configure { |config| config.logger = Logger.new(@log_stream) }
+      Correios::Frete.configure { |config| config.logger = ::Logger.new(@log_stream) }
     end
 
     context "when log is enabled" do
