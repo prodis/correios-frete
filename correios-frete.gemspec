@@ -20,8 +20,8 @@ Gem::Specification.new do |gem|
   gem.platform              = Gem::Platform::RUBY
   gem.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
 
-  gem.add_dependency "log-me",      "~> 0.0.6"
-  gem.add_dependency "nokogiri",    "~> 1.6.1"
+  gem.add_dependency "log-me",      "~> 0.0.7"
+  gem.add_dependency "nokogiri",    "~> 1.6.2"
   gem.add_dependency "sax-machine", "~> 0.2.1"
 
   gem.add_development_dependency "rake"
