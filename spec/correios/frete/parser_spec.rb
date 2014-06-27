@@ -7,7 +7,7 @@ describe Correios::Frete::Parser do
     let(:parser) { Correios::Frete::Parser.new }
 
     it "encodes from ISO-8859-1 to UTF-8" do
-      xml.should_receive(:backward_encode).with("UTF-8", "ISO-8859-1").and_return(xml)
+      expect(xml).to receive(:backward_encode).with("UTF-8", "ISO-8859-1").and_return(xml)
       parser.servicos(xml)
     end
 
@@ -38,7 +38,7 @@ describe Correios::Frete::Parser do
         servicos = parser.servicos(xml)
 
         attributes.each do |attr, value|
-          servicos[service].send(attr).should == value
+          expect(servicos[service].send(attr)).to eq(value)
         end
       end
     end

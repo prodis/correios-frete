@@ -14,7 +14,7 @@ describe Correios::Frete::WebService do
 
     it "returns XML response" do
       mock_request_for("<xml><fake></fake>")
-      web_service.request!.should == "<xml><fake></fake>"
+      expect(web_service.request!).to eq("<xml><fake></fake>")
     end
   end
 end

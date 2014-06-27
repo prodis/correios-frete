@@ -12,12 +12,12 @@ describe Correios::Frete::Pacote do
         :largura => 0.0
       }.each do |attr, value|
         it attr do
-          @pacote.send(attr).should == value
+          expect(@pacote.send(attr)).to eq(value)
         end
       end
 
       it "itens" do
-        @pacote.itens.should be_empty
+        expect(@pacote.itens).to be_empty
       end
     end
 
@@ -28,7 +28,7 @@ describe Correios::Frete::Pacote do
           pacote = Correios::Frete::Pacote.new(itens)
 
           pacote.itens.each_with_index do |item, i|
-            item.should == itens[i]
+            expect(item).to eq(itens[i])
           end
         end
       end
@@ -42,10 +42,10 @@ describe Correios::Frete::Pacote do
           pacote = Correios::Frete::Pacote.new(itens)
 
           pacote.itens.each_with_index do |item, i|
-            item.peso.should == itens[i][:peso]
-            item.comprimento.should == itens[i][:comprimento]
-            item.largura.should == itens[i][:largura]
-            item.altura.should == itens[i][:altura]
+            expect(item.peso).to eq(itens[i][:peso])
+            expect(item.comprimento).to eq(itens[i][:comprimento])
+            expect(item.largura).to eq(itens[i][:largura])
+            expect(item.altura).to eq(itens[i][:altura])
           end
         end
       end
@@ -54,7 +54,7 @@ describe Correios::Frete::Pacote do
 
   describe "#formato" do
     it "is caixa/pacote" do
-      @pacote.formato.should == :caixa_pacote
+      expect(@pacote.formato).to eq(:caixa_pacote)
     end
   end
 
@@ -63,7 +63,7 @@ describe Correios::Frete::Pacote do
       it "adds in items" do
         item = Correios::Frete::PacoteItem.new
         @pacote.adicionar_item(item)
-        @pacote.itens.first.should == item
+        expect(@pacote.itens.first).to eq(item)
       end
     end
 
@@ -72,17 +72,17 @@ describe Correios::Frete::Pacote do
         params = { :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2 }
         @pacote.adicionar_item(params)
 
-        @pacote.itens.first.peso.should == params[:peso]
-        @pacote.itens.first.comprimento.should == params[:comprimento]
-        @pacote.itens.first.largura.should == params[:largura]
-        @pacote.itens.first.altura.should == params[:altura]
+        expect(@pacote.itens.first.peso).to eq(params[:peso])
+        expect(@pacote.itens.first.comprimento).to eq(params[:comprimento])
+        expect(@pacote.itens.first.largura).to eq(params[:largura])
+        expect(@pacote.itens.first.altura).to eq(params[:altura])
       end
     end
 
     context "when adds nil item" do
       it "does not add" do
         @pacote.adicionar_item(nil)
-        @pacote.itens.should be_empty
+        expect(@pacote.itens).to be_empty
       end
     end
   end
@@ -95,23 +95,23 @@ describe Correios::Frete::Pacote do
       end
 
       it "calculates package weight" do
-        @pacote.peso.should == @item.peso
+        expect(@pacote.peso).to eq(@item.peso)
       end
 
       it "calculates package volume" do
-        @pacote.volume.should == @item.volume
+        expect(@pacote.volume).to eq(@item.volume)
       end
 
       it "calculates package length" do
-        @pacote.comprimento.should == @item.comprimento
+        expect(@pacote.comprimento).to eq(@item.comprimento)
       end
 
       it "calculates package width" do
-        @pacote.largura.should == @item.largura
+        expect(@pacote.largura).to eq(@item.largura)
       end
 
       it "calculates package height" do
-        @pacote.altura.should == @item.altura
+        expect(@pacote.altura).to eq(@item.altura)
       end
 
       context "with dimensions less than each minimum" do
@@ -122,15 +122,15 @@ describe Correios::Frete::Pacote do
         end
 
         it "sets minimum length value" do
-          @pacote.comprimento.should == 16
+          expect(@pacote.comprimento).to eq(16)
         end
 
         it "sets minimum width value" do
-          @pacote.largura.should == 11
+          expect(@pacote.largura).to eq(11)
         end
 
         it "sets minimum height value" do
-          @pacote.altura.should == 2
+          expect(@pacote.altura).to eq(2)
         end
       end
     end
@@ -146,23 +146,23 @@ describe Correios::Frete::Pacote do
       end
 
       it "calculates package weight" do
-        @pacote.peso.should == @item1.peso + @item2.peso
+        expect(@pacote.peso).to eq(@item1.peso + @item2.peso)
       end
 
       it "calculates package volume" do
-        @pacote.volume.should == @item1.volume + @item2.volume
+        expect(@pacote.volume).to eq(@item1.volume + @item2.volume)
       end
 
       it "calculates package length" do
-        @pacote.comprimento.should == @expected_dimension
+        expect(@pacote.comprimento).to eq(@expected_dimension)
       end
 
       it "calculates package width" do
-        @pacote.largura.should == @expected_dimension
+        expect(@pacote.largura).to eq(@expected_dimension)
       end
 
       it "calculates package height" do
-        @pacote.altura.should == @expected_dimension
+        expect(@pacote.altura).to eq(@expected_dimension)
       end
 
       context "with dimensions less than each minimum" do
@@ -174,15 +174,15 @@ describe Correios::Frete::Pacote do
         end
 
         it "sets minimum length value" do
-          @pacote.comprimento.should == 16
+          expect(@pacote.comprimento).to eq(16)
         end
 
         it "sets minimum width value" do
-          @pacote.largura.should == 11
+          expect(@pacote.largura).to eq(11)
         end
 
         it "sets minimum height value" do
-          @pacote.altura.should == 2
+          expect(@pacote.altura).to eq(2)
         end
       end
     end

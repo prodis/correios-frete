@@ -37,7 +37,7 @@ describe Correios::Frete::Servico do
       }.each do |attr, value|
         it "sets #{attr} to #{value}" do
           @servico.parse @xml
-          @servico.send(attr).should == value
+          expect(@servico.send(attr)).to eq(value)
         end
       end
     end
@@ -73,7 +73,7 @@ describe Correios::Frete::Servico do
       }.each do |attr, value|
         it "sets #{attr} to #{value}" do
           @servico.parse @xml
-          @servico.send(attr).should == value
+          expect(@servico.send(attr)).to eq(value)
         end
       end
     end
@@ -109,7 +109,7 @@ describe Correios::Frete::Servico do
       }.each do |attr, value|
         it "sets #{attr} to #{value}" do
           @servico.parse @xml
-          @servico.send(attr).should == value
+          expect(@servico.send(attr)).to eq(value)
         end
       end
     end
@@ -119,14 +119,14 @@ describe Correios::Frete::Servico do
     context "when does not have error" do
       it "returns true" do
         @servico.parse "<cServico><Erro>0</Erro><cServico>"
-        @servico.success?.should be_true
+        expect(@servico.success?).to be_truthy
       end
     end
 
     context "when has error" do
       it "returns false" do
         @servico.parse "<cServico><Erro>7</Erro><cServico>"
-        @servico.success?.should be_false
+        expect(@servico.success?).to be_falsey
       end
     end
   end
@@ -135,14 +135,14 @@ describe Correios::Frete::Servico do
     context "when has error" do
       it "returns true" do
         @servico.parse "<cServico><Erro>7</Erro><cServico>"
-        @servico.error?.should be_true
+        expect(@servico.error?).to be_truthy
       end
     end
 
     context "when does not have error" do
       it "returns false" do
         @servico.parse "<cServico><Erro>0</Erro><cServico>"
-        @servico.error?.should be_false
+        expect(@servico.error?).to be_falsey
       end
     end
   end
@@ -151,14 +151,14 @@ describe Correios::Frete::Servico do
     Correios::Frete::Servico::AVAILABLE_SERVICES.each do |code, value|
       context "to #{value[:type]} type" do
         it "returns #{code} code" do
-          Correios::Frete::Servico.code_from_type(value[:type]).should == code
+          expect(Correios::Frete::Servico.code_from_type(value[:type])).to eq(code)
         end
       end
     end
 
     context "when type does not exist" do
       it "returns nil" do
-        Correios::Frete::Servico.code_from_type(:nao_existe).should be_nil
+        expect(Correios::Frete::Servico.code_from_type(:nao_existe)).to be_nil
       end
     end
   end

@@ -17,7 +17,7 @@ describe Correios::Frete::Calculador do
         :valor_declarado => 0.0
       }.each do |attr, value|
         it attr do
-          @frete.send(attr).should == value
+          expect(@frete.send(attr)).to eq(value)
         end
       end
     end
@@ -40,14 +40,14 @@ describe Correios::Frete::Calculador do
       context "when #{attr} is supplied" do
         it "sets #{attr}" do
           frete = Correios::Frete::Calculador.new(attr => value)
-          frete.send(attr).should == value
+          expect(frete.send(attr)).to eq(value)
         end
       end
 
       context "when #{attr} is supplied in a block" do
         it "sets #{attr}" do
           frete = Correios::Frete::Calculador.new { |f| f.send("#{attr}=", value) }
-          frete.send(attr).should == value
+          expect(frete.send(attr)).to eq(value)
         end
       end
     end
@@ -69,7 +69,7 @@ describe Correios::Frete::Calculador do
 
       [:peso, :comprimento, :largura, :altura, :formato].each do |attr|
         it "#{attr} returns encomenda #{attr}" do
-          @frete.send(attr).should == @encomenda.send(attr)
+          expect(@frete.send(attr)).to eq(@encomenda.send(attr))
         end
       end
     end
@@ -90,7 +90,7 @@ describe Correios::Frete::Calculador do
         :formato => :rolo_prisma
       }.each do |attr, value|
         it "#{attr} returns supplied #{attr}" do
-          @frete.send(attr).should == value
+          expect(@frete.send(attr)).to eq(value)
         end
       end
     end
@@ -110,15 +110,15 @@ describe Correios::Frete::Calculador do
 
       it "creates a WebService with correct params" do
         web_service = Correios::Frete::WebService.new @frete, [:pac, :sedex]
-        Correios::Frete::WebService.should_receive(:new).with(@frete, [:pac, :sedex]).and_return(web_service)
+        expect(Correios::Frete::WebService).to receive(:new).with(@frete, [:pac, :sedex]).and_return(web_service)
         @frete.calcular(:pac, :sedex)
       end
 
       it "returns all services" do
         services = @frete.calcular(:pac, :sedex)
-        services.keys.size.should == 2
-        services[:pac].tipo.should == :pac
-        services[:sedex].tipo.should == :sedex
+        expect(services.keys.size).to eq(2)
+        expect(services[:pac].tipo).to eq(:pac)
+        expect(services[:sedex].tipo).to eq(:sedex)
       end
     end
 
@@ -127,12 +127,12 @@ describe Correios::Frete::Calculador do
 
       it "creates a WebService with correct params" do
         web_service = Correios::Frete::WebService.new @frete, [:sedex]
-        Correios::Frete::WebService.should_receive(:new).with(@frete, [:sedex]).and_return(web_service)
+        expect(Correios::Frete::WebService).to receive(:new).with(@frete, [:sedex]).and_return(web_service)
         @frete.calcular(:sedex)
       end
 
       it "returns only one service" do
-        @frete.calcular(:sedex).tipo.should == :sedex
+        expect(@frete.calcular(:sedex).tipo).to eq(:sedex)
       end
     end
   end
@@ -145,18 +145,18 @@ describe Correios::Frete::Calculador do
           @servico = Correios::Frete::Servico.new
 
           web_service = double(Correios::Frete::WebService, :request! => "XML")
-          Correios::Frete::WebService.stub(:new).and_return(web_service)
+          allow(Correios::Frete::WebService).to receive(:new).and_return(web_service)
 
           parser = double(Correios::Frete::Parser, :servicos => { service[:type] => @servico })
-          Correios::Frete::Parser.stub(:new).and_return(parser)
+          allow(Correios::Frete::Parser).to receive(:new).and_return(parser)
         end
 
         it "calculates #{service[:name]}" do
-          @frete.send("#{method_name}_#{service[:type]}").should == @servico
+          expect(@frete.send("#{method_name}_#{service[:type]}")).to eq(@servico)
         end
 
         it "returns true in respond_to?" do
-          @frete.respond_to?("#{method_name}_#{service[:type]}").should be_true
+          expect(@frete.respond_to?("#{method_name}_#{service[:type]}")).to be_truthy
         end
       end
     end
@@ -169,7 +169,7 @@ describe Correios::Frete::Calculador do
       end
 
       it "returns false in respond_to?" do
-        @frete.respond_to?("#{method_name}_servico_que_nao_existe").should be_false
+        expect(@frete.respond_to?("#{method_name}_servico_que_nao_existe")).to be_falsey
       end
     end
   end

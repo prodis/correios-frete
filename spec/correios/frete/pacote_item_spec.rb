@@ -12,7 +12,7 @@ describe Correios::Frete::PacoteItem do
         :altura => 0.0
       }.each do |attr, value|
         it attr do
-          @item.send(attr).should == value
+          expect(@item.send(attr)).to eq(value)
         end
       end
     end
@@ -25,14 +25,14 @@ describe Correios::Frete::PacoteItem do
       context "when #{attr} is supplied" do
         it "sets #{attr}" do
           item = Correios::Frete::PacoteItem.new(attr => value)
-          item.send(attr).should == value
+          expect(item.send(attr)).to eq(value)
         end
       end
 
       context "when #{attr} is supplied in a block" do
         it "sets #{attr}" do
           item = Correios::Frete::PacoteItem.new { |f| f.send("#{attr}=", value) }
-          item.send(attr).should == value
+          expect(item.send(attr)).to eq(value)
         end
       end
     end
@@ -41,7 +41,7 @@ describe Correios::Frete::PacoteItem do
   describe "#volume" do
     it "calculates item volume" do
       item = Correios::Frete::PacoteItem.new(:comprimento => 16, :largura => 11, :altura => 2)
-      item.volume.should == 16 * 11 * 2
+      expect(item.volume).to eq(16 * 11 * 2)
     end
   end
 end
