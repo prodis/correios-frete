@@ -1,3 +1,6 @@
+== Versão 1.9.2
+- Correção: A condição de sucesso para frete cálculado a partir de agora é o valor do frete e não mais se existe uma mensagem de erro. Existem casos onde o frete é calculado, mas também é retornada uma mensagem de erro. Nesse caso não é erro um erro, e sim uma mensagem de aviso. Por exemplo, CEP de origem 20091-005 e CEP de destino 23085-270.
+
 == Versão 1.9.1
 - Atualização: Versão 0.0.7 da gem log-me.
 - Atualização: Versão 1.6.2 da gem Nokogiri.
