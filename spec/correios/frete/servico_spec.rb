@@ -116,33 +116,33 @@ describe Correios::Frete::Servico do
   end
 
   describe "#success?" do
-    context "when does not have error" do
+    context "when freight was calculated" do
       it "returns true" do
-        @servico.parse "<cServico><Erro>0</Erro><cServico>"
-        expect(@servico.success?).to be_truthy
+        @servico.parse "<cServico><Erro>010</Erro><Valor>13,70</Valor><cServico>"
+        expect(@servico.success?).to eql true
       end
     end
 
-    context "when has error" do
+    context "when freight was not calculated" do
       it "returns false" do
-        @servico.parse "<cServico><Erro>7</Erro><cServico>"
-        expect(@servico.success?).to be_falsey
+        @servico.parse "<cServico><Erro>0</Erro><Valor>0,00</Valor><cServico>"
+        expect(@servico.success?).to eql false
       end
     end
   end
 
   describe "#error?" do
-    context "when has error" do
+    context "when freight was not calculated" do
       it "returns true" do
-        @servico.parse "<cServico><Erro>7</Erro><cServico>"
-        expect(@servico.error?).to be_truthy
+        @servico.parse "<cServico><Erro>0</Erro><Valor>0,00</Valor><cServico>"
+        expect(@servico.error?).to eql true
       end
     end
 
-    context "when does not have error" do
+    context "when freight was calculated" do
       it "returns false" do
-        @servico.parse "<cServico><Erro>0</Erro><cServico>"
-        expect(@servico.error?).to be_falsey
+        @servico.parse "<cServico><Erro>010</Erro><Valor>13,70</Valor><cServico>"
+        expect(@servico.error?).to eql false
       end
     end
   end

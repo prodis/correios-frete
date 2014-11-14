@@ -58,7 +58,7 @@ module Correios
       end
 
       def success?
-        erro == "0"
+        valor > 0.0
       end
       alias sucesso? success?
 
