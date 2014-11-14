@@ -22,3 +22,7 @@ tmp
 # For vim:
 *.swp
 *.swo
+
+# RVM
+.ruby-gemset
+.ruby-version
