@@ -1,6 +1,4 @@
 # encoding: UTF-8
-require 'spec_helper'
-
 describe Correios::Frete do
   describe "#log_enabled?" do
     it "default is true" do

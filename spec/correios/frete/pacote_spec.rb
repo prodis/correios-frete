@@ -1,6 +1,4 @@
 # encoding: UTF-8
-require 'spec_helper'
-
 describe Correios::Frete::Pacote do
   before(:each) { @pacote = Correios::Frete::Pacote.new }
 

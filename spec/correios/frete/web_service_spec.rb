@@ -1,6 +1,4 @@
 # encoding: UTF-8
-require 'spec_helper'
-
 describe Correios::Frete::WebService do
   describe "#request" do
     around do |example|

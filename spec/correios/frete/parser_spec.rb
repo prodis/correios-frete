@@ -1,6 +1,4 @@
 # encoding: UTF-8
-require 'spec_helper'
-
 describe Correios::Frete::Parser do
   describe "#servicos" do
     let(:xml) { body_for :success_response_many_services }

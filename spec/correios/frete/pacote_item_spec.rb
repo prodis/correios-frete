@@ -1,6 +1,4 @@
 # encoding: UTF-8
-require 'spec_helper'
-
 describe Correios::Frete::PacoteItem do
   describe ".new" do
     context "creates with default value of" do
