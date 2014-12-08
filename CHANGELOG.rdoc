@@ -1,3 +1,6 @@
+== Versão 1.9.3
+- Correção: Valores a partir de 1000 retornam com pontos nos milhares (1.000,00) e a conversão para float não estava excluindo os pontos do número.
+
 == Versão 1.9.2
 - Correção: A condição de sucesso para frete cálculado a partir de agora é o valor do frete e não mais se existe uma mensagem de erro. Existem casos onde o frete é calculado, mas também é retornada uma mensagem de erro. Nesse caso não é erro um erro, e sim uma mensagem de aviso. Por exemplo, CEP de origem 20091-005 e CEP de destino 23085-270.
 
