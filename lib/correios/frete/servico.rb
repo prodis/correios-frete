@@ -76,7 +76,8 @@ module Correios
 
       def cast_to_float!(*attributes)
         attributes.each do |attr|
-          instance_variable_set("@#{attr}", send(attr).to_s.gsub("," ,".").to_f)
+          value = send(attr).to_s.gsub(".", "").gsub("," ,".")
+          instance_variable_set("@#{attr}", value.to_f)
         end
       end
 

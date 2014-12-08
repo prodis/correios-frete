@@ -38,6 +38,28 @@ describe Correios::Frete::Servico do
           expect(@servico.send(attr)).to eq(value)
         end
       end
+
+      context "and calculated value is greater than 999.99" do
+        before :each do
+          @xml = """<cServico>
+                      <Codigo>41106</Codigo>
+                      <Valor>1.024,75</Valor>
+                      <PrazoEntrega>3</PrazoEntrega>
+                      <ValorMaoPropria>3,75</ValorMaoPropria>
+                      <ValorAvisoRecebimento>1,99</ValorAvisoRecebimento>
+                      <ValorValorDeclarado>1,50</ValorValorDeclarado>
+                      <EntregaDomiciliar>S</EntregaDomiciliar>
+                      <EntregaSabado>N</EntregaSabado>
+                      <Erro>-3</Erro>
+                      <MsgErro>Somente para teste</MsgErro>
+                    </cServico>"""
+        end
+
+        it "sets correct value" do
+          @servico.parse @xml
+          expect(@servico.valor).to eql 1024.75
+        end
+      end
     end
 
     context "when service does not exist" do
