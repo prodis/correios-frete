@@ -1,4 +1,7 @@
 == Versão 1.9.3
+- Atualização: Versão 0.0.10 da gem log-me.
+
+== Versão 1.9.3
 - Correção: Valores a partir de 1000 retornam com pontos nos milhares (1.000,00) e a conversão para float não estava excluindo os pontos do número.
 
 == Versão 1.9.2
