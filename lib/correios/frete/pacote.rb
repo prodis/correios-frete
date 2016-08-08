@@ -54,9 +54,9 @@ module Correios
           @largura = item.largura
           @altura = item.altura
         else
-          @comprimento = max(comprimento_itens, dimensao)
-          @largura = max(largura_itens, dimensao)
-          @altura = max(altura_itens, dimensao)
+          @comprimento = comprimento_itens
+          @largura = largura_itens
+          @altura = altura_itens
         end
 
         min_dimension_values
@@ -77,7 +77,7 @@ module Correios
       end
 
       def dimensao
-        @dimensao ||= @volume.to_f**(1.0/3)
+        @volume.to_f**(1.0/3)
       end
 
       def comprimento_itens
