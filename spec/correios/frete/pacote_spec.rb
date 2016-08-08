@@ -141,6 +141,13 @@ describe Correios::Frete::Pacote do
 
         @pacote.adicionar_item(@item1)
         @pacote.adicionar_item(@item2)
+
+        @exceeded_dimensions = Correios::Frete::PacoteItem.new(
+          :altura => Correios::Frete::Pacote::MAX_DIMENSIONS[:altura] + 1,
+          :largura => Correios::Frete::Pacote::MAX_DIMENSIONS[:largura] + 1,
+          :comprimento => Correios::Frete::Pacote::MAX_DIMENSIONS[:comprimento] + 1,
+          :peso => 1.0
+        )
       end
 
       it "calculates package weight" do
@@ -186,9 +193,14 @@ describe Correios::Frete::Pacote do
 
       context "with at least one item dimension greater than maximum" do
         before :each do
-          over_lengthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 106, :largura => 1, :altura => 1)
-          over_widthed  = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :largura => 107, :altura => 1)
-          over_heighted = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :largura => 1, :altura => 108)
+          over_lengthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :largura => 1, :altura => 1,
+            :comprimento => @exceeded_dimensions.comprimento)
+
+          over_widthed  = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :altura => 1,
+            :largura => @exceeded_dimensions.largura)
+
+          over_heighted = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :largura => 1,
+            :altura => @exceeded_dimensions.altura)
 
           @pacote = Correios::Frete::Pacote.new
           @pacote.adicionar_item(over_lengthed)
@@ -197,21 +209,22 @@ describe Correios::Frete::Pacote do
         end
 
         it "shows biggest length value" do
-          expect(@pacote.comprimento).to eq(106)
+          expect(@pacote.comprimento).to eq(@exceeded_dimensions.comprimento)
         end
 
         it "shows biggest width value" do
-          expect(@pacote.largura).to eq(107)
+          expect(@pacote.largura).to eq(@exceeded_dimensions.largura)
         end
 
         it "shows biggest height value" do
-          expect(@pacote.altura).to eq(108)
+          expect(@pacote.altura).to eq(@exceeded_dimensions.altura)
         end
       end
 
       context "over lengthed items with zero widht and height" do
         before :each do
-          over_lengthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 106, :largura => 0, :altura => 0)
+          over_lengthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :largura => 0, :altura => 0,
+            :comprimento => @exceeded_dimensions.comprimento)
 
           @pacote = Correios::Frete::Pacote.new
           2.times{@pacote.adicionar_item(over_lengthed)}
@@ -225,7 +238,8 @@ describe Correios::Frete::Pacote do
 
       context "over widthed items with zero length and height" do
         before :each do
-          over_widthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 106, :altura => 0)
+          over_widthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :altura => 0,
+            :largura => @exceeded_dimensions.largura)
 
           @pacote = Correios::Frete::Pacote.new
           2.times{@pacote.adicionar_item(over_widthed)}
@@ -239,7 +253,8 @@ describe Correios::Frete::Pacote do
 
       context "over heighted items with zero widht and length" do
         before :each do
-          over_heighted = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 0, :altura => 106)
+          over_heighted = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 0,
+            :altura => @exceeded_dimensions.altura)
 
           @pacote = Correios::Frete::Pacote.new
           2.times{@pacote.adicionar_item(over_heighted)}
