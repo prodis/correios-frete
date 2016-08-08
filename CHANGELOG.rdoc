@@ -1,4 +1,7 @@
-== Versão 1.9.3
+== Versão 1.9.5
+- Adicionado tratamento de limites máximos de dimensões. Quando algum item de um pacote possui dimensões maiores que as permitidas pelos Correios, essas medidas são informadas diretamente ao webservice dos Correios.
+
+== Versão 1.9.4
 - Atualização: Versão 0.0.10 da gem log-me.
 
 == Versão 1.9.3
