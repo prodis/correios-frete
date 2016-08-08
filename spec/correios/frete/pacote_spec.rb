@@ -211,51 +211,42 @@ describe Correios::Frete::Pacote do
 
       context "over lengthed items with zero widht and height" do
         before :each do
-          over_lengthed0 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 106, :largura => 0, :altura => 0)
-          over_lengthed1 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 106, :largura => 1, :altura => 0)
-          over_lengthed2 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 106, :largura => 0, :altura => 1)
+          over_lengthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 106, :largura => 0, :altura => 0)
 
           @pacote = Correios::Frete::Pacote.new
-          @pacote.adicionar_item(over_lengthed0)
-          @pacote.adicionar_item(over_lengthed1)
-          @pacote.adicionar_item(over_lengthed2)
+          2.times{@pacote.adicionar_item(over_lengthed)}
         end
 
         it "does not get length information from minimum dimensions" do
+          expect(@pacote.items.size).to eq(2)
           expect(@pacote.comprimento).to_not eq(Correios::Frete::Pacote::MIN_DIMENSIONS[:comprimento])
         end
       end
 
       context "over widthed items with zero length and height" do
         before :each do
-          over_widthed0 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 106, :altura => 0)
-          over_widthed1 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 1, :largura => 106, :altura => 0)
-          over_widthed2 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 106, :altura => 1)
+          over_widthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 106, :altura => 0)
 
           @pacote = Correios::Frete::Pacote.new
-          @pacote.adicionar_item(over_widthed0)
-          @pacote.adicionar_item(over_widthed1)
-          @pacote.adicionar_item(over_widthed2)
+          2.times{@pacote.adicionar_item(over_widthed)}
         end
 
         it "does not get width information from minimum dimensions" do
+          expect(@pacote.items.size).to eq(2)
           expect(@pacote.largura).to_not eq(Correios::Frete::Pacote::MIN_DIMENSIONS[:largura])
         end
       end
 
       context "over heighted items with zero widht and length" do
         before :each do
-          over_heighted0 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 0, :altura => 106)
-          over_heighted1 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 1, :largura => 0, :altura => 106)
-          over_heighted2 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 1, :altura => 106)
+          over_heighted = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 0, :altura => 106)
 
           @pacote = Correios::Frete::Pacote.new
-          @pacote.adicionar_item(over_heighted0)
-          @pacote.adicionar_item(over_heighted1)
-          @pacote.adicionar_item(over_heighted2)
+          2.times{@pacote.adicionar_item(over_heighted)}
         end
 
         it "does not get height information from minimum dimensions" do
+          expect(@pacote.items.size).to eq(2)
           expect(@pacote.altura).to_not eq(Correios::Frete::Pacote::MIN_DIMENSIONS[:altura])
         end
       end
