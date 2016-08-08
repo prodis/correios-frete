@@ -193,19 +193,19 @@ describe Correios::Frete::Pacote do
 
       context "with at least one item dimension greater than maximum" do
         before :each do
-          over_lengthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :largura => 1, :altura => 1,
+          over_lengthened = Correios::Frete::PacoteItem.new(:peso => 0.3, :largura => 1, :altura => 1,
             :comprimento => @exceeded_dimensions.comprimento)
 
-          over_widthed  = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :altura => 1,
+          too_wide  = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :altura => 1,
             :largura => @exceeded_dimensions.largura)
 
-          over_heighted = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :largura => 1,
+          over_heightened = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 3, :largura => 1,
             :altura => @exceeded_dimensions.altura)
 
           @pacote = Correios::Frete::Pacote.new
-          @pacote.adicionar_item(over_lengthed)
-          @pacote.adicionar_item(over_widthed)
-          @pacote.adicionar_item(over_heighted)
+          @pacote.adicionar_item(over_lengthened)
+          @pacote.adicionar_item(too_wide)
+          @pacote.adicionar_item(over_heightened)
         end
 
         it "shows biggest length value" do
@@ -223,11 +223,11 @@ describe Correios::Frete::Pacote do
 
       context "over lengthed items with zero widht and height" do
         before :each do
-          over_lengthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :largura => 0, :altura => 0,
+          over_lengthened = Correios::Frete::PacoteItem.new(:peso => 0.3, :largura => 0, :altura => 0,
             :comprimento => @exceeded_dimensions.comprimento)
 
           @pacote = Correios::Frete::Pacote.new
-          2.times{@pacote.adicionar_item(over_lengthed)}
+          2.times{@pacote.adicionar_item(over_lengthened)}
         end
 
         it "does not get length information from minimum dimensions" do
@@ -238,11 +238,11 @@ describe Correios::Frete::Pacote do
 
       context "over widthed items with zero length and height" do
         before :each do
-          over_widthed = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :altura => 0,
+          too_wide = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :altura => 0,
             :largura => @exceeded_dimensions.largura)
 
           @pacote = Correios::Frete::Pacote.new
-          2.times{@pacote.adicionar_item(over_widthed)}
+          2.times{@pacote.adicionar_item(too_wide)}
         end
 
         it "does not get width information from minimum dimensions" do
@@ -253,11 +253,11 @@ describe Correios::Frete::Pacote do
 
       context "over heighted items with zero widht and length" do
         before :each do
-          over_heighted = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 0,
+          over_heightened = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 0, :largura => 0,
             :altura => @exceeded_dimensions.altura)
 
           @pacote = Correios::Frete::Pacote.new
-          2.times{@pacote.adicionar_item(over_heighted)}
+          2.times{@pacote.adicionar_item(over_heightened)}
         end
 
         it "does not get height information from minimum dimensions" do
