@@ -136,8 +136,8 @@ Montado o pacote, basta passá-lo pelo parâmetro <b>encomenda</b> no construtor
 Caso alguma dimensão do pacote seja maior que o tamanho máximo permitido pelos correios, o valor máximo será atribuído à dimensão.
 
   item1 = Correios::Frete::PacoteItem.new :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2
-  item2 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 40, :largura => 107, :altura => 3
-  item3 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 105, :largura => 10, :altura => 3
+  item2 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 40, :largura => 10, :altura => 3
+  item3 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 106, :largura => 10, :altura => 3
 
   pacote = Correios::Frete::Pacote.new
   pacote.adicionar_item(item1)
