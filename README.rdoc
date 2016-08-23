@@ -133,7 +133,43 @@ Montado o pacote, basta passá-lo pelo parâmetro <b>encomenda</b> no construtor
   servicos[:pac].valor         # => 13.3
   servicos[:pac].prazo_entrega # => 5
 
-<b>Observação:</b> Quando uma encomenda é fornecida ao calculador de frete, os parâmetros <b>peso</b>, <b>comprimento</b>, <b>largura</b>, <b>altura</b> e <b>formato</b> serão ignorados, sendo utilizados os valores da encomenda.
+Caso alguma dimensão do pacote seja maior que o tamanho máximo permitido pelos correios, o valor máximo será atribuído à dimensão.
+
+  item1 = Correios::Frete::PacoteItem.new :peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2
+  item2 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 40, :largura => 10, :altura => 3
+  item3 = Correios::Frete::PacoteItem.new :peso => 0.7, :comprimento => 106, :largura => 10, :altura => 3
+
+  pacote = Correios::Frete::Pacote.new
+  pacote.adicionar_item(item1)
+  pacote.adicionar_item(item2)
+  pacote.adicionar_item(item3)
+
+  pacote.comprimento # => 106
+  pacote.largura     # => 17.41317538234722
+  pacote.altura      # => 17.41317538234722
+
+Ao montar o pacote pode-se observar que os Correios retornam tratamentos condizentes com as limitações de tamanho.
+
+  frete = Correios::Frete::Calculador.new :cep_origem => "04094-050",
+                                          :cep_destino => "90619-900",
+                                          :encomenda => pacote
+
+  servicos = frete.calcular :sedex, :pac
+
+  servicos[:sedex].valor         # => 0.0
+  servicos[:sedex].prazo_entrega # => 0
+  servicos[:sedex].msg_erro      # => "O comprimento nao pode ser maior que 105 cm."
+
+  servicos[:pac].valor         # => 0.0
+  servicos[:pac].prazo_entrega # => 0
+  servicos[:pac].msg_erro      # => "O comprimento nao pode ser maior que 105 cm."
+
+
+<b>Observação:</b>
+
+Quando uma encomenda é fornecida ao calculador de frete, os parâmetros <b>peso</b>, <b>comprimento</b>, <b>largura</b>, <b>altura</b> e <b>formato</b>, quando dentro dos limites estabelecidos pelos Correios, serão ignorados, sendo utilizados os valores da encomenda.
+
+Quando algum dos parâmetros <b>comprimento</b>, <b>largura</b>, <b>altura</b> for maior que o limite máximo estabelecido pelos Correios, o pacote receberá tal valor na respectiva dimensão, indicando aos Correios que ao menos um dos itens do pacote excede os limites e, portanto, o pacote não poderá ser enviado.
 
 Usando a interface pública em inglês:
 
