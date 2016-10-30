@@ -1,6 +1,6 @@
 # encoding: UTF-8
 module Correios
   module Frete
-    VERSION = "1.9.5"
+    VERSION = "1.10.0"
   end
 end

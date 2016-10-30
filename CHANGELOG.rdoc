@@ -1,3 +1,6 @@
+== Versão 1.10.0
+- Novo: Versão mínima do Ruby é 1.9.3 a partir de agora.
+
 == Versão 1.9.5
 - Atualização: nokogiri e sax-machine gems.
 
