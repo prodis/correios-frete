@@ -6,7 +6,7 @@ module Correios
     class Parser
       def servicos(xml)
         servicos = {}
-        xml = xml.backward_encode("UTF-8", "ISO-8859-1")
+        xml = xml.encode("UTF-8", "ISO-8859-1")
 
         Nokogiri::XML(xml).root.elements.each do |element|
           servico = Correios::Frete::Servico.new.parse(element.to_xml)
