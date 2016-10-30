@@ -22,9 +22,10 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "log-me",      "~> 0.0.10"
   gem.add_dependency "nokogiri",    "~> 1.6.8.1"
-  gem.add_dependency "sax-machine", "~> 0.2.1"
+  gem.add_dependency "sax-machine", "~> 1.3"
 
   gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec",   "~> 3.2.0"
-  gem.add_development_dependency "webmock", "~> 1.18.0"
+  gem.add_development_dependency "pry"
+  gem.add_development_dependency "rspec",   "~> 3.5"
+  gem.add_development_dependency "webmock", "~> 2.1"
 end
