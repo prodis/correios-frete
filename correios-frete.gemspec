@@ -25,6 +25,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "sax-machine", "~> 0.2.1"
 
   gem.add_development_dependency "rake"
+  gem.add_development_dependency "pry"
   gem.add_development_dependency "rspec",   "~> 3.5"
   gem.add_development_dependency "webmock", "~> 2.1"
 end

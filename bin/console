@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'correios-frete'
+
+# pry
+require 'pry'
+Pry.start
+
+# irb
+require 'irb'
+IRB.start
