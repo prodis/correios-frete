@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.platform              = Gem::Platform::RUBY
-  gem.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
+  gem.required_ruby_version = Gem::Requirement.new(">= 1.9.3")
 
   gem.add_dependency "log-me",      "~> 0.0.10"
   gem.add_dependency "nokogiri",    "~> 1.6.8.1"
