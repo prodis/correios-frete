@@ -1,4 +1,7 @@
-== Versão 1.9.3
+== Versão 1.9.5
+- Atualização: nokogiri e sax-machine gems.
+
+== Versão 1.9.4
 - Atualização: Versão 0.0.10 da gem log-me.
 
 == Versão 1.9.3
