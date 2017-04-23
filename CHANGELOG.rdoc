@@ -1,3 +1,6 @@
+== Versão 1.10.1
+- Atualização: suporte para nokogiri 1.7 (https://github.com/prodis/correios-frete/issues/25)
+
 == Versão 1.10.0
 - Novo: Versão mínima do Ruby é 1.9.3 a partir de agora.
 
