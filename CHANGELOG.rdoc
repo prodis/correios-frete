@@ -1,5 +1,8 @@
+== Versão 1.11.0
+- Atualização: {Issue #29: Substituição de códigos de serviço PAC e SEDEX pelos Correios}[https://github.com/prodis/correios-frete/issues/29].
+
 == Versão 1.10.1
-- Atualização: suporte para nokogiri 1.7 (https://github.com/prodis/correios-frete/issues/25)
+- Novo: {Issue #25: Suporte para nokogiri 1.7}[https://github.com/prodis/correios-frete/issues/25].
 
 == Versão 1.10.0
 - Novo: Versão mínima do Ruby é 1.9.3 a partir de agora.
