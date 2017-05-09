@@ -164,16 +164,16 @@ Por padrão, cada chamada ao Web Service dos Correios é logada em STDOUT, com n
 
 Exemplo de log:
   I, [2011-10-01T00:26:16.864990 #5631]  INFO -- : Correios-Frete Request:
-  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0,00&nCdServico=41106&nCdEmpresa=&sDsSenha=&StrRetorno=xml
+  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0,00&nCdServico=04510&nCdEmpresa=&sDsSenha=&StrRetorno=xml
 
   I, [2011-10-01T00:26:17.121822 #5631]  INFO -- : Correios-Frete Response:
   HTTP/1.1 200 OK
   <?xml version="1.0" encoding="ISO-8859-1" ?>
-  <Servicos><cServico><Codigo>41106</Codigo><Valor>10,00</Valor><PrazoEntrega>5</PrazoEntrega><ValorMaoPropria>0,00</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>0,00</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>
+  <Servicos><cServico><Codigo>04510</Codigo><Valor>10,00</Valor><PrazoEntrega>5</PrazoEntrega><ValorMaoPropria>0,00</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>0,00</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>
 
 Se você configurar o nível de log como <b>:debug</b>, serão logados também todos os cabeçalhos HTTP da resposta:
   D, [2011-10-01T00:27:50.597961 #5631] DEBUG -- : Correios-Frete Request:
-  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0,00&nCdServico=41106&nCdEmpresa=&sDsSenha=&StrRetorno=xml
+  http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?sCepOrigem=04094-050&sCepDestino=90619-900&nVlPeso=0.3&nVlComprimento=30&nVlAltura=2&nVlLargura=15&nVlDiametro=0.0&nCdFormato=1&sCdMaoPropria=N&sCdAvisoRecebimento=N&nVlValorDeclarado=0,00&nCdServico=04510&nCdEmpresa=&sDsSenha=&StrRetorno=xml
 
   D, [2011-10-01T00:27:50.812046 #5631] DEBUG -- : Correios-Frete Response:
   HTTP/1.1 200 OK
@@ -187,7 +187,7 @@ Se você configurar o nível de log como <b>:debug</b>, serão logados também t
   content-type: text/xml; charset=iso-8859-1
   content-length: 401
   <?xml version="1.0" encoding="ISO-8859-1" ?>
-  <Servicos><cServico><Codigo>41106</Codigo><Valor>10,00</Valor><PrazoEntrega>5</PrazoEntrega><ValorMaoPropria>0,00</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>0,00</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>
+  <Servicos><cServico><Codigo>04510</Codigo><Valor>10,00</Valor><PrazoEntrega>5</PrazoEntrega><ValorMaoPropria>0,00</ValorMaoPropria><ValorAvisoRecebimento>0,00</ValorAvisoRecebimento><ValorValorDeclarado>0,00</ValorValorDeclarado><EntregaDomiciliar>S</EntregaDomiciliar><EntregaSabado>N</EntregaSabado><Erro>0</Erro><MsgErro></MsgErro></cServico></Servicos>
 
 Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo de log, use o módulo <b>Correios::Frete</b>.
 
@@ -209,10 +209,10 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 
 === Serviços suportados
 
-  :pac                         # 41106 - PAC sem contrato
+  :pac                         # 04510 - PAC sem contrato
   :pac_com_contrato            # 41068 - PAC com contrato
   :pac_gf                      # 41300 - PAC para grandes formatos
-  :sedex                       # 40010 - SEDEX sem contrato
+  :sedex                       # 04014 - SEDEX sem contrato
   :sedex_a_cobrar              # 40045 - SEDEX a Cobrar, sem contrato
   :sedex_a_cobrar_com_contrato # 40126 - SEDEX a Cobrar, com contrato
   :sedex_10                    # 40215 - SEDEX 10, sem contrato
