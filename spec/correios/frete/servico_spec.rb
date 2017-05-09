@@ -6,7 +6,7 @@ describe Correios::Frete::Servico do
     context "when service exists" do
       before :each do
         @xml = """<cServico>
-                    <Codigo>41106</Codigo>
+                    <Codigo>04510</Codigo>
                     <Valor>15,70</Valor>
                     <PrazoEntrega>3</PrazoEntrega>
                     <ValorMaoPropria>3,75</ValorMaoPropria>
@@ -22,7 +22,7 @@ describe Correios::Frete::Servico do
       { :tipo => :pac,
         :nome => "PAC",
         :descricao => "PAC sem contrato",
-        :codigo => "41106",
+        :codigo => "04510",
         :valor => 15.70,
         :prazo_entrega => 3,
         :valor_mao_propria => 3.75,
@@ -42,7 +42,7 @@ describe Correios::Frete::Servico do
       context "and calculated value is greater than 999.99" do
         before :each do
           @xml = """<cServico>
-                      <Codigo>41106</Codigo>
+                      <Codigo>04510</Codigo>
                       <Valor>1.024,75</Valor>
                       <PrazoEntrega>3</PrazoEntrega>
                       <ValorMaoPropria>3,75</ValorMaoPropria>

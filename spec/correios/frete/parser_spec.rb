@@ -10,7 +10,7 @@ describe Correios::Frete::Parser do
     end
 
     { :pac => { :tipo => :pac,
-                :codigo => "41106",
+                :codigo => "04510",
                 :valor => 15.70,
                 :prazo_entrega => 3,
                 :valor_mao_propria => 3.75,
@@ -21,7 +21,7 @@ describe Correios::Frete::Parser do
                 :erro => "-3",
                 :msg_erro => "Somente para teste" },
       :sedex => { :tipo => :sedex,
-                  :codigo => "40010",
+                  :codigo => "04014",
                   :valor => 17.8,
                   :prazo_entrega => 1,
                   :valor_mao_propria => 3.70,
