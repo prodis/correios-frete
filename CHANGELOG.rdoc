@@ -1,3 +1,6 @@
+== Versão 1.11.1
+- Atualização: Versão 1.7.2 da gem Nokogiri.
+
 == Versão 1.11.0
 - Atualização: {Issue #29: Substituição de códigos de serviço PAC e SEDEX pelos Correios}[https://github.com/prodis/correios-frete/issues/29].
 
