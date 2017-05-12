@@ -7,7 +7,7 @@ module Correios
       include SAXMachine
 
       AVAILABLE_SERVICES = {
-        "41106" => { :type => :pac,                         :name => "PAC",            :description => "PAC sem contrato"                  },
+        "04510" => { :type => :pac,                         :name => "PAC",            :description => "PAC sem contrato"                  },
         "41068" => { :type => :pac_com_contrato,            :name => "PAC",            :description => "PAC com contrato"                  },
         "41300" => { :type => :pac_gf,                      :name => "PAC GF",         :description => "PAC para grandes formatos"         },
         "40010" => { :type => :sedex,                       :name => "SEDEX",          :description => "SEDEX sem contrato"                },
