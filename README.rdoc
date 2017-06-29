@@ -331,6 +331,7 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 - {Daniel Konishi (dkonishi)}[https://github.com/dkonishi]
 - {Denis Tierno (detierno)}[https://github.com/detierno]
 - {Gui Albuk (guialbuk)}[https://github.com/guialbuk]
+- {Ian Obraczka (ianobraczka)}[https://github.com/ianobraczka]
 - {Paulo Henrique Sacramento (henriquesacramento)}[https://github.com/henriquesacramento]
 - {Rafael Barbolo (barbolo)}[https://github.com/barbolo]
 - {Rafael Souza (rafaelss)}[https://github.com/rafaelss]
