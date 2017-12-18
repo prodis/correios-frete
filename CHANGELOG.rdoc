@@ -1,3 +1,7 @@
+== Versão 1.13.0
+- Atualização: {Issue #36: Nokogiri 1.8.1}[https://github.com/prodis/correios-frete/issues/36].
+- Correção: {Issue #36: bin/console removido da instalação}[https://github.com/prodis/correios-frete/issues/34].
+
 == Versão 1.12.0
 - Atualização: {Issue #27: Novos códigos de serviço PAC (04669) e SEDEX (04162)}[https://github.com/prodis/correios-frete/issues/27].
 
