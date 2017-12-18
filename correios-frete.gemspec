@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = Gem::Requirement.new(">= 1.9.3")
 
   gem.add_dependency "log-me", "~> 0.0.10"
-  gem.add_dependency "nokogiri", RUBY_VERSION >= "2.1" ? "1.8.1" : "1.6.8.1"
+  gem.add_dependency "nokogiri", RUBY_VERSION >= "2.1" ? "~> 1.8.1" : "1.6.8.1"
   gem.add_dependency "sax-machine", "~> 1.3"
 
   gem.add_development_dependency "rake", "~> 12.0"
