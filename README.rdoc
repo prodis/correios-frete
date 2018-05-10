@@ -210,20 +210,18 @@ Para desabilitar o log, mudar o nível do log ou configurar um outro mecanismo d
 === Serviços suportados
 
   :pac                         # 04510 - PAC sem contrato
-  :pac_com_contrato            # 41068 - PAC com contrato
-  :pac_com_contrato_2          # 04669 - PAC com contrato
+  :pac_com_contrato            # 04669 - PAC com contrato
   :pac_gf                      # 41300 - PAC para grandes formatos
   :sedex                       # 04014 - SEDEX sem contrato
   :sedex_a_cobrar              # 40045 - SEDEX a Cobrar, sem contrato
   :sedex_a_cobrar_com_contrato # 40126 - SEDEX a Cobrar, com contrato
   :sedex_10                    # 40215 - SEDEX 10, sem contrato
   :sedex_hoje                  # 40290 - SEDEX Hoje, sem contrato
-  :sedex_com_contrato_1        # 40096 - SEDEX com contrato
+  :sedex_com_contrato_1        # 04162 - SEDEX com contrato
   :sedex_com_contrato_2        # 40436 - SEDEX com contrato
   :sedex_com_contrato_3        # 40444 - SEDEX com contrato
   :sedex_com_contrato_4        # 40568 - SEDEX com contrato
   :sedex_com_contrato_5        # 40606 - SEDEX com contrato
-  :sedex_com_contrato_6        # 04162 - SEDEX com contrato
   :e_sedex                     # 81019 - e-SEDEX, com contrato
   :e_sedex_prioritario         # 81027 - e-SEDEX Prioritário, com contrato
   :e_sedex_express             # 81035 - e-SEDEX Express, com contrato
