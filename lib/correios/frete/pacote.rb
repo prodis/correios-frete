@@ -51,7 +51,8 @@ module Correios
           dimensoes = @itens.map { |item| [item.comprimento, item.largura, item.altura] }.flatten
           dimensao_maxima = dimensoes.max
           dimensao = (@volume.to_f/dimensao_maxima)**0.5
-          @comprimento = @largura = @altura = dimensao
+          @comprimento = dimensao_maxima
+          @largura = @altura = dimensao
         end
 
         min_dimension_values
