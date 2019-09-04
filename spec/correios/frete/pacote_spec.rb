@@ -135,9 +135,11 @@ describe Correios::Frete::Pacote do
 
     context "when adds more than one package item" do
       before :each do
-        @item1 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 30, :largura => 15, :altura => 2)
-        @item2 = Correios::Frete::PacoteItem.new(:peso => 0.7, :comprimento => 70, :largura => 25, :altura => 3)
-        @expected_dimension = (@item1.volume + @item2.volume).to_f**(1.0/3)
+        @max_dimension = 70
+        @item1 = Correios::Frete::PacoteItem.new(:peso => 0.3, :comprimento => 50, :largura => 15, :altura => 5)
+        @item2 = Correios::Frete::PacoteItem.new(:peso => 0.7, :comprimento => @max_dimension, :largura => 25, :altura => 3)
+
+        @expected_dimension = ((@item1.volume + @item2.volume).to_f/70)**0.5
 
         @pacote.adicionar_item(@item1)
         @pacote.adicionar_item(@item2)
@@ -152,7 +154,7 @@ describe Correios::Frete::Pacote do
       end
 
       it "calculates package length" do
-        expect(@pacote.comprimento).to eq(@expected_dimension)
+        expect(@pacote.comprimento).to eq(@max_dimension)
       end
 
       it "calculates package width" do
