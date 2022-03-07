@@ -145,7 +145,6 @@ Usando a interface pública em inglês:
   pacote.add_item(item2)
   pacote.items.size # => 2
 
-
 == Configurações
 
 === Timeout
